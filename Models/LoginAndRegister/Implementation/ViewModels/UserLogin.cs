@@ -1,6 +1,6 @@
 ﻿namespace Models
 {
-    public class UserLogin : BaseUser
+    public class UserLogin : BaseUser, ICommand
     {
     }
 }

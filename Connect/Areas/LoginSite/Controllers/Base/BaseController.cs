@@ -6,18 +6,6 @@
     {
         #region Protected Methods
 
-        protected void ValidateRequest(Controller controller, ViewContext operationOnValid, ViewContext opertationOnNotValid)
-        {
-            if (controller.ModelState.IsValid)
-            {
-                
-            }
-            else
-            {
-
-            }
-        }
-
         [NonAction]
         protected void PreserveModelStateErrors()
         {

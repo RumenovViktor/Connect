@@ -12,18 +12,18 @@ namespace ApplicationServices
             return default(T);
         }
 
-        public static T Post(T command)
+        public static T Post(T command, string baseApiUrl)
         {
             var envelope = new { command = command };
             var serializedCommand = JsonConvert.SerializeObject(envelope);
             string response = null;
+
             try
             {
                 using (var client = new WebClient())
                 {
                     client.Headers[HttpRequestHeader.ContentType] = "application/json";
-                    response = client.UploadString("http://localhost:51246/api/registration/register/" + command.GetType().Name, "POST", serializedCommand);
-
+                    response = client.UploadString(baseApiUrl + command.GetType().Name, "POST", serializedCommand);
                 }
             }
             catch (WebException e)
