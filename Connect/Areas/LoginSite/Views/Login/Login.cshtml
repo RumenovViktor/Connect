@@ -1,0 +1,21 @@
+﻿@model Models.UserLogin
+
+<div class="form-group col-sm-offset-1">
+    @using (Html.BeginForm("Login", "Login"))
+    {
+        @Html.AntiForgeryToken()
+        <h3>Login</h3>
+        <div class="row right-glyph">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-group", placeholder = "Email...", type = "email" })
+            <i class="glyphicon glyphicon-user"></i>
+        </div>
+        <div class="row right-glyph">
+            @Html.TextBoxFor(m => m.Password, new { @class = "form-control form-group", placeholder = "Password...", type = "password" })
+            <i class="glyphicon glyphicon-user glyphicon glyphicon-lock"></i>
+        </div>
+        <div class="row">
+            <input class="col-md-12 col-lg-12 btn btn-success" type="submit" value="Login" />
+        </div>
+        @Html.ValidationSummary(false);
+    }
+</div>

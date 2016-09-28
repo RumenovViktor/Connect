@@ -1,0 +1,26 @@
+﻿@model Models.UserRegistrationLogin
+
+@{ 
+    var login = Model.UserLogin;
+    var reg = Model.UserRegistration;
+}
+
+<div id="wrapper">
+    <div class="row col-md-4 col-lg-3 pull-right col-lg-pull-1">
+        <div class="panel panel-default">
+            @{ Html.RenderPartial("~/Areas/LoginSite/Views/Login/Login.cshtml", Model.UserLogin); }
+        </div>
+        <div class="panel panel-default">
+            @{ Html.RenderPartial("~/Areas/LoginSite/Views/Registration/Registration.cshtml", Model.UserRegistration); }
+        </div>
+    </div>
+    <div id="welcome-text-wrapper" class="col-md-8">
+        <div id="motivation-text">
+            <h1 class="motivation">Create yourself and be a part of the business world</h1>
+        </div>
+        <div id="text-info">
+            <p class="login-info">Login as a person to search for a job or login as an organization to seek for future contractors</p>
+        </div>
+    </div>
+    <img class="connect-img" src="~/Content/Images/connection-clipart-yearbook-connection-md.png" />
+</div>

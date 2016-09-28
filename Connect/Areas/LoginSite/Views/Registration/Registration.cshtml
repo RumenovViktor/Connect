@@ -1,0 +1,28 @@
+﻿@model Models.UserRegistration
+
+<div class="form-group col-md-offset-1">
+    @using (Html.BeginForm("Registration", "Registration"))
+    {
+        @Html.AntiForgeryToken()
+        <h3>Register - it's free.</h3>
+        <div class="row">
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control form-group", placeholder = "First name..."})
+        </div>
+        <div class="row">
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control form-group", placeholder = "Last name..."})
+        </div>
+        <div class="row">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-group", placeholder = "Email...", type = "email" })
+        </div>
+        <div class="row">
+            @Html.TextBoxFor(m => m.Password, new { @class = "form-control form-group", placeholder = "Password...", type = "password" })
+        </div>
+        <div class="row">
+            @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control form-group", placeholder = "Confirm Password...", type = "password" })
+        </div>
+        <div class="row">
+            <input class="col-md-12 btn btn-primary" type="submit" value="Register" />
+        </div>
+        @Html.ValidationSummary(false)
+    }
+</div>

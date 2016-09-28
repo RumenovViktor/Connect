@@ -1,0 +1,37 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#wrapper {
+    margin-top: 2%;
+}
+
+#welcome-text-wrapper {
+    text-align: center;
+}
+
+.connect-img{
+    margin-left: 20%;
+    width: 30%;
+    margin-top: 6%;
+}
+
+.right-glyph{
+    position: relative;
+}
+.right-glyph i {
+    position: absolute;
+    right: 0px;
+    margin-right: 15%;
+    margin-top: 2.6%;
+    pointer-events: none;
+}
