@@ -9,15 +9,15 @@
     {
         #region Private Members
 
-        public readonly ILoginApplicationService loginApplicationService;
+        private readonly ILoginApplicationService loginApplicationService;
 
         #endregion
 
         #region Ctor(s)
 
-        public LoginController()
+        public LoginController(ILoginApplicationService loginApplicationService)
         {
-            loginApplicationService = new LoginApplicationService();
+            this.loginApplicationService = loginApplicationService;
         }
 
         #endregion

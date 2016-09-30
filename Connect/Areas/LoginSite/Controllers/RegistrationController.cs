@@ -15,9 +15,9 @@
 
         #region Ctor(s)
 
-        public RegistrationController()
+        public RegistrationController(IRegistrationApplicationService registrationApplicationService)
         {
-            registrationApplicationService = new RegistrationApplicationService();
+            this.registrationApplicationService = registrationApplicationService;
         }
 
         #endregion
@@ -37,11 +37,12 @@
             if (ModelState.IsValid)
             {
                 var registeredUser = registrationApplicationService.Execute(user);
-                return View(registeredUser); // Redirect to blanks.
+
+                return View(registeredUser);
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home", user);
             }
         }
 
