@@ -3,14 +3,6 @@
     padding-bottom: 20px;
 }
 
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
 #wrapper {
     margin-top: 2%;
 }
@@ -31,7 +23,25 @@ textarea {
 .right-glyph i {
     position: absolute;
     right: 0px;
-    margin-right: 15%;
+    margin-right: 10%;
     margin-top: 2.6%;
     pointer-events: none;
+}
+
+#businessInfoWrapper {
+    margin-top: 5%;
+    width: 98.3%;
+}
+
+#basicUserInfo-image img, #company-default-img img{
+    width: 40%;
+    height: 40%;
+}
+
+#supporortedCompanies-wrapper{
+    margin-top: 2%;
+}
+
+#businessInfo-supportedCompanies, #supporortedCompanies-wrapper{
+    height: 39em;
 }

@@ -1,0 +1,6 @@
+﻿@model IEnumerable<SupportedSector>
+
+    @Html.DropDownList("supportedSector",
+            new SelectList(Model.Select(x => new { Value = x.Id, Text = x.Name }), "Value", "Text"),
+                            "Select sector", new { id= "supportedSector-dropdown", @class = "form-control" })
+

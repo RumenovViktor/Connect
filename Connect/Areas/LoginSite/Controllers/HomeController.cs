@@ -9,7 +9,7 @@
         public ActionResult Index()
         {
             var registrationLoginViewModel = new UserRegistrationLogin();
-            return View(registrationLoginViewModel);
+            return View("~/Areas/LoginSite/Views/Home/Index.cshtml", registrationLoginViewModel);
         }
     }
 }

@@ -47,7 +47,9 @@
     <Compile Include="Contracts\IHandles\IHandles.cs" />
     <Compile Include="Contracts\IRegistrationApplicationService.cs" />
     <Compile Include="Contracts\ILoginApplicationService.cs" />
+    <Compile Include="Contracts\IUserInfoProvider.cs" />
     <Compile Include="Implementation\LoginApplicationService.cs" />
+    <Compile Include="Implementation\Managers\UserInfoProvider.cs" />
     <Compile Include="Implementation\RegistrationApplicationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebServiceProvider.cs" />

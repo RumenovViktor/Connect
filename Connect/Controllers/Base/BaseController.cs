@@ -1,4 +1,4 @@
-﻿namespace Connect.Controllers.Base
+﻿namespace Connect.Controllers
 {
     using System.Web.Mvc;
 

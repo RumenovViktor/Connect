@@ -36,9 +36,10 @@
         {
             if (ModelState.IsValid)
             {
-                var registeredUser = registrationApplicationService.Execute(user);
+                registrationApplicationService.Execute(user);
+                SetAuthenticationCoockie(user.Email);
 
-                return View(registeredUser);
+                return RedirectToAction("BusinessInfo", "BusinessInfo", new UserBusinessInfo(user.Email, user.Password, user.FirstName, user.LastName, user.ConfirmPassword, user.Gender, true));
             }
             else
             {

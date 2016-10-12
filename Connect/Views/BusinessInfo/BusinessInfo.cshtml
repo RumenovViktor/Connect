@@ -1,0 +1,17 @@
+﻿@model UserBusinessInfo
+
+<div id="businessInfoWrapper">
+    <div id="businessInfo-supportedSectors" class="panel">
+        <div>
+            @Html.Action("SupportedSectors", "BusinessInfo")
+        </div>
+    </div>
+    <div id="businessInfo-basicUserInfo" class="panel panel-default col-md-3 text-center">
+        <div class="panel-body">
+            @Html.Action("ProfileBasicInfo", "BusinessInfo", Model)
+        </div>
+    </div>
+    <div id="businessInfo-supportedCompanies" class="panel panel-default col-md-offset-4 text-center">
+        <h2 class="text-center text-info">Select a sector...</h2>
+    </div>
+</div>

@@ -1,7 +1,9 @@
-﻿using ApplicationServices;
+﻿using System.Web.Mvc;
+
 using Autofac;
 using Autofac.Integration.Mvc;
-using System.Web.Mvc;
+
+using ApplicationServices;
 
 namespace Connect
 {
@@ -23,6 +25,7 @@ namespace Connect
         {
             builder.RegisterType<RegistrationApplicationService>().As<IRegistrationApplicationService>();
             builder.RegisterType<LoginApplicationService>().As<ILoginApplicationService>();
+            builder.RegisterType<UserInfoProvider>().As<IUserInfoProvider>();
         }
     }
 }

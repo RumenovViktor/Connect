@@ -1,0 +1,30 @@
+﻿@model BasicUserInfo
+
+@if (Model.ProfileImage != null)
+{
+    <div id="basicUserInfo-image">
+
+    </div>
+}
+else
+{
+    <div id="basicUserInfo-image">
+        <img src="~/Content/Images/profile-image.png" class="img-circle"/>
+    </div>
+}
+
+<div id="basicUserInfo-name" class="text-info">
+    <h4>@(Model.FirstName + " " + Model.LastName)</h4>
+</div>
+<div>
+    <h5>@Model.Email</h5>
+</div>
+<div>
+    <h5>Bulgaria</h5> @*TODO: Show country populated from registration.*@
+</div>
+<div>
+    <h5>@Utils.Gender.Male</h5>
+</div>
+<div class="panel-footer">
+    <h3 class="text-center text-success">View</h3>
+</div>

@@ -162,6 +162,7 @@
     <Compile Include="Areas\LoginSite\Controllers\RegistrationController.cs" />
     <Compile Include="Areas\LoginSite\LoginSiteAreaRegistration.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
+    <Compile Include="Controllers\BusinessInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -170,6 +171,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\company-default.png" />
+    <Content Include="Content\Images\profile-image.png" />
     <Content Include="Content\Images\connection-clipart-yearbook-connection-md.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -189,6 +192,9 @@
     <Content Include="Areas\LoginSite\Views\Registration\Registration.cshtml" />
     <Content Include="Areas\LoginSite\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\ConnectScripts\BusinessInfo\connect.companies.js" />
+    <Content Include="Scripts\ConnectScripts\Global\connect.js" />
+    <Content Include="Scripts\ConnectScripts\Global\connect.utils.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -200,20 +206,25 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\BusinessInfo\BusinessInfo.cshtml" />
+    <Content Include="Views\BusinessInfo\ProfileBasicInfo.cshtml" />
+    <Content Include="Views\BusinessInfo\SupportedSectors.cshtml" />
+    <Content Include="Views\BusinessInfo\SupportedCompanies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
