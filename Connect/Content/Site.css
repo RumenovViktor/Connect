@@ -3,6 +3,26 @@
     padding-bottom: 20px;
 }
 
+#custom-login-navigation{
+    width: 9.2em !important;
+}
+
+#connect-text{
+    margin-top: 10%;
+    font-weight: 900;
+    float: left;
+    margin-left: 5%;
+}
+
+#dot{
+    margin-top: 22%;
+    border: solid #3276b1;
+    width: 1%;
+    height: 1%;
+    border-radius: 100%;
+    float: left;
+}
+
 #wrapper {
     margin-top: 2%;
 }
