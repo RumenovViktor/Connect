@@ -4,6 +4,7 @@
 
     using Models;
     using ApplicationServices;
+    using Helpers;
 
     public class RegistrationController : BaseController
     {
@@ -38,8 +39,9 @@
             {
                 registrationApplicationService.Execute(user);
                 SetAuthenticationCoockie(user.Email);
+                CurrentUser.AddParameter("email", user.Email);
 
-                return RedirectToAction("BusinessInfo", "BusinessInfo", new UserBusinessInfo(user.Email, user.Password, user.FirstName, user.LastName, user.ConfirmPassword, user.Gender, true));
+                return RedirectToAction("BusinessInfo", "BusinessInfo");
             }
             else
             {

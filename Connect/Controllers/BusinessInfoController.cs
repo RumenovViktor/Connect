@@ -4,6 +4,7 @@
 
     using ApplicationServices;
     using Models;
+    using Helpers;
 
     //[Authorize]
     public class BusinessInfoController : BaseController
@@ -23,18 +24,10 @@
         
         [HttpGet]
         [ChildActionOnly]
-        public ActionResult ProfileBasicInfo(UserBusinessInfo userBusinessInfo)
+        public ActionResult ProfileBasicInfo()
         {
-            BasicUserInfo currentUser = null;
-
-            if (userBusinessInfo.IsAfterRegistration)
-            {
-                currentUser = new BasicUserInfo(null, userBusinessInfo.Email, userBusinessInfo.FirstName, userBusinessInfo.LastName, userBusinessInfo.Gender);
-            }
-            else
-            {
-                currentUser = userInfoProvider.GetBasicUserInfo(userBusinessInfo.Email);
-            }
+            var email = CurrentUser.GetParameterByKey("email");
+            var currentUser = userInfoProvider.GetBasicUserInfo((string)email);
 
             return PartialView(currentUser);
         }
