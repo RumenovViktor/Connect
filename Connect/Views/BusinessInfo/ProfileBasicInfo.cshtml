@@ -9,22 +9,31 @@
 else
 {
     <div id="basicUserInfo-image">
-        <img src="~/Content/Images/profile-image.png" class="img-circle"/>
+        <img src="~/Content/Images/profile-image.png"/>
     </div>
 }
 
-<div id="basicUserInfo-name" class="text-info">
-    <h4>@(Model.FirstName + " " + Model.LastName)</h4>
+<div id="basicUserInfo-name">
+    <i class="basicUserInfo-align glyphicon glyphicon-user"></i>
+    <h2 class="text-info basicUserInfo-margin-left">@(Model.FirstName + " " + Model.LastName)</h2>
+</div>
+<div id="businessInfo-email">
+    <i class="basicUserInfo-align glyphicon glyphicon-envelope"></i>
+    <h4 class="text-info basicUserInfo-margin-left"><a href="#">@Model.Email</a></h4>
+</div>
+<div id="basicUserInfo-country">
+    <i class="basicUserInfo-align glyphicon glyphicon-home"></i>
+    <h4 class="text-muted basicUserInfo-margin-left">Bulgaria</h4> @*TODO: Show country populated from registration.*@
 </div>
 <div>
-    <h5>@Model.Email</h5>
+    <i class="basicUserInfo-align glyphicon glyphicon-heart-empty"></i>
+    <h4 class="text-muted basicUserInfo-margin-left">@Utils.Gender.Male</h4>
 </div>
+
 <div>
-    <h5>Bulgaria</h5> @*TODO: Show country populated from registration.*@
+    @Html.ActionLink("Edit Profile", "", "", new { @class = "btn btn-primary col-lg-12" })
 </div>
-<div>
-    <h5>@Utils.Gender.Male</h5>
-</div>
-<div class="panel-footer">
-    <h3 class="text-center text-success">View</h3>
+<div id="basicUserInfo-joined-on">
+    <i class="basicUserInfo-align glyphicon glyphicon-time"></i>
+    <h5 class="text-muted basicUserInfo-margin-left">Joined on @Model.DateOfCreation</h5>
 </div>
