@@ -8,6 +8,7 @@
             data: data,
             method: method,
             type: type,
+            processData: false,
             success: success,
             error: error
         });

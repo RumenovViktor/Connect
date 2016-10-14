@@ -5,7 +5,8 @@ namespace Models
 {
     public class BasicUserInfo : ICommand
     {
-        public BasicUserInfo(int id, string profileImage, string email, string firstName, string lastName, Gender gender, DateTime DateOfCreation)
+        public BasicUserInfo(int id, byte[] profileImage, string email, string firstName, 
+                            string lastName, Gender gender, DateTime DateOfCreation)
         {
             this.Id = id;
             this.ProfileImage = profileImage;
@@ -16,10 +17,8 @@ namespace Models
         }
 
         public int Id { get; set; }
-
-        // TODO: Property for picture
-
-        public string ProfileImage { get; set; }
+        
+        public byte[] ProfileImage { get; set; }
 
         public string Email { get; set; }
 

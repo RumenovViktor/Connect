@@ -2,15 +2,28 @@
 
 @if (Model.ProfileImage != null)
 {
-    <div id="basicUserInfo-image">
-
+    <div id="basicUserInfo-image" class="img-responsive img-rounded">
+        @{
+            string imageBase64 = Convert.ToBase64String(Model.ProfileImage);
+            string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+        }
+        <img src="@imageSrc" class="img-responsive img-rounded"/>
     </div>
 }
 else
 {
-    <div id="basicUserInfo-image">
-        <img src="~/Content/Images/profile-image.png"/>
+
+    <div id="basicUserInfo-upload-picture-wrapper">
+
     </div>
+    <div id="basicUserInfo-image">
+        <img src="~/Content/Images/profile-image.png" />
+    </div>
+}
+@using (Html.BeginForm("UploadPicture", "FileUpload", FormMethod.Post,
+                                                            new { enctype = "multipart/form-data", id = "upload" }))
+{
+    <input type="file" name="uploadedPicture" id="file" class="filestyle col-lg-12" />
 }
 
 <div id="basicUserInfo-name">
@@ -28,10 +41,6 @@ else
 <div>
     <i class="basicUserInfo-align glyphicon glyphicon-heart-empty"></i>
     <h4 class="text-muted basicUserInfo-margin-left">@Utils.Gender.Male</h4>
-</div>
-
-<div>
-    @Html.ActionLink("Edit Profile", "", "", new { @class = "btn btn-primary col-lg-12" })
 </div>
 <div id="basicUserInfo-joined-on">
     <i class="basicUserInfo-align glyphicon glyphicon-time"></i>

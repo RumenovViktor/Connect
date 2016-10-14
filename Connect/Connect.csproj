@@ -163,6 +163,8 @@
     <Compile Include="Areas\LoginSite\LoginSiteAreaRegistration.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\BusinessInfoController.cs" />
+    <Compile Include="Controllers\FileUploadController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -181,6 +183,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\bootstrap-filestyle.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -196,6 +199,7 @@
     <Content Include="Scripts\ConnectScripts\BusinessInfo\connect.companies.js" />
     <Content Include="Scripts\ConnectScripts\Global\connect.js" />
     <Content Include="Scripts\ConnectScripts\Global\connect.utils.js" />
+    <Content Include="Scripts\ConnectScripts\Profile\profile-basic-info.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -223,15 +227,18 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\BusinessInfo\BusinessInfo.cshtml" />
-    <Content Include="Views\BusinessInfo\ProfileBasicInfo.cshtml" />
+    <Content Include="Views\BusinessInfo\UserBasicInfo.cshtml" />
     <Content Include="Views\BusinessInfo\SupportedSectors.cshtml" />
     <Content Include="Views\BusinessInfo\SupportedCompanies.cshtml" />
+    <Content Include="Views\Profile\ProfileBasicInfo.cshtml" />
+    <Content Include="Views\Profile\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\LoginSite\Views\Base\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\FileUpload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

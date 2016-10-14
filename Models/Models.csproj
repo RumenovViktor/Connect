@@ -51,6 +51,7 @@
     <Compile Include="LoginAndRegister\Implementation\ViewModels\UserRegistration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInfo\BasicUserInfo.cs" />
+    <Compile Include="UserInfo\File.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utils\Utils.csproj">

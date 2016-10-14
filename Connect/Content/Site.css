@@ -48,12 +48,16 @@
     pointer-events: none;
 }
 
-#businessInfoWrapper {
+#businessInfoWrapper,  #profile-wrapper{
     margin-top: 5%;
     width: 98.3%;
 }
+#basicUserInfo-image img{
+    width: 100%;
+    height: 80%;
+}
 
-#basicUserInfo-image img, #company-default-img img{
+#company-default-img img{
     width: 100%;
     height: 100%;
 }
@@ -104,3 +108,7 @@
       width:100%;
       display:block;
 }*/
+
+#basicUserInfo-upload-picture-wrapper{
+    position: relative;
+}

@@ -24,7 +24,7 @@
         
         [HttpGet]
         [ChildActionOnly]
-        public ActionResult ProfileBasicInfo()
+        public ActionResult UserBasicInfo()
         {
             var email = CurrentUser.GetParameterByKey("email");
             var currentUser = userInfoProvider.GetBasicUserInfo((string)email);

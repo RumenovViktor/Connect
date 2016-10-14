@@ -1,0 +1,42 @@
+﻿@model BasicUserInfo
+
+@if (Model.ProfileImage != null)
+{
+    <div id="basicUserInfo-image">
+        @{
+            string imageBase64 = Convert.ToBase64String(Model.ProfileImage);
+            string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+        }
+        <img src="@imageSrc"/>
+    </div>
+}
+else
+{
+    <div id="basicUserInfo-image">
+        <img src="~/Content/Images/profile-image.png"/>
+    </div>
+}
+
+<div id="basicUserInfo-name">
+    <i class="basicUserInfo-align glyphicon glyphicon-user"></i>
+    <h2 class="text-info basicUserInfo-margin-left">@(Model.FirstName + " " + Model.LastName)</h2>
+</div>
+<div id="businessInfo-email">
+    <i class="basicUserInfo-align glyphicon glyphicon-envelope"></i>
+    <h4 class="text-info basicUserInfo-margin-left"><a href="#">@Model.Email</a></h4>
+</div>
+<div id="basicUserInfo-country">
+    <i class="basicUserInfo-align glyphicon glyphicon-home"></i>
+    <h4 class="text-muted basicUserInfo-margin-left">Bulgaria</h4> @*TODO: Show country populated from registration.*@
+</div>
+<div>
+    <i class="basicUserInfo-align glyphicon glyphicon-heart-empty"></i>
+    <h4 class="text-muted basicUserInfo-margin-left">@Utils.Gender.Male</h4>
+</div>
+<div>
+    @Html.ActionLink("Edit Profile", "Profile", "Profile", null, new { @class = "btn btn-primary col-lg-12" })
+</div>
+<div id="basicUserInfo-joined-on">
+    <i class="basicUserInfo-align glyphicon glyphicon-time"></i>
+    <h5 class="text-muted basicUserInfo-margin-left">Joined on @Model.DateOfCreation</h5>
+</div>

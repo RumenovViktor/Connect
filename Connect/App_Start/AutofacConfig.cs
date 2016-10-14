@@ -26,6 +26,8 @@ namespace Connect
             builder.RegisterType<RegistrationApplicationService>().As<IRegistrationApplicationService>();
             builder.RegisterType<LoginApplicationService>().As<ILoginApplicationService>();
             builder.RegisterType<UserInfoProvider>().As<IUserInfoProvider>();
+            builder.RegisterType<ImagesHandler>().As<IFileHandler>();
+            builder.RegisterType<FileManagementApplicationService>().As<IFileManagementApplicationService>();
         }
     }
 }

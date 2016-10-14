@@ -21,8 +21,16 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
+    @*TODO: Move scripts to bundle to be loaded for the places they are needed.*@
     <script src="~/Scripts/ConnectScripts/Global/connect.js"></script>
     <script src="~/Scripts/ConnectScripts/BusinessInfo/connect.companies.js"></script>
     <script src="~/Scripts/ConnectScripts/Global/connect.utils.js"></script>
+    <script type="text/javascript">
+        $("#file").filestyle({ buttonName: "btn btn-default col-lg-12" });
+        $("#file").filestyle("size", "md");
+        $(":file").filestyle('input', false);
+        $("#file").filestyle('buttonText', 'Change pucture');
+    </script>
+    <script src="~/Scripts/ConnectScripts/Profile/profile-basic-info.js"></script>
 </body>
 </html>
