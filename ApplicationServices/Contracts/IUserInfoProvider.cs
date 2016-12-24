@@ -11,5 +11,9 @@
         IList<SupportedSector> GetSupportedSectors();
 
         IList<SupportedCompany> GetSupportedCompanies(int sectorId);
+
+        void AddExperience(ExperienceViewModel experience);
+
+        Profile GetUserProfile(string email);
     }
 }

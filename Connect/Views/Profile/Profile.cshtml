@@ -1,5 +1,41 @@
-﻿<div id="profile-wrapper">
-    <div id="businessInfo-basicUserInfo" class="col-md-3">
+﻿@model Profile
+
+<div id="profile-wrapper">
+    <div id="businessInfo-basicUserInfo" class="row col-md-3">
         @Html.Action("ProfileBasicInfo", "Profile")
     </div>
+    <div id="profile-navbar-wrapper" class="row col-md-9">
+        <div class="text-center col-md-6 profile-navbar-option">
+            @Html.ActionLink("Qualifications", "Profile", "", new { @class= "btn-link" })
+        </div>
+        <div class="text-center col-md-6 btn-link profile-navbar-option">
+            @Html.ActionLink("Documents", "Profile", "", new { @class = "btn-link" })
+        </div>
+        <div class="row line"></div>
+    </div>
+    <div id="profile-content" class="row col-md-9">
+        @*Todo: take it to a partial view*@
+        <div id="profile-qualifications-wrapper">
+            <a href="#" class="btn btn-info col-md-12">Add experience</a>
+        </div>
+        <div class="background">
+            <div id="form">
+            </div>
+        </div>
+        <div id="experience-list">
+            @foreach (var experience in Model.UserExperience)
+            {
+                Html.RenderPartial("~/Views/Profile/Experience.cshtml", experience);
+            }
+        </div>
+        <div id="skills-wrapper">
+            <div id="img-wrapper">
+                <img src="~/Content/Images/profile-image.png" style="width: 100px;height:100px;" class="img-circle"/>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section ProfileScripts{
+    <script src="~/Scripts/ConnectScripts/Profile/profileManager.js"></script>
+}

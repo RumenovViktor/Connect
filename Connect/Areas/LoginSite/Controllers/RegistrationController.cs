@@ -37,7 +37,14 @@
         {
             if (ModelState.IsValid)
             {
-                registrationApplicationService.Execute(user);
+                var userExists = registrationApplicationService.Execute(user);
+
+                if (userExists.UserExists)
+                {
+                    ModelState.AddModelError("", "User already exists with this email.");
+                    return RedirectToAction("Index", "Home", user);
+                }
+
                 SetAuthenticationCoockie(user.Email);
                 CurrentUser.AddParameter("email", user.Email);
 

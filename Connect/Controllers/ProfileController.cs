@@ -3,6 +3,7 @@ using System.Web.Mvc;
 
 using ApplicationServices;
 using Connect.Helpers;
+using Models;
 
 namespace Connect.Controllers
 {
@@ -18,7 +19,10 @@ namespace Connect.Controllers
         [HttpGet]
         public new ActionResult Profile()
         {
-            return View();
+            var email = CurrentUser.GetParameterByKey("email");
+            var currentUser = userInfoProvider.GetUserProfile((string)email);
+
+            return View(currentUser);
         }
 
         [HttpGet]
@@ -29,6 +33,26 @@ namespace Connect.Controllers
             var currentUser = userInfoProvider.GetBasicUserInfo((string)email);
 
             return PartialView(currentUser);
+        }
+
+        [HttpGet]
+        public ActionResult AddExperience()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddExperience(ExperienceViewModel experience)
+        {
+            if (ModelState.IsValid)
+            {
+                experience.UserEmail = (string)CurrentUser.GetParameterByKey("email");
+                userInfoProvider.AddExperience(experience);
+                return PartialView("Experience", experience);
+            }
+
+            return PartialView(experience);
         }
     }
 }

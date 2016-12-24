@@ -1,0 +1,32 @@
+﻿@model ExperienceViewModel
+    @{ 
+        var startDateMonthName = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(Model.StartDate.Month);
+    }
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="position col-md-8">
+            @Model.Position
+        </div>
+        <div class="exp-period col-md-8">
+            @(startDateMonthName + " " + Model.StartDate.Day + ", " + Model.StartDate.Year) 
+            - 
+            @if (Model.EndDate.HasValue)
+            {
+                var endDateMonthName = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(Model.EndDate.Value.Month);
+                @(endDateMonthName + " " + Model.EndDate.Value.Day + ", " + Model.EndDate.Value.Year)
+            }
+            else
+            {
+                <h5>Present</h5>;
+            }
+        </div>
+        <div class="exp-description col-md-8">
+            @Model.Description
+        </div>
+        <div id="company-img-exp">
+            <div>
+                <img src="~/Content/Images/company-default.png" style="width: 100px;height:100px;" class="img-circle"/>
+            </div>
+        </div>
+    </div>
+</div>

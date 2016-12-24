@@ -17,6 +17,7 @@
             LastName = (string)info.GetValue("LastName", typeof(string));
             ConfirmPassword = (string)info.GetValue("ConfirmPassword", typeof(string));
             Gender = (Gender)info.GetValue("Gender", typeof(Gender));
+            UserExists = (bool)info.GetValue("UserExists", typeof(bool));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -27,6 +28,7 @@
             info.AddValue("LastName", LastName, typeof(string));
             info.AddValue("ConfirmPassword", ConfirmPassword, typeof(string));
             info.AddValue("Gender", Gender, typeof(Gender));
+            info.AddValue("UserExists", UserExists, typeof(bool));
         }
         
         [Required]
@@ -41,5 +43,7 @@
 
         [Required]
         public Gender Gender { get; set; }
+
+        public bool UserExists { get; set; }
     }
 }

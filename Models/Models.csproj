@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ICommand.cs" />
+    <Compile Include="UserInfo\ExperienceViewModel.cs" />
     <Compile Include="LoginAndRegister\Implementation\ViewModels\Base\BaseUser.cs" />
     <Compile Include="LoginAndRegister\Implementation\ViewModels\SupportedCompany.cs" />
     <Compile Include="LoginAndRegister\Implementation\ViewModels\SupportedSector.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInfo\BasicUserInfo.cs" />
     <Compile Include="UserInfo\File.cs" />
+    <Compile Include="UserInfo\Profile.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utils\Utils.csproj">
