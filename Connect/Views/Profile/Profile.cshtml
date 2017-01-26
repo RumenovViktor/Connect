@@ -32,6 +32,19 @@
             <div id="img-wrapper">
                 <img src="~/Content/Images/profile-image.png" style="width: 100px;height:100px;" class="img-circle"/>
             </div>
+            <div class="arrow-up"></div>
+            <div id="skills-panel" class="panel panel-default col-md-12 row">
+                <div class="panel-body">
+                    @if (!Model.Skills.Any())
+                    {
+                        <p>Looks like you haven't added any skills. Please add skills from <a id="add-skill-button" href="#" class="text-info">here</a> so we can rank you better.</p>
+                    }
+
+                </div>
+            </div>
+            <div id="add-skill-panel">
+
+            </div>
         </div>
     </div>
 </div>

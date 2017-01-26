@@ -54,5 +54,19 @@ namespace Connect.Controllers
 
             return PartialView(experience);
         }
+
+        [HttpGet]
+        [OutputCache(Duration = 60 * 60 * 60)]
+        public ActionResult AddSkill()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddSkill(string name)
+        {
+            return PartialView();
+        }
     }
 }

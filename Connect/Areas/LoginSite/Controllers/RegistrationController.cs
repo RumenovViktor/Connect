@@ -5,6 +5,7 @@
     using Models;
     using ApplicationServices;
     using Helpers;
+    using System.Net;
 
     public class RegistrationController : BaseController
     {
@@ -41,18 +42,17 @@
 
                 if (userExists.UserExists)
                 {
-                    ModelState.AddModelError("", "User already exists with this email.");
-                    return RedirectToAction("Index", "Home", user);
+                    return new HttpStatusCodeResult(400, "User with this email already exists.");
                 }
 
                 SetAuthenticationCoockie(user.Email);
                 CurrentUser.AddParameter("email", user.Email);
-
-                return RedirectToAction("BusinessInfo", "BusinessInfo");
+                
+                return Json(new { RedirectUrl = Url.Action("BusinessInfo", "BusinessInfo") });
             }
             else
             {
-                return RedirectToAction("Index", "Home", user);
+                return new HttpStatusCodeResult(400, "Please fill all the fields.");
             }
         }
 

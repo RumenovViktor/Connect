@@ -1,0 +1,21 @@
+﻿@model AddSkill
+
+<div class="panel panel-default form-group col-md-8 text-center">
+    @using (Ajax.BeginForm("AddSkill", "Profile", null,
+                new AjaxOptions()
+                {
+                    HttpMethod = "POST",
+                    InsertionMode = InsertionMode.InsertBefore,
+                    UpdateTargetId = "experience-list"
+                }, new { @class = "panel-body" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.TextBoxFor(x => x.Name)
+
+        <div class="col-md-11">
+            <input type="submit" class="btn btn-success col-md-5" value="Add" />
+            <div class="col-md-2"></div>
+            <input id="close-btn" type="button" class="btn btn-danger col-md-5" value="Close" />
+        </div>
+    };
+</div>

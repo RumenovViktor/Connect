@@ -191,6 +191,7 @@
     <Content Include="Content\Images\ui-icons_ffd27a_256x240.png" />
     <Content Include="Content\Images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\sweetalert\sweetalert.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -215,6 +216,7 @@
     <Content Include="Scripts\ConnectScripts\Global\connect.utils.js" />
     <Content Include="Scripts\ConnectScripts\Profile\profile-basic-info.js" />
     <Content Include="Scripts\ConnectScripts\Profile\profileManager.js" />
+    <Content Include="Scripts\External\sweetalert-dev.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -225,6 +227,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\LoginSite\loginSiteManager.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -254,6 +257,7 @@
     <Content Include="Views\Profile\Qualifications.cshtml" />
     <Content Include="Views\Profile\AddExperience.cshtml" />
     <Content Include="Views\Profile\Experience.cshtml" />
+    <Content Include="Views\Profile\AddSkill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

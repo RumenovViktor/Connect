@@ -157,3 +157,38 @@
 #img-wrapper{
     margin-left: 40%;
 }
+#add-exp-wrapper{
+    z-index: 100000;
+}
+
+.add{
+    width: 5% !important;
+    height: 5% !important;
+    border-radius: 3000000px;
+}
+
+#skills-panel{
+    margin-left: 1%;
+    margin-top: -.01%;
+    background-color: #34495e;
+}
+
+№skills-wrapper{
+    position: relative;
+}
+
+.arrow-up{
+    margin-top: 0.5%;
+    margin-left: 45%;
+    width: 0; 
+    height: 0; 
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid #34495e;
+}
+
+#skills-panel{
+    text-align: center;
+    color: #ecf0f1;
+    font-weight: 900;
+}
