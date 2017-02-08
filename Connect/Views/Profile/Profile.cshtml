@@ -3,6 +3,7 @@
 <div id="profile-wrapper">
     <div id="businessInfo-basicUserInfo" class="row col-md-3">
         @Html.Action("ProfileBasicInfo", "Profile")
+        <a href="#" class="btn btn-primary col-md-12" data-toggle="modal" data-target="#skill-form-modal">Add skill</a>
     </div>
     <div id="profile-navbar-wrapper" class="row col-md-9">
         <div class="text-center col-md-6 profile-navbar-option">
@@ -33,7 +34,7 @@
                 <div class="panel-body">
                     @if (!Model.Skills.Any())
                     {
-                        <p>Looks like you haven't added any skills. Please add skills from <a id="add-skill-button" href="#" class="text-info">here</a> so we can rank you better.</p>
+                        <p>Looks like you haven't added any skills. Please add skills from <a id="add-skill-button" href="#" class="text-info" data-toggle="modal" data-target="#skill-form-modal">here</a> so we can rank you better.</p>
                     }
 
                 </div>
@@ -44,6 +45,8 @@
         </div>
     </div>
 </div>
+
+@*Make a directive*@
 <div class="modal fade background" id="exp-form-modal" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content col-lg-12">
@@ -53,6 +56,21 @@
             </div>
             <div class="modal-body">
                     @{ Html.RenderPartial("~/Views/Profile/AddExperience.cshtml", new ExperienceViewModel()); }
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Make a directive*@
+<div class="modal fade" id="skill-form-modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content col-lg-12">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Skill</h4>
+            </div>
+            <div class="modal-body">
+                @{ Html.RenderPartial("~/Views/Profile/AddSkill.cshtml", new AddSkill()); }
             </div>
         </div>
     </div>

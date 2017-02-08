@@ -1,6 +1,6 @@
 ﻿@model AddSkill
 
-<div class="panel panel-default form-group col-md-8 text-center">
+<div class="form-group text-center">
     @using (Ajax.BeginForm("AddSkill", "Profile", null,
                 new AjaxOptions()
                 {
@@ -10,10 +10,14 @@
                 }, new { @class = "panel-body" }))
     {
         @Html.AntiForgeryToken()
-        @Html.TextBoxFor(x => x.Name)
-
-        <div class="col-md-11">
-            <input type="submit" class="btn btn-success col-md-5" value="Add" />
+        
+        <div class="form-group">
+            <div class="col-lg-12 input-group">
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                <span class="input-group-btn">
+                    <input class="btn btn-success" type="button" value="Go!"/>
+                </span>
+            </div>
         </div>
     };
 </div>

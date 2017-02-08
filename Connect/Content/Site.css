@@ -190,3 +190,7 @@
     color: #ecf0f1;
     font-weight: 900;
 }
+
+#businessInfo-basicUserInfo a{
+    margin-top: 5%;
+}
