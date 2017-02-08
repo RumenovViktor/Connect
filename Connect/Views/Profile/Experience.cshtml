@@ -1,6 +1,6 @@
 ﻿@model ExperienceViewModel
     @{ 
-        var startDateMonthName = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(Model.StartDate.Month);
+        var startDateMonthName = System.Globalization.CultureInfo.GetCultureInfo("en-US").DateTimeFormat.GetAbbreviatedMonthName(Model.StartDate.Value.Month);
     }
 <div class="panel panel-default">
     <div class="panel-body">
@@ -8,11 +8,11 @@
             @Model.Position
         </div>
         <div class="exp-period col-md-8">
-            @(startDateMonthName + " " + Model.StartDate.Day + ", " + Model.StartDate.Year) 
+            @(startDateMonthName + " " + Model.StartDate.Value.Day + ", " + Model.StartDate.Value.Year) 
             - 
             @if (Model.EndDate.HasValue)
             {
-                var endDateMonthName = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(Model.EndDate.Value.Month);
+                var endDateMonthName = System.Globalization.CultureInfo.GetCultureInfo("en-US").DateTimeFormat.GetAbbreviatedMonthName(Model.EndDate.Value.Month);
                 @(endDateMonthName + " " + Model.EndDate.Value.Day + ", " + Model.EndDate.Value.Year)
             }
             else

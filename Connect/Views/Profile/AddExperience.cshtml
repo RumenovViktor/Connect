@@ -1,30 +1,32 @@
 ﻿@model ExperienceViewModel
 
-<div id="add-exp-wrapper" class="panel panel-default form-group col-md-8 text-center">
+<div id="add-exp-wrapper" class="form-group text-center">
     @using (Ajax.BeginForm("AddExperience", "Profile", null,
         new AjaxOptions() { HttpMethod="POST" , InsertionMode = InsertionMode.InsertBefore,
-                            UpdateTargetId = "experience-list" }, new { @class = "panel-body" }))
+                            UpdateTargetId = "experience-list" }, new { @class = "panel-body form-horizontal", role="form", id="exp-form-id" }))
     {
         @Html.AntiForgeryToken()
-        <div class="col-md-11">
-            @Html.TextBoxFor(x => x.Position, new { @class = "form-control form-group", placeholder = "Position" })
-        </div>
-        <div>
-            <div class="col-md-5">
-                @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control form-group date-picker", placeholder = "Start date" })
+        <div id="exp-form-fields-wrapper">
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(x => x.Position, new { @class = "form-control ", placeholder = "Position" })
+                </div>
             </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
-                @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control form-group date-picker", placeholder = "End date" })
+            <div class="form-group">
+                <div class="col-md-5">
+                    @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control date-picker", placeholder = "Start date" })
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-5">
+                    @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control date-picker", placeholder = "End date" })
+                </div>
+                </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control", placeholder = "Description...", id = "experience-descriotion", rows = "10" })
+                </div>
             </div>
         </div>
-        <div class="col-md-11">
-            @Html.TextBoxFor(x => x.Description, new { @class = "form-control form-group", placeholder = "Description...", id="experience-descriotion" })
-        </div>
-        <div class="col-md-11">
-            <input type="submit" class="btn btn-success col-md-5" value="Add" />
-            <div class="col-md-2"></div>
-            <input id="close-btn" type="button" class="btn btn-danger col-md-5" value="Close" />
-        </div>
-    };
+        <input type="submit" class="btn btn-success col-lg-12" value="Add" />
+    }
 </div>

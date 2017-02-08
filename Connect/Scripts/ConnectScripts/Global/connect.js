@@ -1,6 +1,7 @@
 ﻿var connect = {
     init: function () {
         connect.sendAjax();
+        connect.clearForm();
     },
     sendAjax: function (url, data, method, type, success, error) {
         $.ajax({
@@ -12,6 +13,9 @@
             success: success,
             error: error
         });
+    },
+    clearForm: function (formId) {
+        $(formId).trigger('reset');
     }
 };
 

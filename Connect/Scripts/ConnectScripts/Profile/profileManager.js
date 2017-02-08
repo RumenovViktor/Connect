@@ -1,8 +1,9 @@
 ﻿var profileManager = {
     init: function () {
-        profileManager.methods.createExperienceForm();
         $(profileManager.selectors.formAreaSelector).hide();
         profileManager.methods.getAddSkillPanel();
+        profileManager.methods.showDatePicker();
+        profileManager.methods.clearAddExperienceForm();
     },
     events: {
         clickEvent: 'click'
@@ -10,31 +11,19 @@
     selectors: {
         addExperienceButtonSelector: '#profile-qualifications-wrapper a',
         formAreaSelector: '.background',
-        closeButtonSelector: '#close-btn',
         datePickerSelector: '.date-picker',
         addExperienceBtn: '#add-exp',
         addSkillBtn: '#add-skill-button',
-        addSkillPanelId: '#add-skill-panel'
+        addSkillPanelId: '#add-skill-panel',
+        experienceFormId: '#exp-form-id'
     },
     properties: {
         emptyString: ''
     },
     methods: {
-        createExperienceForm: function () {
-            $(profileManager.selectors.addExperienceButtonSelector).on(profileManager.events.clickEvent, function () {
-                connect.sendAjax('/Profile/AddExperience', null, 'GET', 'text/html', function (returnData) {
-                    $(profileManager.selectors.formAreaSelector).html(returnData);
-                    $(profileManager.selectors.formAreaSelector).fadeIn();
-                    profileManager.methods.destroyExperienceForm();
-                    profileManager.methods.showDatePicker();
-                }, function (returnData) { });
-            });
-        },
-        destroyExperienceForm: function () {
-            $(profileManager.selectors.closeButtonSelector).on(profileManager.events.clickEvent, function () {
-                $(profileManager.selectors.formAreaSelector).fadeOut(200, function () {
-                    $(profileManager.selectors.formAreaSelector).html(profileManager.properties.emptyString);
-                });
+        clearAddExperienceForm: function(){
+            $(profileManager.selectors.addExperienceButtonSelector).click(function () {
+                connect.clearForm(profileManager.selectors.experienceFormId);
             });
         },
         showDatePicker: function () {

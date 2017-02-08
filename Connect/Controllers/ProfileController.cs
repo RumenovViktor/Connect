@@ -35,12 +35,6 @@ namespace Connect.Controllers
             return PartialView(currentUser);
         }
 
-        [HttpGet]
-        public ActionResult AddExperience()
-        {
-            return PartialView();
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddExperience(ExperienceViewModel experience)
@@ -48,18 +42,13 @@ namespace Connect.Controllers
             if (ModelState.IsValid)
             {
                 experience.UserEmail = (string)CurrentUser.GetParameterByKey("email");
+
                 userInfoProvider.AddExperience(experience);
+
                 return PartialView("Experience", experience);
             }
 
             return PartialView(experience);
-        }
-
-        [HttpGet]
-        [OutputCache(Duration = 60 * 60 * 60)]
-        public ActionResult AddSkill()
-        {
-            return PartialView();
         }
 
         [HttpPost]

@@ -14,7 +14,7 @@
         {
             this.Position = (string)info.GetValue("Position", typeof(string));
             this.Description = (string)info.GetValue("Description", typeof(string));
-            this.StartDate = (DateTime)info.GetValue("StartDate", typeof(DateTime));
+            this.StartDate = (DateTime)info.GetValue("StartDate", typeof(DateTime?));
             this.EndDate = (DateTime?)info.GetValue("EndDate", typeof(DateTime?));
             this.Position = (string)info.GetValue("Position", typeof(string));
             this.UserEmail = (string)info.GetValue("UserEmail", typeof(string));
@@ -24,7 +24,7 @@
         {
             info.AddValue("Position", this.Position, typeof(string));
             info.AddValue("Description", this.Description, typeof(string));
-            info.AddValue("StartDate", this.StartDate, typeof(DateTime));
+            info.AddValue("StartDate", this.StartDate, typeof(DateTime?));
             info.AddValue("EndDate", this.EndDate, typeof(DateTime?));
             info.AddValue("UserEmail", this.UserEmail, typeof(string));
 
@@ -33,7 +33,7 @@
         public string Position { get; set; }
 
         [Required]
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
 
