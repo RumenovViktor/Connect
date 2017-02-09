@@ -10,10 +10,12 @@ namespace Connect.Controllers
     public class ProfileController : BaseController
     {
         private readonly IUserInfoProvider userInfoProvider;
+        private readonly ISkillsApplicationService skillsApplicationService;
 
-        public ProfileController(IUserInfoProvider userInfoProvider)
+        public ProfileController(IUserInfoProvider userInfoProvider, ISkillsApplicationService skillsApplicationService)
         {
             this.userInfoProvider = userInfoProvider;
+            this.skillsApplicationService = skillsApplicationService;
         }
 
         [HttpGet]
@@ -49,6 +51,17 @@ namespace Connect.Controllers
             }
 
             return PartialView(experience);
+        }
+
+        [HttpGet]
+        public ActionResult GetSkills(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                return Json(new { }, JsonRequestBehavior.AllowGet);
+
+            var matchedSkills = skillsApplicationService.GetMatchedSkills(name);
+
+            return Json(matchedSkills, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

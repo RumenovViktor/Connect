@@ -2,23 +2,24 @@
 
 <div class="form-group text-center">
     @using (Ajax.BeginForm("AddSkill", "Profile", null,
-                        new AjaxOptions()
-                        {
-                            HttpMethod = "POST",
-                            InsertionMode = InsertionMode.InsertBefore,
-                            UpdateTargetId = "experience-list"
-                        }, new { @class = "panel-body" }))
+                                new AjaxOptions()
+                                {
+                                    HttpMethod = "POST",
+                                    InsertionMode = InsertionMode.InsertBefore,
+                                    UpdateTargetId = "experience-list"
+                                }, new { @class = "panel-body" }))
     {
         @Html.AntiForgeryToken()
 
         <div class="form-group">
             <div class="col-lg-12 input-group">
                 <div class="input-group">
-                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control col-lg-2" })
+                    <span class="input-group-addon col-lg-12" data-toggle="tooltip" title="It is better to use the skill if it is already in the suggestions, so we can match you better!">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                    </span>
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control col-lg-2", autocomplete = "off", id = "skills-input" })
                     <div class="input-group-btn">
-                        @*<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>*@
-                        <ul id="skills-dropdown" class="dropdown-menu dropdown-menu-right col-lg-5" role="menu">
-                        </ul>
+                        <ul id="skills-dropdown" class="dropdown-menu dropdown-menu-right col-lg-5" role="menu"></ul>
                         <input class="btn btn-success" type="button" value="Go!" />
                     </div>
                 </div>

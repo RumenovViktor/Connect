@@ -2,6 +2,7 @@
     init: function () {
         connect.sendAjax();
         connect.clearForm();
+        connect.showToolTip();
     },
     sendAjax: function (url, data, method, type, success, error) {
         $.ajax({
@@ -16,6 +17,9 @@
     },
     clearForm: function (formId) {
         $(formId).trigger('reset');
+    },
+    showToolTip: function () {
+        $('[data-toggle="tooltip"]').tooltip();
     }
 };
 
