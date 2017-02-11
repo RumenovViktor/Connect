@@ -9,6 +9,11 @@ namespace Connect.Helpers
             get { return ConfigurationManager.AppSettings["registerApiUrl"]; }
         }
 
+        public static string CompanyRegistrationUrl
+        {
+            get { return ConfigurationManager.AppSettings["comapnyRegisterApiUrl"]; }
+        }
+
         public static string LoginApiUrl
         {
             get { return ConfigurationManager.AppSettings["loginApiUrl"]; }

@@ -1,7 +1,7 @@
 ﻿@model CompanyRegistration
 
 <div class="form-group text-center">
-    @using (Ajax.BeginForm("Registration", "Registration", null, new AjaxOptions()
+    @using (Ajax.BeginForm("RegisterComapany", "Registration", null, new AjaxOptions()
     {
         OnFailure = "loginSiteManager.existingUserMessage",
         OnSuccess = "loginSiteManager.redirectToUrl"
@@ -11,7 +11,7 @@
         <div id="company-acc-creation-wrapper">
             <div class="form-group">
                 <div class="col-md-12">
-                    @Html.TextBoxFor(m => m.ComapanyName, new { @class = "form-control", placeholder = "Company name..." })
+                    @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", placeholder = "Company name..." })
                 </div>
             </div>
             <div class="form-group">

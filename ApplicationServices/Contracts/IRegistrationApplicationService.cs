@@ -2,7 +2,9 @@
 
 namespace ApplicationServices
 {
-    public interface IRegistrationApplicationService : IHandles<UserRegistration>
+    public interface IRegistrationApplicationService 
+        : IHandles<UserRegistration>,
+          IHandles<CompanyRegistration>
     {
     }
 }

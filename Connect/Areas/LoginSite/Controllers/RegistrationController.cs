@@ -56,6 +56,30 @@
             }
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RegisterComapany(CompanyRegistration companyRegistrationModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var company = registrationApplicationService.Execute(companyRegistrationModel);
+
+                if (company.CompanyExists)
+                {
+                    return new HttpStatusCodeResult(400, "Company with this email already exists.");
+                }
+
+                SetAuthenticationCoockie(company.Email);
+                CurrentUser.AddParameter("companyEmail", company.Email);
+
+                return Json(new { RedirectUrl = Url.Action("", "") });
+            }
+            else
+            {
+                return new HttpStatusCodeResult(400, "Please fill all the fields.");
+            }
+        }
+
         #endregion
     }
 }

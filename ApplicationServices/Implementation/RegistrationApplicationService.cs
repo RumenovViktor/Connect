@@ -1,5 +1,6 @@
 ﻿namespace ApplicationServices
 {
+    using System;
     using Connect.Helpers;
     using Models;
 
@@ -9,6 +10,12 @@
         {
             var registeredUser = WebServiceProvider<UserRegistration>.Post(command, UrlHelper.RegistrationApiUrl);
             return registeredUser;
+        }
+
+        public CompanyRegistration Execute(CompanyRegistration command)
+        {
+            var company = WebServiceProvider<CompanyRegistration>.Post(command, UrlHelper.CompanyRegistrationUrl);
+            return company;
         }
     }
 }
