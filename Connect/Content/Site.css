@@ -201,3 +201,21 @@
 .modal::-webkit-scrollbar { 
     display: none;
 }
+
+body.modal-open{
+    margin-right: 0 !important;
+}
+
+/*@media (min-width: 1200px) .container {
+    max-width: 1170px;
+}*/
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1615px !important;
+    }
+}
+
+#company-form-choose{
+    margin-top: 0.5%;
+}

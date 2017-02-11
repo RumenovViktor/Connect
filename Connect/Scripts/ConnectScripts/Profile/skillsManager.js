@@ -2,6 +2,7 @@
     init: function () {
         skillsManager.methods.getMatchedSkills();
         skillsManager.methods.populateSkillsDropdown();
+        skillsManager.methods.stopInterval();
     },
     properties: {
         timer: null
@@ -14,12 +15,16 @@
     },
     methods: {
         stopInterval: function(){
-
+            $('.close').on('click', function () {
+                if (skillsManager.properties.timer != null) {
+                    clearInterval(skillsManager.properties.timer);
+                }
+            });
         },
         getMatchedSkills: function () {
             var dropdown = $('#skills-dropdown');
 
-            $(skillsManager.selectors.skillsInput).on(skillsManager.events.changeEvent, function () {
+            $(skillsManager.selectors.skillsInput).change(function () {
                 skillsManager.properties.timer = setInterval(function () {
                     var skillTyped = $(skillsManager.selectors.skillsInput).val();
 
@@ -27,7 +32,7 @@
                         skillsManager.methods.populateSkillsDropdown(response);
                         skillsManager.methods.populateSkillInput();
                     }, function () { });
-                }, 1000)
+                }, 2500, null)
             });
         },
         populateSkillInput: function () {
@@ -40,7 +45,9 @@
             if (matchedSkills === undefined || !matchedSkills.length) {
                 $('#skills-dropdown').hide();
                 $('.skill-option').parent().remove();
-                skillsManager.methods.destroySkillsDropdown();
+                if (skillsManager.properties.timer != null) {
+                    //clearInterval(skillsManager.properties.timer);
+                }
                 return;
             }
 

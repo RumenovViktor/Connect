@@ -210,6 +210,8 @@
     <Content Include="Areas\LoginSite\Views\Login\Login.cshtml" />
     <Content Include="Areas\LoginSite\Views\Registration\Registration.cshtml" />
     <Content Include="Areas\LoginSite\Views\Home\Index.cshtml" />
+    <Content Include="Areas\LoginSite\Views\Registration\CompanyRegistration.cshtml" />
+    <Content Include="Areas\LoginSite\Views\Login\CompanyLogin.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ConnectScripts\BusinessInfo\connect.companies.js" />
     <Content Include="Scripts\ConnectScripts\Global\connect.js" />

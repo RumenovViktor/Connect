@@ -1,0 +1,44 @@
+﻿@model CompanyRegistration
+
+<div class="form-group text-center">
+    @using (Ajax.BeginForm("Registration", "Registration", null, new AjaxOptions()
+    {
+        OnFailure = "loginSiteManager.existingUserMessage",
+        OnSuccess = "loginSiteManager.redirectToUrl"
+    }))
+    {
+        @Html.AntiForgeryToken()
+        <div id="company-acc-creation-wrapper">
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(m => m.ComapanyName, new { @class = "form-control", placeholder = "Company name..." })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(m => m.Country, new { @class = "form-control", placeholder = "Country..." })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email..." })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", placeholder = "Password..." })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm password..." })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-danger col-lg-12 form-control" value="Create account" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
