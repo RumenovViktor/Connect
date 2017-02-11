@@ -13,5 +13,10 @@
             var matchedSkills = WebServiceProvider<IList<SkillsDto>>.Get(UrlHelper.GetSkillsUrl, new Dictionary<string, string>() { { "name", name } } );
             return matchedSkills;
         }
+
+        public void AddSkill(SkillDtoWriteModel skill)
+        {
+            WebServiceProvider<SkillDtoWriteModel>.Post(skill, UrlHelper.CreateSkillUrl);
+        }
     }
 }

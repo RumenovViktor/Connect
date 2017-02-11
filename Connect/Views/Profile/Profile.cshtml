@@ -3,7 +3,7 @@
 <div id="profile-wrapper">
     <div id="businessInfo-basicUserInfo" class="row col-md-3">
         @Html.Action("ProfileBasicInfo", "Profile")
-        <a href="#" class="btn btn-primary col-md-12" data-toggle="modal" data-target="#skill-form-modal">Add skill</a>
+        <a href="#" class="btn btn-primary col-md-12 btn-add-skill" data-toggle="modal" data-target="#skill-form-modal">Add skill</a>
     </div>
     <div id="profile-navbar-wrapper" class="row col-md-9">
         <div class="text-center col-md-6 profile-navbar-option">
@@ -34,7 +34,7 @@
                 <div class="panel-body">
                     @if (!Model.Skills.Any())
                     {
-                        <p>Looks like you haven't added any skills. Please add skills from <a id="add-skill-button" href="#" class="text-info" data-toggle="modal" data-target="#skill-form-modal">here</a> so we can rank you better.</p>
+                        <p>Looks like you haven't added any skills. Please add skills from <a href="#" class="text-info btn-add-skill" data-toggle="modal" data-target="#skill-form-modal">here</a> so we can rank you better.</p>
                     }
 
                 </div>
@@ -70,7 +70,7 @@
                 <h4 class="modal-title">Add Skill</h4>
             </div>
             <div class="modal-body">
-                @{ Html.RenderPartial("~/Views/Profile/AddSkill.cshtml", new AddSkill()); }
+                @{ Html.RenderPartial("~/Views/Profile/AddSkill.cshtml", new SkillDtoWriteModel()); }
             </div>
         </div>
     </div>

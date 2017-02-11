@@ -48,5 +48,10 @@ namespace Connect.Helpers
         {
             get { return ConfigurationManager.AppSettings["getSkillsUrl"]; }
         }
+
+        public static string CreateSkillUrl
+        {
+            get { return ConfigurationManager.AppSettings["createSkillUrl"]; }
+        }
     }
 }

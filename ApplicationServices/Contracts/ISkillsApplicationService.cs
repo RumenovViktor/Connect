@@ -7,5 +7,7 @@
     public interface ISkillsApplicationService
     {
         IList<SkillsDto> GetMatchedSkills(string name);
+
+        void AddSkill(SkillDtoWriteModel skill);
     }
 }

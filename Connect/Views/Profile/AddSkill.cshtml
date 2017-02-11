@@ -1,4 +1,4 @@
-﻿@model AddSkill
+﻿@model SkillDtoWriteModel
 
 <div class="form-group text-center">
     @using (Ajax.BeginForm("AddSkill", "Profile", null,
@@ -6,8 +6,7 @@
                                 {
                                     HttpMethod = "POST",
                                     InsertionMode = InsertionMode.InsertBefore,
-                                    UpdateTargetId = "experience-list"
-                                }, new { @class = "panel-body" }))
+                                }, new { @class = "panel-body", id="add-skill-form" }))
     {
         @Html.AntiForgeryToken()
 
@@ -18,12 +17,12 @@
                             <span class="glyphicon glyphicon-info-sign"></span>
                     </span>
                     @Html.TextBoxFor(x => x.Name, new { @class = "form-control col-lg-2", autocomplete = "off", id = "skills-input" })
+                    <ul id="skills-dropdown" class="dropdown-menu col-lg-12"></ul>
                     <div class="input-group-btn">
-                        <ul id="skills-dropdown" class="dropdown-menu dropdown-menu-right col-lg-5" role="menu"></ul>
-                        <input class="btn btn-success" type="button" value="Go!" />
+                        <input class="btn btn-success" type="submit" value="Go!" />
                     </div>
                 </div>
             </div>
         </div>
-    };
+    }
 </div>

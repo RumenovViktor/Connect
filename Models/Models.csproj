@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ICommand.cs" />
+    <Compile Include="Profile\SkillDtoWriteModel.cs" />
     <Compile Include="Profile\SkillsDto.cs" />
     <Compile Include="UserInfo\AddSkill.cs" />
     <Compile Include="UserInfo\ExperienceViewModel.cs" />

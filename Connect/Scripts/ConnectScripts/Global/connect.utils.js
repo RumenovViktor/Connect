@@ -1,6 +1,7 @@
 ﻿var utils = {
     init: function () {
         utils.isNotNullOrEmpty();
+        utils.jsonToArray();
     },
     isNotNullOrEmpty: function (text) {
         if (text === undefined) {
@@ -12,6 +13,12 @@
         }
 
         return false;
+    },
+    jsonToArray: function (jsonObj) {
+        if (jsonObj === undefined)
+            return;
+
+        return $.map(jsonObj, function (item) { return item; });
     }
 };
 

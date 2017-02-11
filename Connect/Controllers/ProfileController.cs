@@ -68,6 +68,12 @@ namespace Connect.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddSkill(string name)
         {
+            if (ModelState.IsValid)
+            {
+                var userEmail = (string)CurrentUser.GetParameterByKey("email");
+                skillsApplicationService.AddSkill(new SkillDtoWriteModel(name, userEmail));
+            }
+
             return PartialView();
         }
     }
