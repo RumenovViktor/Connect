@@ -1,14 +1,18 @@
 ﻿@model CompanyLogin
 
 <div class="form-group">
-    @using (Html.BeginForm("Login", "Login"))
-    {
+@using (Ajax.BeginForm("CompanyLogin", "Login", null, new AjaxOptions()
+{
+    OnFailure = "loginSiteManager.existingUserMessage",
+    OnSuccess = "loginSiteManager.redirectToUrl"
+}))
+{
         @Html.AntiForgeryToken()
         <div id="company-login-wrapper">
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="input-group">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-group", placeholder = "Email...", type = "email" })
+                        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control form-group", placeholder = "Email..." })
                         <span class="input-group-addon">
                             <i class="glyphicon glyphicon-user"></i>
                         </span>

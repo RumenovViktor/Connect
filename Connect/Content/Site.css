@@ -37,24 +37,18 @@
     margin-top: 6%;
 }
 
-.right-glyph{
-    position: relative;
-}
-.right-glyph i {
-    position: absolute;
-    right: 0px;
-    margin-right: 10%;
-    margin-top: 2.6%;
-    pointer-events: none;
-}
-
-#businessInfoWrapper,  #profile-wrapper{
+#businessInfoWrapper,  #profile-wrapper, #company-profile-wrapper{
     margin-top: 5%;
     width: 98.3%;
 }
 #basicUserInfo-image img{
     width: 100%;
     height: 80%;
+}
+
+.profile-image img{
+    width: 100%;
+    height: 40%;
 }
 
 #company-default-img img{
@@ -218,4 +212,8 @@ body.modal-open{
 
 #company-form-choose{
     margin-top: 0.5%;
+}
+
+#uploadCompanyPic label{
+    width: 100% !important;
 }

@@ -2,7 +2,9 @@
 {
     using Models;
 
-    public interface ILoginApplicationService : IHandles<UserLogin>
+    public interface ILoginApplicationService 
+        : IHandles<UserLogin>,
+        IHandles<CompanyLogin>
     {
     }
 }

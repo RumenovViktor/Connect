@@ -2,6 +2,7 @@
     init: function () {
         loginSiteManager.existingUserMessage();
         loginSiteManager.redirectToUrl();
+        loginSiteManager.redirectToUrlWithData();
     },
     existingUserMessage: function (data) {
         if (data) {    

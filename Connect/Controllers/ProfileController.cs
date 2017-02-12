@@ -11,11 +11,13 @@ namespace Connect.Controllers
     {
         private readonly IUserInfoProvider userInfoProvider;
         private readonly ISkillsApplicationService skillsApplicationService;
+        private readonly ICompanyInfoProvider companyInfoProvider;
 
-        public ProfileController(IUserInfoProvider userInfoProvider, ISkillsApplicationService skillsApplicationService)
+        public ProfileController(IUserInfoProvider userInfoProvider, ISkillsApplicationService skillsApplicationService, ICompanyInfoProvider companyInfoProvider)
         {
             this.userInfoProvider = userInfoProvider;
             this.skillsApplicationService = skillsApplicationService;
+            this.companyInfoProvider = companyInfoProvider;
         }
 
         [HttpGet]
@@ -37,6 +39,16 @@ namespace Connect.Controllers
             return PartialView(currentUser);
         }
 
+        [HttpGet]
+        public ActionResult CompanyProfile()
+        {
+            var companyName = (string)CurrentUser.GetParameterByKey("companyName");
+            var companyProfile = companyInfoProvider.GetCompanyProfile(companyName);
+
+            return View(companyProfile);
+        }
+
+        // TODO: Move to ExperienceController
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddExperience(ExperienceViewModel experience)
@@ -53,6 +65,7 @@ namespace Connect.Controllers
             return PartialView(experience);
         }
 
+        // TODO: Move to SkillsController
         [HttpGet]
         public ActionResult GetSkills(string name)
         {
@@ -64,6 +77,7 @@ namespace Connect.Controllers
             return Json(matchedSkills, JsonRequestBehavior.AllowGet);
         }
 
+        // TODO: Move to SkillsController
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddSkill(string name)

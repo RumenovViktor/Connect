@@ -31,7 +31,6 @@ namespace ApplicationServices
             catch (WebException e)
             {
                 Debug.Fail("Faild sending request to API.\n");
-                throw;
             }
 
             return JsonConvert.DeserializeObject<T>(response);

@@ -66,13 +66,13 @@
 
                 if (company.CompanyExists)
                 {
-                    return new HttpStatusCodeResult(400, "Company with this email already exists.");
+                    return new HttpStatusCodeResult(400, "Company with this name already exists.");
                 }
 
-                SetAuthenticationCoockie(company.Email);
-                CurrentUser.AddParameter("companyEmail", company.Email);
-
-                return Json(new { RedirectUrl = Url.Action("", "") });
+                SetAuthenticationCoockie(company.CompanyName);
+                CurrentUser.AddParameter("companyName", company.CompanyName);
+                
+                return Json(new { RedirectUrl = Url.Action("CompanyProfile", "Profile") });
             }
             else
             {

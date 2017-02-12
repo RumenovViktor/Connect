@@ -8,22 +8,39 @@
     {
         public CompanyLogin() { }
 
+        public CompanyLogin(string companyName, string password)
+        {
+            this.CompanyName = companyName;
+            this.Password = password;
+        }
+
+        public CompanyLogin(bool doesCompanyExists)
+        {
+            this.DoesCompanyExists = doesCompanyExists;
+            this.CompanyName = null;
+            this.Password = null;
+        }
+
         public CompanyLogin(SerializationInfo info, StreamingContext context)
         {
-            this.Email = (string)info.GetValue("Email", typeof(string));
+            this.CompanyName = (string)info.GetValue("CompanyName", typeof(string));
             this.Password = (string)info.GetValue("Password", typeof(string));
+            this.DoesCompanyExists = (bool)info.GetValue("DoesCompanyExists", typeof(bool));
         }
 
         [Required]
-        public string Email { get; set; }
+        public string CompanyName { get; set; }
 
         [Required]
         public string Password { get; set; }
 
+        public bool DoesCompanyExists { get; set; }
+
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("Email", this.Email, typeof(string));
+            info.AddValue("CompanyName", this.CompanyName, typeof(string));
             info.AddValue("Password", this.Password, typeof(string));
+            info.AddValue("DoesCompanyExists", this.DoesCompanyExists, typeof(bool));
         }
     }
 }

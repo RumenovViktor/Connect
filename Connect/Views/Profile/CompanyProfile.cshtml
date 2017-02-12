@@ -1,0 +1,40 @@
+﻿@model CompanyProfile
+
+<div id="company-profile-wrapper">
+    <div id="company-info-wrapper">
+        <div class="col-md-2">
+            <div class="profile-image">
+                <img src="~/Content/Images/profile-image.png" />
+            </div>
+            @using (Html.BeginForm("UploadPicture", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data", id = "uploadCompanyPic" }))
+            {
+                <input type="file" name="uploadedPicture" id="file" class="filestyle col-md-1" />
+            }
+
+            <div class="form-group">
+                <h2 class="text-info">@Model.CompanyName</h2>
+            </div>
+            <div class="form-group">
+                <span class="text-center text-info"><i class="pull-left glyphicon glyphicon-globe"></i>@Model.Country</span>
+            </div>
+            <div class="form-group">
+                <span class="text-center text-info"><i class="pull-left glyphicon glyphicon-envelope"></i>@Model.Email</span>
+            </div>
+            <div class="form-group">
+                <strong class="">Associate users <a href="#" class=""><i class="glyphicon glyphicon-plus pull-right"></i></a></strong>
+            </div>
+            <div class="form-group">
+                @if (!Model.Employees.Any())
+                {
+                    <div class="well well-lg">
+                        <span class="text-center">No users associated.</span>
+                    </div>
+                }
+                else
+                {
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
