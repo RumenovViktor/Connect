@@ -163,8 +163,10 @@
     <Compile Include="Areas\LoginSite\LoginSiteAreaRegistration.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\BusinessInfoController.cs" />
+    <Compile Include="Controllers\CompanyProfileController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\SkillsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,6 +218,7 @@
     <Content Include="Scripts\ConnectScripts\BusinessInfo\connect.companies.js" />
     <Content Include="Scripts\ConnectScripts\Global\connect.js" />
     <Content Include="Scripts\ConnectScripts\Global\connect.utils.js" />
+    <Content Include="Scripts\ConnectScripts\Profile\positionsManager.js" />
     <Content Include="Scripts\ConnectScripts\Profile\profile-basic-info.js" />
     <Content Include="Scripts\ConnectScripts\Profile\profileManager.js" />
     <Content Include="Scripts\ConnectScripts\Profile\skillsManager.js" />
@@ -262,13 +265,18 @@
     <Content Include="Views\Profile\Experience.cshtml" />
     <Content Include="Views\Profile\AddSkill.cshtml" />
     <Content Include="Views\Profile\CompanyProfile.cshtml" />
+    <Content Include="Views\Profile\AddPosition.cshtml" />
+    <Content Include="Views\Profile\AddPositionSkill.cshtml" />
+    <Content Include="Views\Profile\CreatedPosition.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\LoginSite\Views\Base\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\CompanyProfile\" />
     <Folder Include="Views\FileUpload\" />
+    <Folder Include="Views\Skills\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

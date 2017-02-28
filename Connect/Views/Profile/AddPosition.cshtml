@@ -1,0 +1,33 @@
+﻿@model AddPosition
+
+<div class="form-group text-center">
+    @using (Ajax.BeginForm("AddPosition", "CompanyProfile", null,
+                                        new AjaxOptions()
+                                        {
+                                            HttpMethod = "POST",
+                                            InsertionMode = InsertionMode.InsertBefore,
+                                            OnSuccess = "positionsManager.methods.processPosition"
+                                        }, new { @class = "panel-body", id = "add-position-form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="exp-form-fields-wrapper">
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(x => x.PositionName, new { @class = "form-control ", placeholder = "Position name..." })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextAreaFor(x => x.PositionDescription, new { @class = "form-control", placeholder = "Position Description...", rows = "10" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @{ Html.RenderPartial("~/Views/Profile/AddPositionSkill.cshtml", new PositionRequiredSkill()); }
+                </div>
+            </div>
+        </div>
+        <input id="add-position" type="submit" class="btn btn-success col-lg-12" value="Add position" />
+    }
+</div>

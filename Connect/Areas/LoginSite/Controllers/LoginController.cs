@@ -60,6 +60,7 @@
 
                 SetAuthenticationCoockie(company.CompanyName);
                 CurrentUser.AddParameter("companyName", company.CompanyName);
+                CurrentUser.AddParameter("companyId", response.CompanyId);
 
                 return Json(new { RedirectUrl = Url.Action("CompanyProfile", "Profile") });
             }

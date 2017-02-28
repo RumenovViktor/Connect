@@ -49,6 +49,7 @@ namespace ApplicationServices
                 {
                     client.Headers[HttpRequestHeader.ContentType] = "application/json";
                     response = client.UploadString(baseApiUrl + typeof(T).Name, "POST", serializedCommand);
+
                     executedCommand = (T)JsonConvert.DeserializeObject(response, typeof(T));
                 }
             }

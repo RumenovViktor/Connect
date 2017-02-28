@@ -47,8 +47,6 @@ namespace Connect.Controllers
 
             return View(companyProfile);
         }
-
-        // TODO: Move to ExperienceController
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddExperience(ExperienceViewModel experience)
@@ -63,32 +61,6 @@ namespace Connect.Controllers
             }
 
             return PartialView(experience);
-        }
-
-        // TODO: Move to SkillsController
-        [HttpGet]
-        public ActionResult GetSkills(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-                return Json(new { }, JsonRequestBehavior.AllowGet);
-
-            var matchedSkills = skillsApplicationService.GetMatchedSkills(name);
-
-            return Json(matchedSkills, JsonRequestBehavior.AllowGet);
-        }
-
-        // TODO: Move to SkillsController
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddSkill(string name)
-        {
-            if (ModelState.IsValid)
-            {
-                var userEmail = (string)CurrentUser.GetParameterByKey("email");
-                skillsApplicationService.AddSkill(new SkillDtoWriteModel(name, userEmail));
-            }
-
-            return PartialView();
         }
     }
 }

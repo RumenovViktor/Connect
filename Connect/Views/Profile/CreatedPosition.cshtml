@@ -1,0 +1,8 @@
+﻿@model CreatedPosition
+
+<div class="col-lg-2">
+    <div class="panel panel-default form-group">
+        <img src="~/Content/Images/company-default.png" class="img-circle img-rounded" />
+        @Html.ActionLink(Model.PositionName, "ViewPosition", new { positionId = Model.PositionId })
+    </div>
+</div>

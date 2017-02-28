@@ -4,10 +4,9 @@
 
     using Models;
 
-    public interface ISkillsApplicationService
+    public interface ISkillsApplicationService  : 
+        IHandles<SkillDtoWriteModel>,
+        IHandles<PositionRequiredSkill>
     {
-        IList<SkillsDto> GetMatchedSkills(string name);
-
-        void AddSkill(SkillDtoWriteModel skill);
     }
 }

@@ -1,0 +1,21 @@
+﻿@model PositionRequiredSkill
+
+<div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon" data-toggle="tooltip" title="It is better to use the skill if it is already in the suggestions, so we can match you better!">
+            <span class="glyphicon glyphicon-info-sign"></span>
+        </span>
+        <input class="form-control skills-input" type="text" autocomplete = "off" />
+        <span class="input-group-btn">
+            <input class="btn btn-default add-skill" type="button" value="Go!" />
+        </span>
+    </div>
+    <div class="input-group">
+        <ul id="skills-dropdown" class="dropdown-menu"></ul>
+    </div>
+</div>
+<div class="form-group">
+    <div class="well well-lg added-skills">
+        <p class="text-center">No skills added.</p>
+    </div>
+</div>

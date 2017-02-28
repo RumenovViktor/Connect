@@ -8,12 +8,21 @@
         $.ajax({
             url: url,
             data: data,
-            method: method,
-            type: type,
+            type: method,
+            contentType: type,
             processData: false,
             success: success,
             error: error
         });
+
+        //$.ajax({
+        //    url: '/Skills/AddPositionSkills',
+        //    type: 'POST',
+        //    contentType: 'application/json',
+        //    data: JSON.stringify({
+        //        skills: ["asd"]
+        //    })
+        //});
     },
     clearForm: function (formId) {
         $(formId).trigger('reset');

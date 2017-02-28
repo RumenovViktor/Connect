@@ -46,18 +46,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ICompanyInfoProvider.cs" />
+    <Compile Include="Contracts\ICompanyProfileApplicationService.cs" />
     <Compile Include="Contracts\IFileHandler.cs" />
     <Compile Include="Contracts\IFileManagementApplicationService.cs" />
     <Compile Include="Contracts\IHandles\IHandles.cs" />
     <Compile Include="Contracts\IRegistrationApplicationService.cs" />
     <Compile Include="Contracts\ILoginApplicationService.cs" />
     <Compile Include="Contracts\ISkillsApplicationService.cs" />
+    <Compile Include="Contracts\ISkillsManager.cs" />
     <Compile Include="Contracts\IUserInfoProvider.cs" />
+    <Compile Include="Implementation\CompanyProfileApplicationService.cs" />
     <Compile Include="Implementation\FileManagementApplicationService.cs" />
     <Compile Include="Implementation\LoginApplicationService.cs" />
     <Compile Include="Implementation\Managers\CompanyInfoProvider.cs" />
     <Compile Include="Implementation\Managers\ImagesHandler.cs" />
-    <Compile Include="Implementation\Managers\SkillsApplicationService.cs" />
+    <Compile Include="Implementation\Managers\SkillsManager.cs" />
+    <Compile Include="Implementation\SkillsApplicationService.cs" />
     <Compile Include="Implementation\Managers\UserInfoProvider.cs" />
     <Compile Include="Implementation\RegistrationApplicationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

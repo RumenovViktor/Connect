@@ -68,5 +68,15 @@ namespace Connect.Helpers
         {
             get { return ConfigurationManager.AppSettings["createSkillUrl"]; }
         }
+
+        public static string AddPositionUrl
+        {
+            get { return ConfigurationManager.AppSettings["createPositionUrl"]; }
+        }
+
+        public static string AddPositionSkillUrl
+        {
+            get { return ConfigurationManager.AppSettings["addPositionSkillUrl"]; }
+        }
     }
 }

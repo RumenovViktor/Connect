@@ -44,7 +44,11 @@
     <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="LoginAndRegister\Implementation\ViewModels\CompanyLogin.cs" />
     <Compile Include="LoginAndRegister\Implementation\ViewModels\CompanyRegistration.cs" />
+    <Compile Include="Profile\AddPosition.cs" />
+    <Compile Include="Profile\BaseSkillModel.cs" />
     <Compile Include="Profile\CompanyProfile.cs" />
+    <Compile Include="Profile\CreatedPosition.cs" />
+    <Compile Include="Profile\PositionRequiredSkill.cs" />
     <Compile Include="Profile\SkillDtoWriteModel.cs" />
     <Compile Include="Profile\SkillsDto.cs" />
     <Compile Include="UserInfo\AddSkill.cs" />

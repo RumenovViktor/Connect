@@ -21,7 +21,10 @@
                 <span class="text-center text-info"><i class="pull-left glyphicon glyphicon-envelope"></i>@Model.Email</span>
             </div>
             <div class="form-group">
-                <strong class="">Associate users <a href="#" class=""><i class="glyphicon glyphicon-plus pull-right"></i></a></strong>
+                <a href="#" class="btn btn-success col-lg-12" data-toggle="modal" data-target="#new-position-form-modal">Add position<i class="glyphicon pull-right glyphicon-plus"></i></a>
+            </div>
+            <div class="form-group">
+                <strong class="">Associate users <a href="#" class=""><i class="glyphicon glyphicon-plus-sign pull-right"></i></a></strong>
             </div>
             <div class="form-group">
                 @if (!Model.Employees.Any())
@@ -36,5 +39,39 @@
                 }
             </div>
         </div>
+        <div class="col-lg-10">
+            <ul class="nav nav-tabs">
+                <li role="presentation">
+                    <div class="form-group">
+                        <div class="col-lg-6">
+                            <a href="#" class="text-info">Positions</a>
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+            <div class="positions-list">
+
+            </div>
+        </div>
     </div>
 </div>
+
+<div class="modal fade background" id="new-position-form-modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content col-lg-12">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create Position</h4>
+            </div>
+            <div class="modal-body">
+                @{ Html.RenderPartial("~/Views/Profile/AddPosition.cshtml", new AddPosition()); }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ProfileScripts{
+    <script src="~/Scripts/ConnectScripts/Profile/skillsManager.js"></script>
+    <script src="~/Scripts/ConnectScripts/Profile/positionsManager.js"></script>
+}

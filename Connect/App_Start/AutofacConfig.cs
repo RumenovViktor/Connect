@@ -29,7 +29,9 @@ namespace Connect
             builder.RegisterType<ImagesHandler>().As<IFileHandler>();
             builder.RegisterType<FileManagementApplicationService>().As<IFileManagementApplicationService>();
             builder.RegisterType<SkillsApplicationService>().As<ISkillsApplicationService>();
+            builder.RegisterType<SkillsManager>().As<ISkillsManager>();
             builder.RegisterType<CompanyInfoProvider>().As<ICompanyInfoProvider>();
+            builder.RegisterType<CompanyProfileApplicationService>().As<ICompanyProfileApplicationService>();
         }
     }
 }

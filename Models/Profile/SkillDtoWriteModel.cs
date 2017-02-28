@@ -4,23 +4,19 @@
     using System.ComponentModel.DataAnnotations;
     using System.Runtime.Serialization;
 
-    public class SkillDtoWriteModel : ICommand, ISerializable
+    public class SkillDtoWriteModel : BaseSkillModel, ICommand, ISerializable
     {
 
         public long Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public override string Name { get; set; }
 
-        public string UserEmail { get; set; }
+        public override string UserEmail { get; set; }
 
         public SkillDtoWriteModel() { }
 
-        public SkillDtoWriteModel(string name, string userEmail)
-        {
-            this.Name = name;
-            this.UserEmail = userEmail;
-        }
+        public SkillDtoWriteModel(string name, string userEmail) : base (name, userEmail) { }
 
         public SkillDtoWriteModel(SerializationInfo info, StreamingContext context)
         {

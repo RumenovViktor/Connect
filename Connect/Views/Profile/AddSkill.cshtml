@@ -1,7 +1,7 @@
 ﻿@model SkillDtoWriteModel
 
 <div class="form-group text-center">
-    @using (Ajax.BeginForm("AddSkill", "Profile", null,
+    @using (Ajax.BeginForm("AddSkill", "Skills", null,
                                 new AjaxOptions()
                                 {
                                     HttpMethod = "POST",
@@ -16,7 +16,7 @@
                     <span class="input-group-addon col-lg-12" data-toggle="tooltip" title="It is better to use the skill if it is already in the suggestions, so we can match you better!">
                             <span class="glyphicon glyphicon-info-sign"></span>
                     </span>
-                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control col-lg-2", autocomplete = "off", id = "skills-input" })
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control col-lg-2 skills-input", autocomplete = "off" })
                     <ul id="skills-dropdown" class="dropdown-menu col-lg-12"></ul>
                     <div class="input-group-btn">
                         <input class="btn btn-success" type="submit" value="Go!" />
