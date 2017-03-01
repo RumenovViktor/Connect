@@ -94,11 +94,11 @@
                 $('#skills-dropdown').hide();
             });
         },
-        addPositionRequiredSkills: function (requiredSkills) {
+        addPositionRequiredSkills: function (requiredSkills, positionId) {
             if (!requiredSkills || !requiredSkills.length)
                 return;
 
-            connect.sendAjax('/Skills/AddPositionSkills', JSON.stringify({ skills: ["asd"]}), 'POST', 'application/json', null, null);
+            connect.sendAjax('/Skills/AddPositionSkills', JSON.stringify({ skills: requiredSkills, positionId: positionId }), 'POST', 'application/json', null, null);
         }
     }
 };

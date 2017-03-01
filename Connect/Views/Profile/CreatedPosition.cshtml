@@ -1,8 +1,20 @@
 ﻿@model CreatedPosition
 
-<div class="col-lg-2">
-    <div class="panel panel-default form-group">
-        <img src="~/Content/Images/company-default.png" class="img-circle img-rounded" />
-        @Html.ActionLink(Model.PositionName, "ViewPosition", new { positionId = Model.PositionId })
+<div class="form-group">
+    <div class="form-group"></div>
+    <div class="form-group">
+        <div class="col-lg-2">
+            <div class="panel panel-default form-group">
+                <div class="form-group">
+                    <div class="rounded">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.ActionLink(Model.PositionName, "ViewPosition", new { positionId = Model.PositionId }, new { @class = "text-center" })
+                    @Html.HiddenFor(x => x.PositionId, new { @class="positionId" })
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -50,8 +50,16 @@
 
                 </li>
             </ul>
-            <div class="positions-list">
-
+            <div class="form-group">
+                <div class="positions-list">
+                    @if (Model.CreatedPositions.Any())
+                    {
+                        foreach (var createdPosition in Model.CreatedPositions)
+                        {
+                            Html.RenderPartial("~/Views/Profile/CreatedPosition.cshtml", createdPosition);
+                        }
+                    }
+                </div>
             </div>
         </div>
     </div>

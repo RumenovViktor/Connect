@@ -19,9 +19,10 @@
                 requiredSkills.push($(this).text());
             });
 
-            skillsManager.methods.addPositionRequiredSkills(requiredSkills);
-
             $('.positions-list').append(response);
+            var positionIds = $('.positionId');
+            var lastPositionId = positionIds.last().val();
+            skillsManager.methods.addPositionRequiredSkills(requiredSkills, lastPositionId);
         }
     }
 };

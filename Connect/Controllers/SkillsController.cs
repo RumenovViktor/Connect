@@ -45,12 +45,11 @@ namespace Connect.Controllers
         
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult AddPositionSkills(IList<string> skills)
+        public ActionResult AddPositionSkills(IList<string> skills, string positionId)
         {
             return ExecuteAction(ModelState, () => 
             {
-                var companyId = (long)CurrentUser.GetParameterByKey("companyId");
-                return skillsApplicationService.Execute(new PositionRequiredSkill(skills.ToArray(), companyId));
+                return skillsApplicationService.Execute(new PositionRequiredSkill(skills.ToArray(), long.Parse(positionId)));
             });
         }
     }

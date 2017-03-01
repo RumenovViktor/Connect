@@ -217,3 +217,10 @@ body.modal-open{
 #uploadCompanyPic label{
     width: 100% !important;
 }
+
+.rounded{
+    padding: 50%;
+    background: #e2dfdf;
+    border-radius: 300px;
+
+}
