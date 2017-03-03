@@ -32,6 +32,7 @@ namespace Connect
             builder.RegisterType<SkillsManager>().As<ISkillsManager>();
             builder.RegisterType<CompanyInfoProvider>().As<ICompanyInfoProvider>();
             builder.RegisterType<CompanyProfileApplicationService>().As<ICompanyProfileApplicationService>();
+            builder.RegisterType<CommonInfoManager>().As<ICommonInfoManager>();
         }
     }
 }

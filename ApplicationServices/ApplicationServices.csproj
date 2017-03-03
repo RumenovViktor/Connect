@@ -52,6 +52,7 @@
     <Compile Include="Contracts\IHandles\IHandles.cs" />
     <Compile Include="Contracts\IRegistrationApplicationService.cs" />
     <Compile Include="Contracts\ILoginApplicationService.cs" />
+    <Compile Include="Contracts\ICommonInfoManager.cs" />
     <Compile Include="Contracts\ISkillsApplicationService.cs" />
     <Compile Include="Contracts\ISkillsManager.cs" />
     <Compile Include="Contracts\IUserInfoProvider.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Implementation\LoginApplicationService.cs" />
     <Compile Include="Implementation\Managers\CompanyInfoProvider.cs" />
     <Compile Include="Implementation\Managers\ImagesHandler.cs" />
+    <Compile Include="Implementation\Managers\CommonInfoManager.cs" />
     <Compile Include="Implementation\Managers\SkillsManager.cs" />
     <Compile Include="Implementation\SkillsApplicationService.cs" />
     <Compile Include="Implementation\Managers\UserInfoProvider.cs" />

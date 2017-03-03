@@ -78,5 +78,11 @@ namespace Connect.Helpers
         {
             get { return ConfigurationManager.AppSettings["addPositionSkillUrl"]; }
         }
+
+        public static string ActivityAreaUrl
+        {
+            get { return ConfigurationManager.AppSettings["getActivityAreaUrl"]; }
+
+        }
     }
 }

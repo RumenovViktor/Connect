@@ -16,7 +16,9 @@
             </div>
             <div class="form-group">
                 <div class="col-md-12">
-                    @Html.TextBoxFor(m => m.Country, new { @class = "form-control", placeholder = "Country..." })
+                    @Html.DropDownListFor(x => x.CountryId,
+                            new SelectList(Model.Countries.Select(x => new { Value = x.CountryId, Text = x.CountryName }), "Value", "Text"),
+                                            "Country", new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">

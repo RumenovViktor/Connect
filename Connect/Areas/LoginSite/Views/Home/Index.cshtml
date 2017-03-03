@@ -6,7 +6,7 @@
             @{ Html.RenderPartial("~/Areas/LoginSite/Views/Login/Login.cshtml", Model.UserLogin); }
         </div>
         <div class="col-lg-12">
-            @{ Html.RenderPartial("~/Areas/LoginSite/Views/Registration/Registration.cshtml", Model.UserRegistration); }
+            @{ Html.RenderPartial("~/Areas/LoginSite/Views/Registration/Registration.cshtml", new UserRegistration(Model.ActivityArea.Countries)); }
         </div>
     </div>
     <div id="welcome-text-wrapper" class="col-md-8">
@@ -47,7 +47,7 @@
                 <h4 class="modal-title">Create account</h4>
             </div>
             <div class="modal-body">
-                @{ Html.RenderPartial("~/Areas/LoginSite/Views/Registration/CompanyRegistration.cshtml", new CompanyRegistration()); }
+                @{ Html.RenderPartial("~/Areas/LoginSite/Views/Registration/CompanyRegistration.cshtml", new CompanyRegistration(Model.ActivityArea)); }
             </div>
             <div class="modal-footer"></div>
         </div>

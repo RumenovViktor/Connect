@@ -1,5 +1,7 @@
 ﻿namespace Models
 {
+    using Global;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Runtime.Serialization;
 
@@ -7,13 +9,18 @@
     {
         public CompanyRegistration() { }
 
+        public CompanyRegistration(ActivityAreaReadModel activityArea)
+        {
+            this.Countries = activityArea.Countries;
+        }
+
         public CompanyRegistration(SerializationInfo info, StreamingContext context)
         {
             this.CompanyName = (string)info.GetValue("CompanyName", typeof(string));
             this.Email = (string)info.GetValue("Email", typeof(string));
             this.Password = (string)info.GetValue("Password", typeof(string));
             this.ConfirmPassword = (string)info.GetValue("ConfirmPassword", typeof(string));
-            this.Country = (string)info.GetValue("Country", typeof(string));
+            this.CountryId = (int?)info.GetValue("Country", typeof(int?));
             this.CompanyExists = (bool)info.GetValue("CompanyExists", typeof(bool));
         }
 
@@ -26,12 +33,14 @@
         [Required]
         public string Password { get; set; }
 
+        public IList<CountryReadModel> Countries { get; set; }
+
+        [Required]
+        public int? CountryId { get; set; }
+
         [Required]
         [Compare("Password", ErrorMessage = "Password missmatch.")]
         public string ConfirmPassword { get; set; }
-
-        [Required]
-        public string Country { get; set; }
 
         public bool CompanyExists { get; set; }
 
@@ -42,7 +51,7 @@
             info.AddValue("Password", this.Password, typeof(string));
             info.AddValue("ConfirmPassword", this.ConfirmPassword, typeof(string));
             info.AddValue("CompanyExists", this.CompanyExists, typeof(bool));
-            info.AddValue("Country", this.Country, typeof(bool));
+            info.AddValue("Country", this.CountryId, typeof(int?));
         }
     }
 }

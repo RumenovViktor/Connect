@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Models.Global;
+using System.Collections.Generic;
 
 namespace Models
 {
@@ -9,7 +10,7 @@ namespace Models
             this.Employees = new List<string>();
         }
 
-        public CompanyProfile(string email, string companyName, string country, IList<CreatedPosition> createdPositions)
+        public CompanyProfile(string email, string companyName, CountryReadModel country, IList<CreatedPosition> createdPositions)
         {
             this.Email = email;
             this.CompanyName = companyName;
@@ -22,7 +23,7 @@ namespace Models
 
         public string CompanyName { get; set; }
 
-        public string Country { get; set; }
+        public CountryReadModel Country { get; set; }
 
         public IList<CreatedPosition> CreatedPositions { get; set; }
 

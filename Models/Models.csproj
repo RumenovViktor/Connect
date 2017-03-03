@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityAreaReadModel.cs" />
     <Compile Include="Contracts\ICommand.cs" />
+    <Compile Include="CountryReadModel.cs" />
     <Compile Include="LoginAndRegister\Implementation\ViewModels\CompanyLogin.cs" />
     <Compile Include="LoginAndRegister\Implementation\ViewModels\CompanyRegistration.cs" />
     <Compile Include="Profile\AddPosition.cs" />

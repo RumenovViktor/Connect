@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models.Global;
+using System;
 using Utils;
 
 namespace Models
@@ -6,7 +7,7 @@ namespace Models
     public class BasicUserInfo : ICommand
     {
         public BasicUserInfo(int id, byte[] profileImage, string email, string firstName, 
-                            string lastName, Gender gender, DateTime DateOfCreation)
+                            string lastName, Gender gender, DateTime DateOfCreation, CountryReadModel country)
         {
             this.Id = id;
             this.ProfileImage = profileImage;
@@ -14,6 +15,7 @@ namespace Models
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Gender = gender;
+            this.Country = country;
         }
 
         public int Id { get; set; }
@@ -22,7 +24,7 @@ namespace Models
 
         public string Email { get; set; }
 
-        //public string Country { get; set; }
+        public CountryReadModel Country { get; set; }
 
         public string FirstName { get; set; }
 
