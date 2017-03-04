@@ -1,38 +1,37 @@
 ﻿@model IList<SupportedCompany>
 
-<div id="supporortedCompanies-wrapper" class="col-md-4">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            @if (Model.Count == 0 || Model == null)
+    @if (Model.Count == 0 || Model == null)
+    {
+        <div>
+            <h3 class="text-info">Please select a sector...</h3>
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            @foreach (var company in Model)
             {
-                <div>
-                    <h3 class="text-info">Please select a sector...</h3>
+                <div class="col-lg-2">
+                    <div class="panel panel-body">
+                        <div class="panel-body">
+                            @if (true) // Check if the company has picture
+                            {
+                                <div class="form-group">
+                                    <div id="company-default-img">
+                                        <img src="~/Content/Images/company-default.png" class="img-circle" />
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                //Display real picture
+                            }
+                            <div class="form-group">
+                                @Html.ActionLink(company.Name, "Company profile ling", "CompanyProfile", new { companyId = company.Id }, new { @class= "text-info" })
+                            </div>
+                        </div>
+                    </div>
                 </div>
             }
-            else
-            {
-                foreach (var company in Model)
-                {
-                    <div>
-                        @if (true) // Check if the company has picture
-                        {
-                            <div id="company-default-img">
-                                <img src="~/Content/Images/company-default.png" class="img-circle" />
-                            </div>
-                        }
-                        else
-                        {
-                            //Display real picture
-                        }
-                    </div>
-                    <div>
-                        <h3 class="text-info">@company.Name</h3>
-                    </div>
-                }
-            }
         </div>
-        <div class="panel-footer">
-            <h4 class="text-center text-info">View</h4>
-        </div>
-    </div>
-</div>
+    }

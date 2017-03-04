@@ -18,6 +18,7 @@
         {
             var activityArea = commonInfoReadStore.GetActivityArea();
             var registrationLoginViewModel = new UserRegistrationLogin(activityArea);
+
             return View("~/Areas/LoginSite/Views/Home/Index.cshtml", registrationLoginViewModel);
         }
     }

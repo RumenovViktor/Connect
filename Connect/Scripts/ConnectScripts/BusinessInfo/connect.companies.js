@@ -11,7 +11,7 @@
                 return;
             }
 
-            connect.sendAjax('/BusinessInfo/SupportedCompanies', { sectorId: selectedSectorId }, 'GET', 'text/html', function (response) {
+            connect.sendAjax('/BusinessInfo/SupportedCompanies?sectorId=' + selectedSectorId, null, 'GET', 'text/html', function (response) {
                 $('#businessInfo-supportedCompanies').html(response);
             }, function (response) {
                 // Show error dialog.

@@ -12,6 +12,7 @@
         public CompanyRegistration(ActivityAreaReadModel activityArea)
         {
             this.Countries = activityArea.Countries;
+            this.Sectors = activityArea.Sectors;
         }
 
         public CompanyRegistration(SerializationInfo info, StreamingContext context)
@@ -21,6 +22,7 @@
             this.Password = (string)info.GetValue("Password", typeof(string));
             this.ConfirmPassword = (string)info.GetValue("ConfirmPassword", typeof(string));
             this.CountryId = (int?)info.GetValue("Country", typeof(int?));
+            this.SectorId = (int?)info.GetValue("SectorId", typeof(int?));
             this.CompanyExists = (bool)info.GetValue("CompanyExists", typeof(bool));
         }
 
@@ -38,6 +40,11 @@
         [Required]
         public int? CountryId { get; set; }
 
+        public IList<SupportedSector> Sectors { get; set; }
+
+        [Required]
+        public int? SectorId { get; set; }
+
         [Required]
         [Compare("Password", ErrorMessage = "Password missmatch.")]
         public string ConfirmPassword { get; set; }
@@ -52,6 +59,7 @@
             info.AddValue("ConfirmPassword", this.ConfirmPassword, typeof(string));
             info.AddValue("CompanyExists", this.CompanyExists, typeof(bool));
             info.AddValue("Country", this.CountryId, typeof(int?));
+            info.AddValue("SectorId", this.SectorId, typeof(int?));
         }
     }
 }
