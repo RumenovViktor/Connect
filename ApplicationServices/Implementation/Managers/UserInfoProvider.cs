@@ -3,6 +3,7 @@
     using Models;
     using Connect.Helpers;
     using System.Collections.Generic;
+    using Models.Profile;
 
     public class UserInfoProvider : IUserInfoProvider
     {
@@ -33,6 +34,7 @@
             return allSupportedCompanies;
         }
 
+        //TODO: Write operations - should be in application service
         public void AddExperience(ExperienceViewModel experience)
         {
             WebServiceProvider<ExperienceViewModel>.Post(experience, UrlHelper.NewExperienceUrl);
@@ -45,6 +47,19 @@
 
             var basicUserInfo = WebServiceProvider<Profile>.Get(UrlHelper.GetUserProfile, queryParamas);
             return basicUserInfo;
+        }
+
+        public IList<UserSuitiblePosition> GetSuitiblePositions(int? sectorId, int? countrId, string userId)
+        {
+            var suitiblePositions = WebServiceProvider<IList<UserSuitiblePosition>>.Get(UrlHelper.UserSuitiblePositions, new Dictionary<string, string>()
+            {
+                { "sectorId", sectorId.ToString() },
+                { "countryId", countrId.ToString() },
+                { "userId", userId }
+            });
+
+
+            return suitiblePositions;
         }
     }
 }

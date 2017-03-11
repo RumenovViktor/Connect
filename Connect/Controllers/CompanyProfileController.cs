@@ -21,7 +21,6 @@
         [ValidateAntiForgeryToken]
         public ActionResult AddPosition(AddPosition newPosition)
         {
-
             if (ModelState.IsValid)
             {
                 var companyId = (long)CurrentUser.GetParameterByKey("companyId");

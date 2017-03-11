@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #EDF0F5;
 }
 
 #custom-login-navigation{
@@ -112,7 +113,7 @@
     font-size: 1.3em;
 }
 
-#profile-content, #profile-navbar-wrapper{
+#profile-navbar-wrapper{
     margin-left: 2%;
 }
 
@@ -223,4 +224,53 @@ body.modal-open{
     background: #e2dfdf;
     border-radius: 300px;
 
+}
+
+.card, .shadow-container{
+    background-color: white;
+    box-shadow: 0 4px 20px 3px rgba(0,0,0,.1);
+}
+
+.shadow-container{
+    padding: 1%;
+}
+
+.btn-outline {
+  color: inherit;
+  background-color: transparent;
+  transition: all .5s;
+}
+.btn-primary.btn-outline {
+  color: #428bca;
+}
+.btn-success.btn-outline {
+  color: #5cb85c;
+}
+.btn-info.btn-outline {
+  color: #5bc0de;
+}
+.btn-warning.btn-outline {
+  color: #f0ad4e;
+}
+.btn-danger.btn-outline {
+  color: #d9534f;
+}
+.btn-primary.btn-outline:hover,
+.btn-success.btn-outline:hover,
+.btn-info.btn-outline:hover,
+.btn-warning.btn-outline:hover,
+.btn-danger.btn-outline:hover {
+  color: white;
+}
+
+#sector, #country{
+    width: 45%;
+}
+
+#sector{
+    float: left;
+}
+
+#suitiblePositions{
+    margin-top:1%;
 }

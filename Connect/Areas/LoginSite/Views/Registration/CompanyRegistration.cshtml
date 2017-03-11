@@ -18,14 +18,14 @@
                 <div class="col-md-12">
                     @Html.DropDownListFor(x => x.CountryId,
                             new SelectList(Model.Countries.Select(x => new { Value = x.CountryId, Text = x.CountryName }), "Value", "Text"),
-                                            "Select a country...", new { @class = "form-control" })
+                                            "Select a country...", new { @class = "form-control", id= "companySector" })
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-12">
                     @Html.DropDownListFor(x => x.SectorId,
                             new SelectList(Model.Sectors.Select(x => new { Value = x.Id, Text = x.Name}), "Value", "Text"),
-                            "Select a sector...", new { @class = "form-control" })
+                            "Select a sector...", new { @class = "form-control", id="companyCountry" })
                 </div>
             </div>
             <div class="form-group">

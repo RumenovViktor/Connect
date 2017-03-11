@@ -1,0 +1,16 @@
+﻿@model TheWall
+        
+<div class="shadow-container">
+    @Html.DropDownListFor(x => x.SectorId,
+    new SelectList(Model.ActivityArea.Sectors.Select(x => new { Value = x.Id, Text = x.Name }), "Value", "Text"),
+                "Select a sector...", new { @class = "form-control", id = "sector" })
+    <div class="col-lg-1"></div>
+    @Html.DropDownListFor(x => x.CountryId,
+    new SelectList(Model.ActivityArea.Countries.Select(x => new { Value = x.CountryId, Text = x.CountryName }), "Value", "Text"),
+                    "Select a country...", new { @class = "form-control", id = "country" })
+
+</div>
+
+<div id="suitiblePositions" class="form-group">
+    @Html.Action("UserSuitiblePositions", "Profile")
+</div>

@@ -26,7 +26,7 @@
                 <div class="col-md-12">
                     @Html.DropDownListFor(x => x.CountryId,
                             new SelectList(Model.Countries.Select(x => new { Value = x.CountryId, Text = x.CountryName }), "Value", "Text"),
-                                            "Country", new { @class = "form-control" })
+                                            "Country", new { @class = "form-control", id="userCountry" })
                 </div>
             </div>
             <div class="form-group">

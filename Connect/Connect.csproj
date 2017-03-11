@@ -174,8 +174,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\app.css" />
+    <Content Include="Content\app.min.e7c8016f.css" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\company-default.png" />
     <Content Include="Content\Images\profile-image.png" />
     <Content Include="Content\Images\connection-clipart-yearbook-connection-md.png" />
@@ -193,6 +194,7 @@
     <Content Include="Content\Images\ui-icons_ffd27a_256x240.png" />
     <Content Include="Content\Images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\plugins.css" />
     <Content Include="Content\sweetalert\sweetalert.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -201,8 +203,6 @@
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap-filestyle.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -268,6 +268,8 @@
     <Content Include="Views\Profile\AddPosition.cshtml" />
     <Content Include="Views\Profile\AddPositionSkill.cshtml" />
     <Content Include="Views\Profile\CreatedPosition.cshtml" />
+    <Content Include="Views\Profile\TheWall.cshtml" />
+    <Content Include="Views\Profile\UserSuitiblePositions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -276,6 +278,7 @@
     <Folder Include="Views\Base\" />
     <Folder Include="Views\CompanyProfile\" />
     <Folder Include="Views\FileUpload\" />
+    <Folder Include="Views\Positions\" />
     <Folder Include="Views\Skills\" />
   </ItemGroup>
   <ItemGroup>

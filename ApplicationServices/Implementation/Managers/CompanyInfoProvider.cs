@@ -7,9 +7,13 @@
 
     public class CompanyInfoProvider : ICompanyInfoProvider
     {
-        public CompanyProfile GetCompanyProfile(string companyName)
+        public CompanyProfile GetCompanyProfile(long companyId)
         {
-            var companyProfile = WebServiceProvider<CompanyProfile>.Get(UrlHelper.CompanyInfoUrl, new Dictionary<string, string>() { { "companyName", companyName } });
+            var companyProfile = WebServiceProvider<CompanyProfile>.Get(UrlHelper.CompanyInfoUrl, new Dictionary<string, string>()
+            {
+                { "companyId", companyId.ToString() }
+            });
+
             return companyProfile;
         }
     }

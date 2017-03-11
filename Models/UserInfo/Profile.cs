@@ -1,4 +1,4 @@
-﻿namespace Models
+﻿namespace Models.Profile
 {
     using System.Collections.Generic;
 

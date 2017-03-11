@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using ApplicationServices;
 using Connect.Helpers;
 using Models;
+using Models.Profile;
 
 namespace Connect.Controllers
 {
@@ -12,12 +13,14 @@ namespace Connect.Controllers
         private readonly IUserInfoProvider userInfoProvider;
         private readonly ISkillsApplicationService skillsApplicationService;
         private readonly ICompanyInfoProvider companyInfoProvider;
+        private readonly ICommonInfoManager commonInfoProvider;
 
-        public ProfileController(IUserInfoProvider userInfoProvider, ISkillsApplicationService skillsApplicationService, ICompanyInfoProvider companyInfoProvider)
+        public ProfileController(IUserInfoProvider userInfoProvider, ISkillsApplicationService skillsApplicationService, ICompanyInfoProvider companyInfoProvider, ICommonInfoManager commonInfoProvider)
         {
             this.userInfoProvider = userInfoProvider;
             this.skillsApplicationService = skillsApplicationService;
             this.companyInfoProvider = companyInfoProvider;
+            this.commonInfoProvider = commonInfoProvider;
         }
 
         [HttpGet]
@@ -25,7 +28,6 @@ namespace Connect.Controllers
         {
             var email = CurrentUser.GetParameterByKey("email");
             var currentUser = userInfoProvider.GetUserProfile((string)email);
-
             return View(currentUser);
         }
 
@@ -42,11 +44,40 @@ namespace Connect.Controllers
         [HttpGet]
         public ActionResult CompanyProfile()
         {
-            var companyName = (string)CurrentUser.GetParameterByKey("companyName");
-            var companyProfile = companyInfoProvider.GetCompanyProfile(companyName);
+            var companyId = (long)CurrentUser.GetParameterByKey("companyId");
+            var companyProfile = companyInfoProvider.GetCompanyProfile(companyId);
 
             return View(companyProfile);
         }
+
+        [HttpGet]
+        public ActionResult TheWall()
+        {
+            var userId = (string)CurrentUser.GetParameterByKey("email");
+            var activityArea = commonInfoProvider.GetActivityArea();
+            //var suitiblePositions = userInfoProvider.GetSuitiblePositions(null, null, userId);
+
+            return PartialView(new TheWall(activityArea/*, suitiblePositions*/));
+        }
+
+        [HttpGet]
+        public ActionResult UserSuitiblePositions(int? sectorId, int? countryId)
+        {
+            var userId = (string)CurrentUser.GetParameterByKey("email");
+            var suitiblePositions = userInfoProvider.GetSuitiblePositions(sectorId, countryId, userId);
+            return PartialView(suitiblePositions);
+        }
+
+        [HttpGet]
+        [OutputCache(Duration = 60 * 60)]
+        public ActionResult Qualifications()
+        {
+            var email = CurrentUser.GetParameterByKey("email");
+            var currentUser = userInfoProvider.GetUserProfile((string)email);
+
+            return PartialView(currentUser);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddExperience(ExperienceViewModel experience)

@@ -69,8 +69,8 @@
                     return new HttpStatusCodeResult(400, "Company with this name already exists.");
                 }
 
-                SetAuthenticationCoockie(company.CompanyName);
-                CurrentUser.AddParameter("companyName", company.CompanyName);
+                SetAuthenticationCoockie(company.Email);
+                CurrentUser.AddParameter("companyId", company.CompanyId);
                 
                 return Json(new { RedirectUrl = Url.Action("CompanyProfile", "Profile") });
             }

@@ -84,5 +84,10 @@ namespace Connect.Helpers
             get { return ConfigurationManager.AppSettings["getActivityAreaUrl"]; }
 
         }
+
+        public static string UserSuitiblePositions
+        {
+            get { return ConfigurationManager.AppSettings["userSuitiblePositions"]; }
+        }
     }
 }

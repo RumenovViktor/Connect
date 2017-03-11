@@ -1,47 +1,86 @@
-﻿@model Profile
+﻿@model Models.Profile.Profile
 
-<div id="profile-wrapper">
-    <div id="businessInfo-basicUserInfo" class="row col-lg-2">
-        @Html.Action("ProfileBasicInfo", "Profile")
-        <a href="#" class="btn btn-primary col-md-12 btn-add-skill" data-toggle="modal" data-target="#skill-form-modal">Add skill</a>
-    </div>
-    <div id="profile-navbar-wrapper" class="row col-md-9">
-        <div class="text-center col-md-6 profile-navbar-option">
-            @Html.ActionLink("Qualifications", "Profile", "", new { @class= "btn-link" })
+<div id="profile-wrapper" class="form-group">
+    <div class="form-group">
+        <div id="businessInfo-basicUserInfo" class="col-md-2">
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="card-block">
+                            @Html.Action("ProfileBasicInfo", "Profile")
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="text-center col-md-6 btn-link profile-navbar-option">
-            @Html.ActionLink("Documents", "Profile", "", new { @class = "btn-link" })
+        <div class="col-md-8">
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+
+                        <div class="card-block text-center">
+                            <ul class="nav nav-tabs nav-justified">
+                                <li id="theWallId" role="presentation" class="active profile-nav-btn">
+                                    @Ajax.ActionLink("The wall", "TheWall", "Profile", new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "profile-content",
+                                        OnSuccess = "profileManager.methods.getDefaultSuitiblePositions"
+                                    })
+                                </li>
+                                <li id="qualifications-tab" role="presentation" class="profile-nav-btn">
+                                    @Ajax.ActionLink("Qualifications", "Qualifications", "Profile", new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "profile-content"
+                                    })
+                                </li>
+                                <li role="presentation" class="profile-nav-btn"><a href="#">Documents</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div id="profile-content" class="col-md-12">
+                @Html.Action("TheWall", "Profile")
+            </div>
         </div>
-        <div class="row line"></div>
-    </div>
-    <div id="profile-content" class="row col-md-9">
-        @*Todo: take it to a partial view*@
-        <div id="profile-qualifications-wrapper">
-            <a href="#" class="btn btn-info col-md-12" data-toggle="modal" data-target="#exp-form-modal">Add experience</a>
-        </div>
-        <div id="experience-list">
-            @foreach (var experience in Model.UserExperience)
+        <div class="col-md-2">
+            @if (!Model.Skills.Any())
             {
-                Html.RenderPartial("~/Views/Profile/Experience.cshtml", experience);
-            }
-        </div>
-        <div id="skills-wrapper">
-            <div id="img-wrapper">
-                <img src="~/Content/Images/profile-image.png" style="width: 100px;height:100px;" class="img-circle"/>
-            </div>
-            <div class="arrow-up"></div>
-            <div id="skills-panel" class="panel panel-default col-md-12 row">
-                <div class="panel-body">
-                    @if (!Model.Skills.Any())
-                    {
-                        <p>Looks like you haven't added any skills. Please add skills from <a href="#" class="text-info btn-add-skill" data-toggle="modal" data-target="#skill-form-modal">here</a> so we can rank you better.</p>
-                    }
-
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <button type="button" class="close" data-dismiss="card">&times;</button>
+                            <div class="form-group text-center">
+                                <img src="~/Content/Images/profile-image.png" width="85px" height="85px" class="img-circle" />
+                            </div>
+                            <div class="card-block text-center">
+                                <h4 class="card-title">Skills</h4>
+                                <p class="card-text">Looks like you haven't added any skills. It will be best for your experience to do it.</p>
+                                <a href="#" class="btn btn-outline btn-success btn-add-skill" data-toggle="modal" data-target="#skill-form-modal">Add skill</a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-            <div id="add-skill-panel">
+            }
 
-            </div>
+            @if (!Model.UserExperience.Any())
+            {
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <button type="button" class="close" data-dismiss="card">&times;</button>
+                            <div class="form-group text-center">
+                                <img src="~/Content/Images/profile-image.png" width="85px" height="85px" class="img-circle" />
+                            </div>
+                            <div class="card-block text-center">
+                                <h4 class="card-title">Experience</h4>
+                                <p class="card-text">Looks like you haven't added any experience. It will be best for your experience to do it.</p>
+                                <a href="#" class="btn btn-outline btn-success" data-toggle="modal" data-target="#exp-form-modal">Add experience</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            }
         </div>
     </div>
 </div>

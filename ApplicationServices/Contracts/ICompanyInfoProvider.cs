@@ -4,6 +4,6 @@ namespace ApplicationServices
 {
     public interface ICompanyInfoProvider
     {
-        CompanyProfile GetCompanyProfile(string companyName);
+        CompanyProfile GetCompanyProfile(long companyId);
     }
 }
