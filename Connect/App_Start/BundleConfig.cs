@@ -16,8 +16,11 @@ namespace Connect
                         "~/Scripts/jquery.validate.unobtrusive.js",
                         "~/Scripts/jquery.unobtrusive-ajax.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/profilescripts").Include(
+            bundles.Add(new ScriptBundle("~/bundles/DashboardScripts").Include(
                 "~/Scripts/ConnectScripts/Profile/profile-basic-info.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/profilescripts").Include(
+                "~/Scripts/ConnectScripts/dashboard.js.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",

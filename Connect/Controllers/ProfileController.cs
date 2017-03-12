@@ -51,24 +51,6 @@ namespace Connect.Controllers
         }
 
         [HttpGet]
-        public ActionResult TheWall()
-        {
-            var userId = (string)CurrentUser.GetParameterByKey("email");
-            var activityArea = commonInfoProvider.GetActivityArea();
-            //var suitiblePositions = userInfoProvider.GetSuitiblePositions(null, null, userId);
-
-            return PartialView(new TheWall(activityArea/*, suitiblePositions*/));
-        }
-
-        [HttpGet]
-        public ActionResult UserSuitiblePositions(int? sectorId, int? countryId)
-        {
-            var userId = (string)CurrentUser.GetParameterByKey("email");
-            var suitiblePositions = userInfoProvider.GetSuitiblePositions(sectorId, countryId, userId);
-            return PartialView(suitiblePositions);
-        }
-
-        [HttpGet]
         [OutputCache(Duration = 60 * 60)]
         public ActionResult Qualifications()
         {

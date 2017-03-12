@@ -5,9 +5,6 @@
         profileManager.methods.switchTabs();
         profileManager.methods.clearAddExperienceForm();
         profileManager.methods.closePannel();
-        profileManager.methods.getDefaultSuitiblePositions();
-        profileManager.methods.getSuitiblePositions();
-        profileManager.methods.getFilteredSuitiblePositions();
     },
     events: {
         clickEvent: 'click',
@@ -50,35 +47,6 @@
                 $('#profile-content').html('');
                 $(profileManager.selectors.profileNavBtn).removeClass('active');
                 $(this).addClass('active');
-            });
-        },
-        getFilteredSuitiblePositions: function () {
-            var selectionCallback = function () {
-                var sector = sectorDropdown.val();
-                var country = countryDropdown.val();
-
-                profileManager.methods.getSuitiblePositions(sector, country);
-            }
-
-            var sectorDropdown = $(profileManager.selectors.sectorId);
-            var countryDropdown = $(profileManager.selectors.countryId);
-
-            sectorDropdown.on(profileManager.events.changeEvent, selectionCallback);
-            countryDropdown.on(profileManager.events.changeEvent, selectionCallback);
-        },
-        getDefaultSuitiblePositions: function () {
-            $(profileManager.selectors.theWallId).on(profileManager.events.clickEvent, function () {
-                profileManager.methods.getSuitiblePositions();
-            });
-        },
-        getSuitiblePositions: function (sectorId, countryId) {
-            var isActive = $(profileManager.selectors.theWallId).hasClass('active');
-            if (!isActive)
-                return;
-
-            connect.sendAjax('/Profile/UserSuitiblePositions?sectorId=' + sectorId + '&countryId=' + countryId, null, 'GET', 'application/json', function (response) {
-                $(profileManager.selectors.suitiblePositions).html('');
-                $(profileManager.selectors.suitiblePositions).append(response);
             });
         },
         closePannel: function () {

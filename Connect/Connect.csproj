@@ -218,6 +218,7 @@
     <Content Include="Areas\LoginSite\Views\Login\CompanyLogin.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ConnectScripts\BusinessInfo\connect.companies.js" />
+    <Content Include="Scripts\ConnectScripts\dashboard.js" />
     <Content Include="Scripts\ConnectScripts\Global\connect.js" />
     <Content Include="Scripts\ConnectScripts\Global\connect.utils.js" />
     <Content Include="Scripts\ConnectScripts\Profile\positionsManager.js" />
@@ -270,8 +271,8 @@
     <Content Include="Views\Profile\AddPosition.cshtml" />
     <Content Include="Views\Profile\AddPositionSkill.cshtml" />
     <Content Include="Views\Profile\CreatedPosition.cshtml" />
-    <Content Include="Views\Profile\TheWall.cshtml" />
-    <Content Include="Views\Profile\UserSuitiblePositions.cshtml" />
+    <Content Include="Views\Dashboard\TheWall.cshtml" />
+    <Content Include="Views\Dashboard\UserSuitiblePositions.cshtml" />
     <Content Include="Views\Dashboard\UserDashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
