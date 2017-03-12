@@ -89,5 +89,10 @@ namespace Connect.Helpers
         {
             get { return ConfigurationManager.AppSettings["userSuitiblePositions"]; }
         }
+
+        public static string UserDashboardProfileUrl
+        {
+            get { return ConfigurationManager.AppSettings["userDashboardProfileUrl"]; }
+        }
     }
 }

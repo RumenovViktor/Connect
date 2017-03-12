@@ -1,4 +1,6 @@
-﻿<div id="dashboard-wrapper">
+﻿@model Models.Dashboard.UserDashboardProfile
+
+<div id="dashboard-wrapper">
     <div class="form-group">
         <div class="col-lg-2 col-md-2">
             <div class="card text-center">
@@ -7,19 +9,23 @@
                         <img src="~/Content/Images/profile-image.png" width="85px" height="85px" class="img-circle profile-image-dashboard" />
                     </div>
                     <div class="form-group">
-                        <h5 class="card-title">Viktor Rumenov</h5>
+                        <h5 class="card-title">@Model.FullName</h5>
                     </div>
                     <div class="form-group">
-                        <p class="card-title">ASP.Net MVC Developer</p>
+                        @if (string.IsNullOrWhiteSpace(Model.CurrentPosition))
+                        {
+                            <p class="card-title">Unemployed</p>
+                        }
+                        else
+                        {
+                            <p class="card-title">@Model.CurrentPosition</p>
+                        }
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-8">
             @Html.Action("TheWall", "Dashboard")
-            <div class="positions-container">
-
-            </div>
         </div>
     </div>
 </div>

@@ -33,6 +33,7 @@ namespace Connect
             builder.RegisterType<CompanyInfoProvider>().As<ICompanyInfoProvider>();
             builder.RegisterType<CompanyProfileApplicationService>().As<ICompanyProfileApplicationService>();
             builder.RegisterType<CommonInfoManager>().As<ICommonInfoManager>();
+            builder.RegisterType<DashboardManager>().As<IDashboardManager>();
         }
     }
 }

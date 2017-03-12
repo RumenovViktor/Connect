@@ -4,6 +4,7 @@
 
     using Models;
     using Models.Profile;
+    using Models.Dashboard;
 
     public interface IUserInfoProvider
     {
@@ -15,8 +16,8 @@
 
         void AddExperience(ExperienceViewModel experience);
 
-        Profile GetUserProfile(string email);
+        UserDashboardProfile GetUserDashboardProfile(long userId);
 
-        IList<UserSuitiblePosition> GetSuitiblePositions(int? sectorId, int? countrId, string userId);
+        Profile GetUserProfile(string email);
     }
 }

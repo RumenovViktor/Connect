@@ -4,6 +4,8 @@
     using Connect.Helpers;
     using System.Collections.Generic;
     using Models.Profile;
+    using Models.Dashboard;
+    using System;
 
     public class UserInfoProvider : IUserInfoProvider
     {
@@ -49,17 +51,14 @@
             return basicUserInfo;
         }
 
-        public IList<UserSuitiblePosition> GetSuitiblePositions(int? sectorId, int? countrId, string userId)
+        public UserDashboardProfile GetUserDashboardProfile(long userId)
         {
-            var suitiblePositions = WebServiceProvider<IList<UserSuitiblePosition>>.Get(UrlHelper.UserSuitiblePositions, new Dictionary<string, string>()
+            var userDashboardProfile = WebServiceProvider<UserDashboardProfile>.Get(UrlHelper.UserDashboardProfileUrl, new Dictionary<string, string>()
             {
-                { "sectorId", sectorId.ToString() },
-                { "countryId", countrId.ToString() },
-                { "userId", userId }
+                { "userId", userId.ToString() }
             });
 
-
-            return suitiblePositions;
+            return userDashboardProfile;
         }
     }
 }

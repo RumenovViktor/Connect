@@ -274,6 +274,7 @@
     <Content Include="Views\Dashboard\TheWall.cshtml" />
     <Content Include="Views\Dashboard\UserSuitiblePositions.cshtml" />
     <Content Include="Views\Dashboard\UserDashboard.cshtml" />
+    <Content Include="Views\Profile\NavigationProfileInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

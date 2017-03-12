@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Contracts\ICompanyInfoProvider.cs" />
     <Compile Include="Contracts\ICompanyProfileApplicationService.cs" />
+    <Compile Include="Contracts\IDashboardManager.cs" />
     <Compile Include="Contracts\IFileHandler.cs" />
     <Compile Include="Contracts\IFileManagementApplicationService.cs" />
     <Compile Include="Contracts\IHandles\IHandles.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Implementation\FileManagementApplicationService.cs" />
     <Compile Include="Implementation\LoginApplicationService.cs" />
     <Compile Include="Implementation\Managers\CompanyInfoProvider.cs" />
+    <Compile Include="Implementation\Managers\DashboardManager.cs" />
     <Compile Include="Implementation\Managers\ImagesHandler.cs" />
     <Compile Include="Implementation\Managers\CommonInfoManager.cs" />
     <Compile Include="Implementation\Managers\SkillsManager.cs" />

@@ -7,19 +7,23 @@ namespace Connect.Controllers
 {
     public class DashboardController : BaseController
     {
+        private readonly IDashboardManager dashboardInfoProvider;
         private readonly ICommonInfoManager commonInfoProvider;
         private readonly IUserInfoProvider userInfoProvider;
 
-        public DashboardController(ICommonInfoManager commonInfoProvider, IUserInfoProvider userInfoProvider)
+        public DashboardController(ICommonInfoManager commonInfoProvider, IUserInfoProvider userInfoProvider, IDashboardManager dashboardInfoProvider)
         {
             this.commonInfoProvider = commonInfoProvider;
             this.userInfoProvider = userInfoProvider;
+            this.dashboardInfoProvider = dashboardInfoProvider;
         }
 
         [HttpGet]
         public ActionResult UserDashboard()
         {
-            return View();
+            var userId = (long)CurrentUser.GetParameterByKey("userId");
+            var userDashboardProfile = userInfoProvider.GetUserDashboardProfile(userId);
+            return View(userDashboardProfile);
         }
 
         [HttpGet]
@@ -34,7 +38,7 @@ namespace Connect.Controllers
         public ActionResult UserSuitiblePositions(int? sectorId, int? countryId)
         {
             var userId = (string)CurrentUser.GetParameterByKey("email");
-            var suitiblePositions = userInfoProvider.GetSuitiblePositions(sectorId, countryId, userId);
+            var suitiblePositions = dashboardInfoProvider.GetSuitiblePositions(sectorId, countryId, userId);
             return PartialView(suitiblePositions);
         }
     }
