@@ -1,1 +1,20 @@
-﻿
+﻿@model Models.Dashboard.UserDashboardProfile
+
+<div class="popover bottom">
+    <div class="arrow"></div>
+    <div class="popover-title text-center">
+        <a href="@Url.Action("Profile", "Profile")">
+            <img src="~/Content/Images/profile-image.png" class="img-circle" style="width: 49px;" />
+            <h4>@Model.FullName</h4>
+        </a>
+    </div>
+    <div class="popover-content">
+        <ul class="list-group text-center">
+            <li class="list-group-item">First item</li>
+            <li class="list-group-item">Second item</li>
+            <li class="list-group-item">
+                @Html.ActionLink("Log out", "LogOut", "Login", new { Area = "LoginSite" }, null)
+            </li>
+        </ul>
+    </div>
+</div>

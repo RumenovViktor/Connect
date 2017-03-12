@@ -32,6 +32,15 @@ namespace Connect.Controllers
         }
 
         [HttpGet]
+        public ActionResult NavigationProfileInfo()
+        {
+            var userId = (long)CurrentUser.GetParameterByKey("userId");
+            var userDashboardProfile = userInfoProvider.GetUserDashboardProfile(userId);
+
+            return PartialView(userDashboardProfile);
+        }
+
+        [HttpGet]
         [ChildActionOnly]
         public ActionResult ProfileBasicInfo()
         {

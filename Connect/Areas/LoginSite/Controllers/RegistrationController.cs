@@ -47,8 +47,8 @@
 
                 SetAuthenticationCoockie(user.Email);
                 CurrentUser.AddParameter("email", user.Email);
-                
-                return Json(new { RedirectUrl = Url.Action("BusinessInfo", "BusinessInfo") });
+
+                return Json(new { RedirectUrl = Url.Content("~/BusinessInfo/BusinessInfo") });
             }
             else
             {
@@ -71,8 +71,8 @@
 
                 SetAuthenticationCoockie(company.Email);
                 CurrentUser.AddParameter("companyId", company.CompanyId);
-                
-                return Json(new { RedirectUrl = Url.Action("CompanyProfile", "Profile") });
+
+                return Json(new { RedirectUrl = Url.Content("~/Profile/CompanyProfile") });
             }
             else
             {

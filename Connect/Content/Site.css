@@ -310,3 +310,16 @@ p {
 #suitiblePositions .card{
     padding: 0;
 }
+
+.nav-select-option{
+    display: none;
+    position: absolute;
+    margin-left: -7.5em;
+}
+
+.popover{
+    position: relative !important;
+    display: block !important;
+    width: 260px !important;
+    
+}
