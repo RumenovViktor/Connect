@@ -221,6 +221,7 @@
     <Content Include="Scripts\ConnectScripts\dashboard.js" />
     <Content Include="Scripts\ConnectScripts\Global\connect.js" />
     <Content Include="Scripts\ConnectScripts\Global\connect.utils.js" />
+    <Content Include="Scripts\ConnectScripts\Navigation\NavigationManager.js" />
     <Content Include="Scripts\ConnectScripts\Profile\positionsManager.js" />
     <Content Include="Scripts\ConnectScripts\Profile\profile-basic-info.js" />
     <Content Include="Scripts\ConnectScripts\Profile\profileManager.js" />

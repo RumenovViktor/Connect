@@ -23,7 +23,10 @@
                         <a href="#" class=""><i class="glyphicon glyphicon-envelope"></i></a>
                     </li>
                     <li>
-                        <a href="#" class=""><i class="glyphicon glyphicon-user"></i></a>
+                        <a id="nav-profile" href="#"><i class="glyphicon glyphicon-user"></i></a>
+                        <div class="nav-select-option" data-toggle="#nav-profile">
+                            @Html.Action("NavigationProfileInfo", "Profile")
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -51,6 +54,7 @@
         $("#file").filestyle('buttonText', 'Change pucture');
     </script>
     <script src="~/Scripts/ConnectScripts/Profile/profile-basic-info.js"></script>
+    <script src="~/Scripts/ConnectScripts/Navigation/NavigationManager.js"></script>
     @RenderSection("ProfileScripts", required: false)
     @RenderSection("DashboardScripts", required: false)
 </body>

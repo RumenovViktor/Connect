@@ -7,6 +7,11 @@
     {
         #region Protected Methods
 
+        protected void RemoveAuthenticationCoockie()
+        {
+            FormsAuthentication.SignOut();
+        }
+
         protected void SetAuthenticationCoockie(string email)
         {
             FormsAuthentication.SetAuthCookie(email, true);

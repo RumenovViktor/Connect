@@ -49,9 +49,17 @@
                 SetAuthenticationCoockie(response.Email);
                 CurrentUser.AddParameter("userId", response.UserId);
                 CurrentUser.AddParameter("email", user.Email);
-
-                return RedirectToAction("UserDashboard", "Dashboard");
+                
+                return Redirect(Url.Content("~/Dashboard/UserDashboard"));
             }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult LogOut()
+        {
+            RemoveAuthenticationCoockie();
+            CurrentUser.ClearSession();
 
             return RedirectToAction("Index", "Home");
         }
@@ -72,7 +80,7 @@
                 SetAuthenticationCoockie(company.CompanyName);
                 CurrentUser.AddParameter("companyId", response.CompanyId);
 
-                return Json(new { RedirectUrl = Url.Action("CompanyProfile", "Profile") });
+                return Json(new { RedirectUrl = Url.Content("~/Profile/CompanyProfile") });
             }
 
             return new HttpStatusCodeResult(400, "Please fill all the fields.");
