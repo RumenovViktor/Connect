@@ -35,11 +35,22 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(UserLogin user)
+        public ActionResult UserLogin(UserLogin user)
         {
             if (ModelState.IsValid)
             {
-                loginApplicationService.Execute(user);
+                var response = loginApplicationService.Execute(user);
+
+                if (!response.DoesUserExists)
+                {
+                    return new HttpStatusCodeResult(400, "User with this email does not exists.");
+                }
+
+                SetAuthenticationCoockie(response.Email);
+                CurrentUser.AddParameter("userId", response.UserId);
+                CurrentUser.AddParameter("email", user.Email);
+
+                return RedirectToAction("UserDashboard", "Dashboard");
             }
 
             return RedirectToAction("Index", "Home");
@@ -59,7 +70,6 @@
                 }
 
                 SetAuthenticationCoockie(company.CompanyName);
-                CurrentUser.AddParameter("companyName", company.CompanyName);
                 CurrentUser.AddParameter("companyId", response.CompanyId);
 
                 return Json(new { RedirectUrl = Url.Action("CompanyProfile", "Profile") });

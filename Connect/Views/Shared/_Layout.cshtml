@@ -8,7 +8,26 @@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container"></div>
+        <div class="container">
+            <div class="navbar-header">
+                <a href='@Url.Action("UserDashboard", "Dashboard")'>
+                    <img src="~/Content/Images/C.png" style="width: 49px;" />
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" class=""><i class="glyphicon glyphicon-bell"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class=""><i class="glyphicon glyphicon-envelope"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class=""><i class="glyphicon glyphicon-user"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="container body-content">
         @RenderBody()

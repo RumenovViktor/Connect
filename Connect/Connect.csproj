@@ -164,6 +164,7 @@
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\BusinessInfoController.cs" />
     <Compile Include="Controllers\CompanyProfileController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SkillsController.cs" />
@@ -177,6 +178,7 @@
     <Content Include="Content\app.css" />
     <Content Include="Content\app.min.e7c8016f.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\Images\C.png" />
     <Content Include="Content\Images\company-default.png" />
     <Content Include="Content\Images\profile-image.png" />
     <Content Include="Content\Images\connection-clipart-yearbook-connection-md.png" />
@@ -270,6 +272,7 @@
     <Content Include="Views\Profile\CreatedPosition.cshtml" />
     <Content Include="Views\Profile\TheWall.cshtml" />
     <Content Include="Views\Profile\UserSuitiblePositions.cshtml" />
+    <Content Include="Views\Dashboard\UserDashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

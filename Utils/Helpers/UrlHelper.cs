@@ -14,9 +14,9 @@ namespace Connect.Helpers
             get { return ConfigurationManager.AppSettings["comapnyRegisterApiUrl"]; }
         }
 
-        public static string LoginApiUrl
+        public static string UserLoginApiUrl
         {
-            get { return ConfigurationManager.AppSettings["loginApiUrl"]; }
+            get { return ConfigurationManager.AppSettings["userLoginApiUrl"]; }
         }
 
         public static string CompanyLoginUrl

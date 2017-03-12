@@ -19,7 +19,13 @@ namespace ApplicationServices
 
         public UserLogin Execute(UserLogin command)
         {
-            throw new NotImplementedException();
+            var existingUser = WebServiceProvider<UserLogin>.Get(UrlHelper.UserLoginApiUrl, new Dictionary<string, string>()
+            {
+                { "email", command.Email },
+                { "password", command.Password },
+            });
+
+            return existingUser;
         }
     }
 }
