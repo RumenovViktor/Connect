@@ -47,6 +47,7 @@
 
                 SetAuthenticationCoockie(user.Email);
                 CurrentUser.AddParameter("email", user.Email);
+                CurrentUser.AddParameter("userId", userExists.UserId);
 
                 return Json(new { RedirectUrl = Url.Content("~/BusinessInfo/BusinessInfo") });
             }
