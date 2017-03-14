@@ -25,6 +25,7 @@
             CountryId = (int?)info.GetValue("CountryId", typeof(int?));
             ConfirmPassword = (string)info.GetValue("ConfirmPassword", typeof(string));
             Gender = (Gender)info.GetValue("Gender", typeof(Gender));
+            UserId = (long)info.GetValue("UserId", typeof(long));
             UserExists = (bool)info.GetValue("UserExists", typeof(bool));
         }
 
@@ -37,6 +38,7 @@
             info.AddValue("CountryId", CountryId, typeof(int?));
             info.AddValue("ConfirmPassword", ConfirmPassword, typeof(string));
             info.AddValue("Gender", Gender, typeof(Gender));
+            info.AddValue("UserId", UserId, typeof(long));
             info.AddValue("UserExists", UserExists, typeof(bool));
         }
         
@@ -57,6 +59,8 @@
 
         [Required]
         public Gender Gender { get; set; }
+
+        public long UserId { get; set; }
 
         public bool UserExists { get; set; }
     }
