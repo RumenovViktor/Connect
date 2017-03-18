@@ -6,59 +6,94 @@
     using Models.Profile;
     using Models.Dashboard;
     using System;
+    using Data.Unit_Of_Work;
+    using System.Linq;
+    using Utils;
+    using Models.Global;
+    using DTOs.Models;
 
     public class UserInfoProvider : IUserInfoProvider
     {
+        private readonly IDALServiceData dalServiceData;
+
+        public UserInfoProvider(IDALServiceData data)
+        {
+            dalServiceData = data;
+        }
+
         public BasicUserInfo GetBasicUserInfo(string email)
         {
-            var queryParamas = new Dictionary<string, string>();
-            queryParamas.Add("email", email);
+            BasicUserInfo basicUserInfo = null;
+            var registeredUser = dalServiceData.Users.FindEntity(x => x.Email == email);
+            var profileImage = registeredUser.Files.Select(x => x.FileInputStream).FirstOrDefault();
+            var country = dalServiceData.Countries.FindEntity(x => x.CountryId == registeredUser.CountryId);
 
-            var basicUserInfo = WebServiceProvider<BasicUserInfo>.Get(UrlHelper.UserBasicInfoUrl, queryParamas);
+            if (registeredUser != null)
+                basicUserInfo = new BasicUserInfo(registeredUser.UserId, profileImage, registeredUser.Email, registeredUser.FirstName, registeredUser.LastName,
+                                                    Gender.Male, registeredUser.DateOfCreation, new CountryReadModel(country.CountryId, country.NiceName));
+
             return basicUserInfo;
         }
 
         //TODO: Make a class or check if there is a class that deals with this kind of functionality.
         public IList<SupportedSector> GetSupportedSectors()
         {
-            var allSupportedSectors = WebServiceProvider<IList<SupportedSector>>.Get(UrlHelper.SupportedSectorsUrl);
-            return allSupportedSectors;
+            var allSupportedSectorsFromDb = dalServiceData.Sectors.All().ToList();
+            var allSupportedSectors = allSupportedSectorsFromDb
+                    .Select(x => new SupportedSector(x.Id, x.Name)).ToList();
 
+            return allSupportedSectors;
         }
 
         //TODO: Make a class or check if there is a class that deals with this kind of functionality.
         public IList<SupportedCompany> GetSupportedCompanies(int sectorId)
         {
-            var queryParamas = new Dictionary<string, string>();
-            queryParamas.Add("sectorId", sectorId.ToString());
+            var companiesForSector = dalServiceData.Sectors
+                .FindEntity(x => x.Id == sectorId)
+                .Companies
+                .Select(x => new SupportedCompany()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                }).ToList();
 
-            var allSupportedCompanies = WebServiceProvider<IList<SupportedCompany>>.Get(UrlHelper.SupportedCompaniesUrl, queryParamas);
-            return allSupportedCompanies;
+            return companiesForSector;
         }
 
         //TODO: Write operations - should be in application service
-        public void AddExperience(ExperienceViewModel experience)
+        public ExperienceViewModel AddExperience(ExperienceViewModel experience)
         {
-            WebServiceProvider<ExperienceViewModel>.Post(experience, UrlHelper.NewExperienceUrl);
+            var user = dalServiceData.Users.FindEntity(x => x.Email == experience.UserEmail);
+
+            user.Experience.Add(new Experience(experience));
+            dalServiceData.Users.UpdateEntity(user);
+            dalServiceData.Users.SaveChanges();
+
+            return experience;
         }
 
         public Profile GetUserProfile(string email)
         {
-            var queryParamas = new Dictionary<string, string>();
-            queryParamas.Add("email", email);
+            var userExperience = dalServiceData.Users
+                                .FindEntity(x => x.Email == email)
+                                .Experience.OrderByDescending(x => x.ExperienceId)
+                                .Select(x => new ExperienceViewModel()
+                                {
+                                    Description = x.PositionDiscription,
+                                    Position = x.PositionName,
+                                    EndDate = x.ToDate,
+                                    StartDate = x.FromDate
+                                }).ToList();
 
-            var basicUserInfo = WebServiceProvider<Profile>.Get(UrlHelper.GetUserProfile, queryParamas);
-            return basicUserInfo;
+            return new Profile() { UserExperience = userExperience };
         }
 
         public UserDashboardProfile GetUserDashboardProfile(long userId)
         {
-            var userDashboardProfile = WebServiceProvider<UserDashboardProfile>.Get(UrlHelper.UserDashboardProfileUrl, new Dictionary<string, string>()
-            {
-                { "userId", userId.ToString() }
-            });
+            var user = dalServiceData.Users.FindEntity(x => x.UserId == userId);
+            var userCurrentPosition = user.Experience.Where(x => !x.ToDate.HasValue).FirstOrDefault();
 
-            return userDashboardProfile;
+            return new UserDashboardProfile(user.FirstName + " " + user.LastName, userCurrentPosition != null ? userCurrentPosition.PositionName : string.Empty);
         }
     }
 }

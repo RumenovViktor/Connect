@@ -1,4 +1,6 @@
 ﻿using Connect.Helpers;
+using Data.Unit_Of_Work;
+using Executors;
 using Models;
 using System.Collections.Generic;
 
@@ -6,17 +8,19 @@ namespace ApplicationServices
 {
     public class DashboardManager : IDashboardManager
     {
-        public IList<UserSuitiblePosition> GetSuitiblePositions(int? sectorId, int? countrId, string userId)
+        private readonly IDALServiceData dalServiceData;
+
+        public DashboardManager(IDALServiceData data)
         {
-            var suitiblePositions = WebServiceProvider<IList<UserSuitiblePosition>>.Get(UrlHelper.UserSuitiblePositions, new Dictionary<string, string>()
-            {
-                { "sectorId", sectorId.ToString() },
-                { "countryId", countrId.ToString() },
-                { "userId", userId }
-            });
+            dalServiceData = data;
+        }
 
+        public IList<UserSuitiblePosition> GetSuitiblePositions(int? sectorId, int? countryId, string userId)
+        {
+            var user = dalServiceData.Users.FindEntity(x => x.Email == userId);
+            var matchedPositions = new UserMatchingExecutor(dalServiceData).Match(user, sectorId, countryId);
 
-            return suitiblePositions;
+            return matchedPositions;
         }
     }
 }

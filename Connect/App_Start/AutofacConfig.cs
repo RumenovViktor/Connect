@@ -4,6 +4,8 @@ using Autofac;
 using Autofac.Integration.Mvc;
 
 using ApplicationServices;
+using Data.Unit_Of_Work;
+using Data.DataContext;
 
 namespace Connect
 {
@@ -23,6 +25,8 @@ namespace Connect
 
         private static void RegisterDependancies(ContainerBuilder builder)
         {
+            builder.RegisterType<DALServiceDataContext>().As<IDALServiceDataContext>();
+            builder.RegisterType<DALServiceData>().As<IDALServiceData>();
             builder.RegisterType<RegistrationApplicationService>().As<IRegistrationApplicationService>();
             builder.RegisterType<LoginApplicationService>().As<ILoginApplicationService>();
             builder.RegisterType<UserInfoProvider>().As<IUserInfoProvider>();

@@ -3,19 +3,84 @@
     using System;
     using Connect.Helpers;
     using Models;
+    using Data.Unit_Of_Work;
+    using System.Collections.Generic;
+    using DTOs.Models;
 
     public class RegistrationApplicationService : IRegistrationApplicationService
     {
+        private readonly IDALServiceData dalServiceData;
+
+        public RegistrationApplicationService(IDALServiceData data)
+        {
+            dalServiceData = data;
+        }
+
         public UserRegistration Execute(UserRegistration command)
         {
-            var registeredUser = WebServiceProvider<UserRegistration>.Post(command, UrlHelper.RegistrationApiUrl);
-            return registeredUser;
+            var registeredUser = ExecuteSaveCommand(command);
+            return (UserRegistration)registeredUser;
+        }
+
+        private ICommand ExecuteSaveCommand(UserRegistration command)
+        {
+            var existingUser = dalServiceData.Users.FindEntity(x => x.Email == command.Email);
+
+            if (existingUser != null)
+            {
+                return new UserRegistration()
+                {
+                    UserExists = true
+                };
+            }
+
+            var newUser = new User()
+            {
+                Email = command.Email,
+                FirstName = command.FirstName,
+                LastName = command.LastName,
+                Password = command.Password,
+                Skills = default(IList<Skill>),
+                IsDeleted = default(bool),
+                DateOfCreation = DateTime.UtcNow,
+                CountryId = command.CountryId
+            };
+
+            dalServiceData.Users.AddEntity(newUser);
+            dalServiceData.Users.SaveChanges();
+
+            existingUser = dalServiceData.Users.FindEntity(x => x.Email == command.Email);
+            command.UserId = existingUser.UserId;
+
+            return command;
         }
 
         public CompanyRegistration Execute(CompanyRegistration command)
         {
-            var company = WebServiceProvider<CompanyRegistration>.Post(command, UrlHelper.CompanyRegistrationUrl);
-            return company;
+            var company = dalServiceData.Companies.FindEntity(x => (x.CountryId == command.CountryId && x.Name == command.CompanyName) || x.Email == command.Email);
+
+            if (company != null)
+            {
+                return new CompanyRegistration()
+                {
+                    CompanyExists = true
+                };
+            }
+
+            var sector = dalServiceData.Sectors.FindEntity(x => x.Id == command.SectorId.Value);
+            var newCompany = new Company(command, sector);
+
+            dalServiceData.Companies.AddEntity(newCompany);
+            dalServiceData.Companies.SaveChanges();
+
+            var existingCompany = dalServiceData.Companies
+                .FindEntity(x => (x.CountryId == command.CountryId && x.Name == command.CompanyName) || x.Email == command.Email);
+
+            return new CompanyRegistration()
+            {
+                CompanyId = existingCompany.Id,
+                CompanyExists = false
+            };
         }
     }
 }

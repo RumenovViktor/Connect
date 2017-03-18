@@ -1,31 +1,50 @@
-﻿using System;
-using Models;
-using Connect.Helpers;
-using System.Collections.Generic;
+﻿using Models;
+using Data.Unit_Of_Work;
 
 namespace ApplicationServices
 {
     public class LoginApplicationService : ILoginApplicationService
     {
+        private readonly IDALServiceData dalServiceData;
+
+        public LoginApplicationService(IDALServiceData data)
+        {
+            dalServiceData = data;
+        }
+
         public CompanyLogin Execute(CompanyLogin command)
         {
-            var queryParams = new Dictionary<string, string>();
-            queryParams.Add("companyName", command.CompanyName);
-            queryParams.Add("password", command.Password);
+            var company = dalServiceData.Companies.FindEntity(x => x.Name == command.CompanyName && x.Password == command.Password);
+            var doesCompanyExist = company != null;
 
-            var existingCompany = WebServiceProvider<CompanyLogin>.Get(UrlHelper.CompanyLoginUrl, queryParams);
-            return existingCompany;
+            if (doesCompanyExist)
+            {
+                var existingCompany = new CompanyLogin(doesCompanyExist);
+                existingCompany.CompanyId = company.Id;
+
+                return existingCompany;
+            }
+
+            return new CompanyLogin(doesCompanyExist);
         }
 
         public UserLogin Execute(UserLogin command)
         {
-            var existingUser = WebServiceProvider<UserLogin>.Get(UrlHelper.UserLoginApiUrl, new Dictionary<string, string>()
-            {
-                { "email", command.Email },
-                { "password", command.Password },
-            });
+            var user = dalServiceData.Users.FindEntity(x => x.Email == command.Email && x.Password == command.Password);
 
-            return existingUser;
+            if (user != null)
+            {
+                return new UserLogin()
+                {
+                    UserId = user.UserId,
+                    DoesUserExists = true
+                };
+            }
+
+            return new UserLogin()
+            {
+                DoesUserExists = false
+            };
         }
     }
 }

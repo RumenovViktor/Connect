@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+            </div>
+            <div class="navbar-collapse collapse">
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    @*TODO: Move scripts to bundle to be loaded for the places they are needed.*@
+    <script src="~/Scripts/ConnectScripts/Global/connect.js"></script>
+    <script src="~/Scripts/ConnectScripts/Global/connect.utils.js"></script>
+    <script type="text/javascript">
+        $("#file").filestyle({ buttonName: "btn btn-default col-lg-12" });
+        $("#file").filestyle("size", "md");
+        $(":file").filestyle('input', false);
+        $("#file").filestyle('buttonText', 'Change pucture');
+    </script>
+    <script src="~/Scripts/ConnectScripts/Navigation/NavigationManager.js"></script>
+    @RenderSection("ProfileScripts", required: false)
+    @RenderSection("DashboardScripts", required: false)
+</body>
+</html>

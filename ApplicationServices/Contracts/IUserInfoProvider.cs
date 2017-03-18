@@ -14,7 +14,7 @@
 
         IList<SupportedCompany> GetSupportedCompanies(int sectorId);
 
-        void AddExperience(ExperienceViewModel experience);
+        ExperienceViewModel AddExperience(ExperienceViewModel experience);
 
         UserDashboardProfile GetUserDashboardProfile(long userId);
 

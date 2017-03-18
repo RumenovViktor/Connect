@@ -1,19 +1,63 @@
 ﻿namespace ApplicationServices
 {
     using Models;
-    using Connect.Helpers;
-    using System;
+    using Data.Unit_Of_Work;
+    using DTOs.Models;
 
     public class SkillsApplicationService : ISkillsApplicationService
     {
+        private readonly IDALServiceData dalServiceData;
+
+        public SkillsApplicationService(IDALServiceData data)
+        {
+            dalServiceData = data;
+        }
+
         public PositionRequiredSkill Execute(PositionRequiredSkill command)
         {
-            return WebServiceProvider<PositionRequiredSkill>.Post(command, UrlHelper.AddPositionSkillUrl);
+            foreach (var skill in command.SkillsNames)
+            {
+                var dbSkill = dalServiceData.Skills.FindEntity(x => x.Name.Equals(skill));
+
+                if (dbSkill != null)
+                {
+                    dalServiceData.Positions.FindEntity(x => x.Id == command.PositionId).RequiredSkills.Add(dbSkill);
+                }
+                else
+                {
+                    var newSkill = new Skill(skill);
+                    dalServiceData.Skills.AddEntity(newSkill);
+                    dalServiceData.Positions.FindEntity(x => x.Id == command.PositionId).RequiredSkills.Add(newSkill);
+
+                    dalServiceData.Skills.SaveChanges();
+                }
+            }
+
+            dalServiceData.Positions.SaveChanges();
+
+            return command;
         }
 
         public SkillDtoWriteModel Execute(SkillDtoWriteModel command)
         {
-            return WebServiceProvider<SkillDtoWriteModel>.Post(command, UrlHelper.CreateSkillUrl);
+            var skill = dalServiceData.Skills.FindEntity(x => x.Name == command.Name);
+
+            if (skill != null)
+            {
+                dalServiceData.Users.FindEntity(x => x.Email == command.UserEmail).Skills.Add(skill);
+            }
+            else
+            {
+                var newSkill = new Skill(command.Name);
+                dalServiceData.Skills.AddEntity(newSkill);
+                dalServiceData.Users.FindEntity(x => x.Email == command.UserEmail).Skills.Add(newSkill);
+
+                dalServiceData.Skills.SaveChanges();
+            }
+
+            dalServiceData.Users.SaveChanges();
+
+            return command;
         }
     }
 }

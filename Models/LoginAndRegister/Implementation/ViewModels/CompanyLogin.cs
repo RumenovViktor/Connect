@@ -8,17 +8,20 @@
     {
         public CompanyLogin() { }
 
-        public CompanyLogin(long companyId, string companyName, string password)
+        public CompanyLogin(long companyId, string companyName, string password) : this(companyName, password)
         {
             this.CompanyId = companyId;
-            this.CompanyName = companyName;
-            this.Password = password;
         }
 
         public CompanyLogin(string companyName, string password)
         {
             this.CompanyName = companyName;
             this.Password = password;
+        }
+
+        public CompanyLogin(bool doesCompanyExists, long companyId) : this(doesCompanyExists)
+        {
+            this.CompanyId = companyId;
         }
 
         public CompanyLogin(bool doesCompanyExists)
