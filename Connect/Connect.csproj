@@ -207,7 +207,6 @@
     <Compile Include="Areas\LoginSite\LoginSiteAreaRegistration.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\BusinessInfoController.cs" />
-    <Compile Include="Controllers\CompanyProfileController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -259,15 +258,14 @@
     <Content Include="Areas\LoginSite\Views\Login\Login.cshtml" />
     <Content Include="Areas\LoginSite\Views\Registration\Registration.cshtml" />
     <Content Include="Areas\LoginSite\Views\Home\Index.cshtml" />
-    <Content Include="Areas\LoginSite\Views\Registration\CompanyRegistration.cshtml" />
-    <Content Include="Areas\LoginSite\Views\Login\CompanyLogin.cshtml" />
+    <Content Include="Areas\LoginSite\Views\Registration\RecruiterRegistration.cshtml" />
+    <Content Include="Areas\LoginSite\Views\Login\RecruiterLogin.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ConnectScripts\BusinessInfo\connect.companies.js" />
     <Content Include="Scripts\ConnectScripts\dashboard.js" />
     <Content Include="Scripts\ConnectScripts\Global\connect.js" />
     <Content Include="Scripts\ConnectScripts\Global\connect.utils.js" />
     <Content Include="Scripts\ConnectScripts\Navigation\NavigationManager.js" />
-    <Content Include="Scripts\ConnectScripts\Profile\companyProfile.js" />
     <Content Include="Scripts\ConnectScripts\Profile\positionsManager.js" />
     <Content Include="Scripts\ConnectScripts\Profile\profile-basic-info.js" />
     <Content Include="Scripts\ConnectScripts\Profile\profileManager.js" />
@@ -306,7 +304,6 @@
     <Content Include="Views\BusinessInfo\BusinessInfo.cshtml" />
     <Content Include="Views\BusinessInfo\UserBasicInfo.cshtml" />
     <Content Include="Views\BusinessInfo\SupportedSectors.cshtml" />
-    <Content Include="Views\BusinessInfo\SupportedCompanies.cshtml" />
     <Content Include="Views\Profile\ProfileBasicInfo.cshtml" />
     <Content Include="Views\Profile\Profile.cshtml" />
     <Content Include="Views\Profile\UserSkills.cshtml" />
@@ -314,7 +311,6 @@
     <Content Include="Views\Profile\AddExperience.cshtml" />
     <Content Include="Views\Profile\Experience.cshtml" />
     <Content Include="Views\Profile\AddSkill.cshtml" />
-    <Content Include="Views\Profile\CompanyProfile.cshtml" />
     <Content Include="Views\Profile\AddPosition.cshtml" />
     <Content Include="Views\Profile\AddPositionSkill.cshtml" />
     <Content Include="Views\Profile\CreatedPosition.cshtml" />
@@ -323,16 +319,11 @@
     <Content Include="Views\Dashboard\UserDashboard.cshtml" />
     <Content Include="Views\Profile\NavigationProfileInfo.cshtml" />
     <Content Include="Views\Shared\_CompanyLayout.cshtml" />
-    <Content Include="Views\CompanyProfile\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\LoginSite\Views\Base\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Base\" />
-    <Folder Include="Views\FileUpload\" />
-    <Folder Include="Views\Positions\" />
-    <Folder Include="Views\Skills\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

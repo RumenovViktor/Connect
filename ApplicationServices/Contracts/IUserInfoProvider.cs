@@ -14,7 +14,7 @@
 
         IList<SupportedSector> GetSupportedSectors();
 
-        IList<SupportedCompany> GetSupportedCompanies(int sectorId);
+        //IList<SupportedCompany> GetSupportedCompanies(int sectorId);
 
         ExperienceViewModel AddExperience(ExperienceViewModel experience);
 

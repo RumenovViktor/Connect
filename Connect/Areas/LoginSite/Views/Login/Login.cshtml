@@ -8,6 +8,7 @@
         @using (Html.BeginForm("UserLogin", "Login"))
         {
             @Html.AntiForgeryToken()
+            <input type="hidden" value="@UserType.Candidate" name="UserType" />
             <div class="form-group">
                 <div class="col-lg-12">
                     <div class="input-group">

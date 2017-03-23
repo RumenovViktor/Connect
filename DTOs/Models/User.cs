@@ -10,6 +10,7 @@
         private ICollection<Skill> skills;
         private ICollection<File> files;
         private ICollection<Experience> experience;
+        private ICollection<Position> positions;
 
         public User()
         {
@@ -55,6 +56,18 @@
             set
             {
                 this.skills = value;
+            }
+        }
+
+        public virtual ICollection<Position> Positions
+        {
+            get
+            {
+                return this.positions;
+            }
+            set
+            {
+                this.positions = value;
             }
         }
 

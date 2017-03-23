@@ -53,20 +53,20 @@
             return allSupportedSectors;
         }
 
-        //TODO: Make a class or check if there is a class that deals with this kind of functionality.
-        public IList<SupportedCompany> GetSupportedCompanies(int sectorId)
-        {
-            var companiesForSector = dalServiceData.Sectors
-                .FindEntity(x => x.Id == sectorId)
-                .Companies
-                .Select(x => new SupportedCompany()
-                {
-                    Id = x.Id,
-                    Name = x.Name
-                }).ToList();
+        ////TODO: Make a class or check if there is a class that deals with this kind of functionality.
+        //public IList<SupportedCompany> GetSupportedCompanies(int sectorId)
+        //{
+        //    var companiesForSector = dalServiceData.Sectors
+        //        .FindEntity(x => x.Id == sectorId)
+        //        .Companies
+        //        .Select(x => new SupportedCompany()
+        //        {
+        //            Id = x.Id,
+        //            Name = x.Name
+        //        }).ToList();
 
-            return companiesForSector;
-        }
+        //    return companiesForSector;
+        //}
 
         //TODO: Write operations - should be in application service
         public ExperienceViewModel AddExperience(ExperienceViewModel experience)

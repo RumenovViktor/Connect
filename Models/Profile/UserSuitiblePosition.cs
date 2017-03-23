@@ -2,20 +2,14 @@
 {
     public class UserSuitiblePosition
     {
-        public UserSuitiblePosition(long companyId, long positionId, string companyName, string positionName, decimal matchPersentage)
+        public UserSuitiblePosition(long positionId, string positionName, decimal matchPersentage)
         {
-            this.CompanyId = companyId;
             this.PositionId = positionId;
-            this.CompanyName = companyName;
             this.PositionName = positionName;
             this.MatchPersentage = matchPersentage;
         }
 
-        public long CompanyId { get; set; }
-
         public long PositionId { get; set; }
-
-        public string CompanyName { get; set; }
 
         public string PositionName { get; set; }
 

@@ -9,6 +9,7 @@ using Data;
 using Microsoft.AspNet.Identity.Owin;
 using Data.Repository.Implementation;
 using Microsoft.AspNet.Identity;
+using System;
 
 namespace Connect.Controllers
 {
@@ -32,15 +33,34 @@ namespace Connect.Controllers
 
         private readonly IUserInfoProvider userInfoProvider;
         private readonly ISkillsApplicationService skillsApplicationService;
-        private readonly ICompanyInfoProvider companyInfoProvider;
         private readonly ICommonInfoManager commonInfoProvider;
+        private readonly IProfileApplicationService profileApplicationService;
 
-        public ProfileController(IUserInfoProvider userInfoProvider, ISkillsApplicationService skillsApplicationService, ICompanyInfoProvider companyInfoProvider, ICommonInfoManager commonInfoProvider)
+        public ProfileController(IUserInfoProvider userInfoProvider, ISkillsApplicationService skillsApplicationService, ICommonInfoManager commonInfoProvider, IProfileApplicationService profileApplicationService)
         {
             this.userInfoProvider = userInfoProvider;
             this.skillsApplicationService = skillsApplicationService;
-            this.companyInfoProvider = companyInfoProvider;
             this.commonInfoProvider = commonInfoProvider;
+            this.profileApplicationService = profileApplicationService;
+        }
+
+        public ActionResult SetUserRole(UserType userType)
+        {
+            var userId = User.Identity.GetUserId();
+
+            switch (userType)
+            {
+                case UserType.Recruiter:
+                    UserManager.AddToRole(int.Parse(userId), "Recruiter");
+                    break;
+                case UserType.Candidate:
+                    UserManager.AddToRole(int.Parse(userId), "Candidate");
+                    break;
+                default:
+                    throw new ArgumentException("No such user type");
+            }
+
+            return Json(new { RedirectUrl = Url.Content("~/Profile/Profile") }, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize]
@@ -73,15 +93,6 @@ namespace Connect.Controllers
             return PartialView(currentUser);
         }
 
-        [HttpGet]
-        public ActionResult CompanyProfile()
-        {
-            var companyId = (long)CurrentUser.GetParameterByKey("companyId");
-            var companyProfile = companyInfoProvider.GetCompanyProfile(companyId);
-
-            return View(companyProfile);
-        }
-
         [Authorize]
         [HttpGet]
         [OutputCache(Duration = 60 * 60)]
@@ -109,6 +120,22 @@ namespace Connect.Controllers
             }
 
             return PartialView(experience);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddPosition(AddPosition newPosition)
+        {
+            if (ModelState.IsValid)
+            {
+                var userId = User.Identity.GetUserId();
+                newPosition.UserId = int.Parse(userId);
+                var position = profileApplicationService.Execute(newPosition);
+
+                return PartialView("~/Views/Profile/CreatedPosition.cshtml", new CreatedPosition(position.PositionId, position.PositionName));
+            }
+
+            return Json(new { error = "Could not create position" }, JsonRequestBehavior.DenyGet);
         }
     }
 }

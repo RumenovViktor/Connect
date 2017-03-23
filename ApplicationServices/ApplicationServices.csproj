@@ -90,8 +90,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\ICompanyInfoProvider.cs" />
-    <Compile Include="Contracts\ICompanyProfileApplicationService.cs" />
+    <Compile Include="Contracts\IProfileApplicationService.cs" />
     <Compile Include="Contracts\IDashboardManager.cs" />
     <Compile Include="Contracts\IFileHandler.cs" />
     <Compile Include="Contracts\IFileManagementApplicationService.cs" />
@@ -102,10 +101,9 @@
     <Compile Include="Contracts\ISkillsApplicationService.cs" />
     <Compile Include="Contracts\ISkillsManager.cs" />
     <Compile Include="Contracts\IUserInfoProvider.cs" />
-    <Compile Include="Implementation\CompanyProfileApplicationService.cs" />
+    <Compile Include="Implementation\ProfileApplicationService.cs" />
     <Compile Include="Implementation\FileManagementApplicationService.cs" />
     <Compile Include="Implementation\LoginApplicationService.cs" />
-    <Compile Include="Implementation\Managers\CompanyInfoProvider.cs" />
     <Compile Include="Implementation\Managers\DashboardManager.cs" />
     <Compile Include="Implementation\Managers\ImagesHandler.cs" />
     <Compile Include="Implementation\Managers\CommonInfoManager.cs" />

@@ -5,11 +5,11 @@
     using Models;
     using System.Linq;
 
-    public class CompanyProfileApplicationService : ICompanyProfileApplicationService
+    public class ProfileApplicationService : IProfileApplicationService
     {
         private readonly IDALServiceData dalServiceData;
 
-        public CompanyProfileApplicationService(IDALServiceData data)
+        public ProfileApplicationService(IDALServiceData data)
         {
             dalServiceData = data;
         }
@@ -20,14 +20,14 @@
             {
                 PositionName = command.PositionName,
                 Description = command.PositionDescription,
-                CompanyId = command.CompanyId
+                UserId = command.UserId
             };
 
             dalServiceData.Positions.AddEntity(newPosition);
-            dalServiceData.Companies.FindEntity(x => x.Id == command.CompanyId).Positions.Add(newPosition);
+            dalServiceData.Users.FindEntity(x => x.Id == command.UserId).Positions.Add(newPosition);
 
             dalServiceData.Positions.SaveChanges();
-            dalServiceData.Companies.SaveChanges();
+            dalServiceData.Users.SaveChanges();
 
             command.PositionId = dalServiceData.Positions.All().Select(x => x.Id).AsEnumerable().Last();
             return command;

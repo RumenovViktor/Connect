@@ -2,7 +2,7 @@
 {
     using Models;
 
-    public interface ICompanyProfileApplicationService 
+    public interface IProfileApplicationService 
         : IHandles<AddPosition>
     {
 

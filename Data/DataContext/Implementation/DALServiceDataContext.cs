@@ -18,8 +18,6 @@
 
         public IDbSet<Sector> Sectors { get; set; }
 
-        public IDbSet<Company> Companies { get; set; }
-
         public IDbSet<File> Files { get; set; }
 
         public IDbSet<Experience> Experience { get; set; }

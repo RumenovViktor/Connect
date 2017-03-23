@@ -52,14 +52,6 @@
             }
         }
 
-        public IRepository<Company> Companies
-        {
-            get
-            {
-                return this.GetRepository<Company>();
-            }
-        }
-
         public IRepository<File> Files
         {
             get

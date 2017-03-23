@@ -30,6 +30,7 @@
 
 #wrapper {
     margin-top: 2%;
+    margin-left: 25%;
 }
 
 #welcome-text-wrapper {
@@ -42,7 +43,7 @@
     margin-top: 6%;
 }
 
-#businessInfoWrapper,  #profile-wrapper, #company-profile-wrapper{
+#businessInfoWrapper,  #profile-wrapper{
     margin-top: 5%;
     width: 98.3%;
 }
@@ -73,9 +74,9 @@
     float: left;
 }
 
-#basicUserInfo-name .basicUserInfo-align{
-    /*margin-top: 1.4%;*/
-}
+/*#basicUserInfo-name .basicUserInfo-align{
+    margin-top: 1.4%;
+}*/
 
 .basicUserInfo-margin-left{
     margin-left: 12%;
@@ -212,14 +213,6 @@ body.modal-open{
     .container {
         max-width: 1615px !important;
     }
-}
-
-#company-form-choose{
-    margin-top: 0.5%;
-}
-
-#uploadCompanyPic label{
-    width: 100% !important;
 }
 
 .rounded{

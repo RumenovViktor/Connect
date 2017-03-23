@@ -24,20 +24,14 @@ namespace Data.Migrations
             var roleStore = new RoleStore(context);
             var roleManager = new RoleManager(roleStore);
 
-            var user = new User() { UserName = "Shasdadaro", FirstName = "Shssari", LastName = "Shassri", DateOfCreation = DateTime.Now, Email = "ahsdi@hiusdf.fd" };
-            IdentityResult result = manager.Create(user, "asdasdasdasasd");
-            var user2 = manager.FindById(1);
-            roleManager.Create(new Role("Recruiter"));
-
-            manager.AddToRole(user2.Id, "Recruiter");
-
-            if (result.Succeeded)
+            if (roleManager.FindByName("Recruiter") == null)
             {
-
+                roleManager.Create(new Role("Recruiter"));
             }
-            else
-            {
 
+            if (roleManager.FindByName("Candidate") == null)
+            {
+                roleManager.Create(new Role("Candidate"));
             }
         }
     }

@@ -94,10 +94,8 @@
     <Compile Include="CountryReadModel.cs" />
     <Compile Include="Dashboard\UserDashboardProfile.cs" />
     <Compile Include="LoginAndRegister\Implementation\ViewModels\CompanyLogin.cs" />
-    <Compile Include="LoginAndRegister\Implementation\ViewModels\CompanyRegistration.cs" />
     <Compile Include="Profile\AddPosition.cs" />
     <Compile Include="Profile\BaseSkillModel.cs" />
-    <Compile Include="Profile\CompanyProfile.cs" />
     <Compile Include="Profile\CreatedPosition.cs" />
     <Compile Include="Profile\PositionRequiredSkill.cs" />
     <Compile Include="Profile\SkillDtoWriteModel.cs" />
@@ -107,7 +105,6 @@
     <Compile Include="UserInfo\AddSkill.cs" />
     <Compile Include="UserInfo\ExperienceViewModel.cs" />
     <Compile Include="LoginAndRegister\Implementation\ViewModels\Base\BaseUser.cs" />
-    <Compile Include="LoginAndRegister\Implementation\ViewModels\SupportedCompany.cs" />
     <Compile Include="LoginAndRegister\Implementation\ViewModels\SupportedSector.cs" />
     <Compile Include="LoginAndRegister\Implementation\ViewModels\UserBusinessInfo.cs" />
     <Compile Include="LoginAndRegister\Implementation\ViewModels\UserLogin.cs" />
@@ -117,6 +114,7 @@
     <Compile Include="UserInfo\BasicUserInfo.cs" />
     <Compile Include="UserInfo\File.cs" />
     <Compile Include="UserInfo\Profile.cs" />
+    <Compile Include="UserType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utils\Utils.csproj">

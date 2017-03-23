@@ -16,9 +16,7 @@
 
     public class RegistrationController : BaseController
     {
-        #region Private Members
-
-        public readonly IRegistrationApplicationService registrationApplicationService;
+        #region Members
 
         public UserManager UserManager
         {
@@ -39,11 +37,6 @@
         #endregion
 
         #region Ctor(s)
-
-        public RegistrationController(IRegistrationApplicationService registrationApplicationService)
-        {
-            this.registrationApplicationService = registrationApplicationService;
-        }
 
         #endregion
 
@@ -81,33 +74,10 @@
                 };
 
                 UserManager.Create(registeredUser, user.Password);
+
                 SignInManager.SignIn(registeredUser, false, false);
 
-                return Json(new { RedirectUrl = Url.Content("~/BusinessInfo/BusinessInfo") });
-            }
-            else
-            {
-                return new HttpStatusCodeResult(400, "Please fill all the fields.");
-            }
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult RegisterComapany(CompanyRegistration companyRegistrationModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var company = registrationApplicationService.Execute(companyRegistrationModel);
-
-                if (company.CompanyExists)
-                {
-                    return new HttpStatusCodeResult(400, "Company with this name already exists.");
-                }
-
-                SetAuthenticationCoockie(company.Email);
-                CurrentUser.AddParameter("companyId", company.CompanyId);
-
-                return Json(new { RedirectUrl = Url.Content("~/Profile/CompanyProfile") });
+                return RedirectToAction("SetUserRole", "Profile", new { userType = user.UserType });
             }
             else
             {

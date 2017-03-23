@@ -27,15 +27,13 @@ namespace Connect
         {
             builder.RegisterType<DALServiceDataContext>().As<IDALServiceDataContext>();
             builder.RegisterType<DALServiceData>().As<IDALServiceData>();
-            builder.RegisterType<RegistrationApplicationService>().As<IRegistrationApplicationService>();
             builder.RegisterType<LoginApplicationService>().As<ILoginApplicationService>();
             builder.RegisterType<UserInfoProvider>().As<IUserInfoProvider>();
             builder.RegisterType<ImagesHandler>().As<IFileHandler>();
             builder.RegisterType<FileManagementApplicationService>().As<IFileManagementApplicationService>();
             builder.RegisterType<SkillsApplicationService>().As<ISkillsApplicationService>();
             builder.RegisterType<SkillsManager>().As<ISkillsManager>();
-            builder.RegisterType<CompanyInfoProvider>().As<ICompanyInfoProvider>();
-            builder.RegisterType<CompanyProfileApplicationService>().As<ICompanyProfileApplicationService>();
+            builder.RegisterType<ProfileApplicationService>().As<IProfileApplicationService>();
             builder.RegisterType<CommonInfoManager>().As<ICommonInfoManager>();
             builder.RegisterType<DashboardManager>().As<IDashboardManager>();
         }

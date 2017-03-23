@@ -61,11 +61,11 @@
             return PartialView(allSupportedSectors);
         }
 
-        [HttpGet]
-        public ActionResult SupportedCompanies(int sectorId)
-        {
-            var supportedCompaniesForSector = userInfoProvider.GetSupportedCompanies(sectorId);
-            return PartialView(supportedCompaniesForSector);
-        }
+        //[HttpGet]
+        //public ActionResult SupportedCompanies(int sectorId)
+        //{
+        //    var supportedCompaniesForSector = userInfoProvider.GetSupportedCompanies(sectorId);
+        //    return PartialView(supportedCompaniesForSector);
+        //}
     }
 }

@@ -11,8 +11,6 @@ namespace Data.Unit_Of_Work
 
         IRepository<Sector> Sectors { get; }
 
-        IRepository<Company> Companies { get; }
-
         IRepository<File> Files { get; }
 
         IRepository<Experience> Experience { get; }

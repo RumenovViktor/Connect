@@ -28,7 +28,7 @@
                 var matchedPercentage = fixedPercentage / Avarage;
 
                 matchedPositions.Add(
-                    new UserSuitiblePosition(position.CompanyId, position.Id, position.Company.Name, position.PositionName, matchedPercentage));
+                    new UserSuitiblePosition(position.Id, position.PositionName, matchedPercentage));
             }
 
             return matchedPositions.OrderByDescending(x => x.MatchPersentage).Take(12).ToList();
@@ -36,24 +36,26 @@
 
         private IList<Position> FilterPositions(int? sectorId, int? countryId)
         {
-            if (sectorId.HasValue && countryId.HasValue)
-            {
-                return dalServiceData.Positions.All()
-                    .Where(x => x.Company.Sectors.Select(t => t.Id).ToList().Contains(sectorId.Value) && x.Company.CountryId == countryId.Value)
-                    .ToList();
-            }
+            //if (sectorId.HasValue && countryId.HasValue)
+            //{
+            //    return dalServiceData.Positions.All()
+            //        .Where(x => x.Company.Sectors.Select(t => t.Id).ToList().Contains(sectorId.Value) && x.Company.CountryId == countryId.Value)
+            //        .ToList();
+            //}
 
-            if (sectorId.HasValue)
-            {
-                return dalServiceData.Positions.All().Where(x => x.Company.Sectors.Select(t => t.Id).ToList().Contains(sectorId.Value)).ToList();
-            }
+            //if (sectorId.HasValue)
+            //{
+            //    return dalServiceData.Positions.All().Where(x => x.Company.Sectors.Select(t => t.Id).ToList().Contains(sectorId.Value)).ToList();
+            //}
 
-            if (countryId.HasValue)
-            {
-                return dalServiceData.Positions.All().Where(x => x.Company.CountryId == countryId.Value).ToList();
-            }
+            //if (countryId.HasValue)
+            //{
+            //    return dalServiceData.Positions.All().Where(x => x.Company.CountryId == countryId.Value).ToList();
+            //}
 
-            return dalServiceData.Positions.All().ToList();
+            //return dalServiceData.Positions.All().ToList();
+
+            return new List<Position>();
         }
     }
 }

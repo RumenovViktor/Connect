@@ -1,86 +1,58 @@
-﻿namespace ApplicationServices
-{
-    using System;
-    using Connect.Helpers;
-    using Models;
-    using Data.Unit_Of_Work;
-    using System.Collections.Generic;
-    using DTOs.Models;
+﻿//namespace ApplicationServices
+//{
+//    using System;
+//    using Connect.Helpers;
+//    using Models;
+//    using Data.Unit_Of_Work;
+//    using System.Collections.Generic;
+//    using DTOs.Models;
 
-    public class RegistrationApplicationService : IRegistrationApplicationService
-    {
-        private readonly IDALServiceData dalServiceData;
+//    public class RegistrationApplicationService : IRegistrationApplicationService
+//    {
+//        private readonly IDALServiceData dalServiceData;
 
-        public RegistrationApplicationService(IDALServiceData data)
-        {
-            dalServiceData = data;
-        }
+//        public RegistrationApplicationService(IDALServiceData data)
+//        {
+//            dalServiceData = data;
+//        }
 
-        public UserRegistration Execute(UserRegistration command)
-        {
-            var registeredUser = ExecuteSaveCommand(command);
-            return (UserRegistration)registeredUser;
-        }
+//        public UserRegistration Execute(UserRegistration command)
+//        {
+//            var registeredUser = ExecuteSaveCommand(command);
+//            return (UserRegistration)registeredUser;
+//        }
 
-        private ICommand ExecuteSaveCommand(UserRegistration command)
-        {
-            var existingUser = dalServiceData.Users.FindEntity(x => x.Email == command.Email);
+//        private ICommand ExecuteSaveCommand(UserRegistration command)
+//        {
+//            var existingUser = dalServiceData.Users.FindEntity(x => x.Email == command.Email);
 
-            if (existingUser != null)
-            {
-                return new UserRegistration()
-                {
-                    UserExists = true
-                };
-            }
+//            if (existingUser != null)
+//            {
+//                return new UserRegistration()
+//                {
+//                    UserExists = true
+//                };
+//            }
 
-            var newUser = new User()
-            {
-                Email = command.Email,
-                FirstName = command.FirstName,
-                LastName = command.LastName,
-                Skills = default(IList<Skill>),
-                IsDeleted = default(bool),
-                DateOfCreation = DateTime.UtcNow,
-                CountryId = command.CountryId,
-                UserName = command.Email
-            };
+//            var newUser = new User()
+//            {
+//                Email = command.Email,
+//                FirstName = command.FirstName,
+//                LastName = command.LastName,
+//                Skills = default(IList<Skill>),
+//                IsDeleted = default(bool),
+//                DateOfCreation = DateTime.UtcNow,
+//                CountryId = command.CountryId,
+//                UserName = command.Email
+//            };
 
-            dalServiceData.Users.AddEntity(newUser);
-            dalServiceData.Users.SaveChanges();
+//            dalServiceData.Users.AddEntity(newUser);
+//            dalServiceData.Users.SaveChanges();
 
-            existingUser = dalServiceData.Users.FindEntity(x => x.Email == command.Email);
-            command.UserId = existingUser.Id;
+//            existingUser = dalServiceData.Users.FindEntity(x => x.Email == command.Email);
+//            command.UserId = existingUser.Id;
 
-            return command;
-        }
-
-        public CompanyRegistration Execute(CompanyRegistration command)
-        {
-            var company = dalServiceData.Companies.FindEntity(x => (x.CountryId == command.CountryId && x.Name == command.CompanyName) || x.Email == command.Email);
-
-            if (company != null)
-            {
-                return new CompanyRegistration()
-                {
-                    CompanyExists = true
-                };
-            }
-
-            var sector = dalServiceData.Sectors.FindEntity(x => x.Id == command.SectorId.Value);
-            var newCompany = new Company(command, sector);
-
-            dalServiceData.Companies.AddEntity(newCompany);
-            dalServiceData.Companies.SaveChanges();
-
-            var existingCompany = dalServiceData.Companies
-                .FindEntity(x => (x.CountryId == command.CountryId && x.Name == command.CompanyName) || x.Email == command.Email);
-
-            return new CompanyRegistration()
-            {
-                CompanyId = existingCompany.Id,
-                CompanyExists = false
-            };
-        }
-    }
-}
+//            return command;
+//        }
+//    }
+//}

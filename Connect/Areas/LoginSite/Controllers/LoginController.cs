@@ -10,12 +10,13 @@
     using Data.Repository.Implementation;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.AspNet.Identity;
+    using System.Linq;
+
     public class LoginController : BaseController
     {
         #region Private Members
 
         private readonly ILoginApplicationService loginApplicationService;
-        private readonly ICompanyInfoProvider companyInfoProvider;
 
         public UserManager UserManager
         {
@@ -37,10 +38,9 @@
 
         #region Ctor(s)
 
-        public LoginController(ILoginApplicationService loginApplicationService, ICompanyInfoProvider companyInfoProvider)
+        public LoginController(ILoginApplicationService loginApplicationService)
         {
             this.loginApplicationService = loginApplicationService;
-            this.companyInfoProvider = companyInfoProvider;
         }
 
         #endregion
@@ -59,6 +59,14 @@
         {
             if (ModelState.IsValid)
             {
+                var exisitingUser = UserManager.FindByEmail(user.Email);
+                var isUserInRole = UserManager.IsInRole(exisitingUser.Id, user.UserType.ToString());
+
+                if (!isUserInRole)
+                {
+                    return new HttpStatusCodeResult(400, "User with this email does not exists.");
+                }
+
                 var response = SignInManager.PasswordSignIn(user.Email, user.Password, false, false);
 
                 switch (response)
@@ -77,28 +85,6 @@
         {
             SignInManager.AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CompanyLogin(CompanyLogin company)
-        {
-            if (ModelState.IsValid)
-            {
-                var response = loginApplicationService.Execute(company);
-
-                if (!response.DoesCompanyExists)
-                {
-                    return new HttpStatusCodeResult(400, "Company with this name does not exists.");
-                }
-
-                SetAuthenticationCoockie(company.CompanyName);
-                CurrentUser.AddParameter("companyId", response.CompanyId);
-
-                return Json(new { RedirectUrl = Url.Content("~/Profile/CompanyProfile") });
-            }
-
-            return new HttpStatusCodeResult(400, "Please fill all the fields.");
         }
 
         #endregion

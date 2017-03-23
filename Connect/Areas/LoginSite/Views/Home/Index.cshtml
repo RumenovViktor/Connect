@@ -1,70 +1,26 @@
 ﻿@model UserRegistrationLogin
 
 <div id="wrapper">
-    <div class="row col-md-4 col-lg-3 pull-right col-lg-pull-1">
+    <div class="col-md-6 col-lg-4">
+        <div class="col-lg-12">
+            <h3>I am recruiter</h3>
+        </div>
+        <div class="col-lg-12">
+            @{ Html.RenderPartial("~/Areas/LoginSite/Views/Login/RecruiterLogin.cshtml", Model.UserLogin); }
+        </div>
+        <div class="col-lg-12">
+            @{ Html.RenderPartial("~/Areas/LoginSite/Views/Registration/RecruiterRegistration.cshtml", new UserRegistration(Model.ActivityArea.Countries)); }
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <div class="col-lg-12">
+            <h3>I am candidate</h3>
+        </div>
         <div class="col-lg-12">
             @{ Html.RenderPartial("~/Areas/LoginSite/Views/Login/Login.cshtml", Model.UserLogin); }
         </div>
         <div class="col-lg-12">
             @{ Html.RenderPartial("~/Areas/LoginSite/Views/Registration/Registration.cshtml", new UserRegistration(Model.ActivityArea.Countries)); }
-        </div>
-    </div>
-    <div id="welcome-text-wrapper" class="col-md-8">
-        <div id="motivation-text">
-            <h1 class="motivation">Create yourself and be a part of the business world</h1>
-        </div>
-        <div id="text-info">
-            <p class="login-info">Login as a person to search for a job or login as an organization to seek for future contractors</p>
-        </div>
-    </div>
-    <img class="connect-img" src="~/Content/Images/connection-clipart-yearbook-connection-md.png" />
-</div>
-
-<div class="modal fade" id="create-acc-login-modal" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content col-lg-12">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Create account or login</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <a href="#" class="btn btn-primary col-lg-5" data-toggle="modal" data-target="#create-acc-modal" data-dismiss="modal">Create account</a>
-                    <div class="col-lg-2"></div>
-                    <a href="#" class="btn btn-success col-lg-5" data-toggle="modal" data-target="#login-modal" data-dismiss="modal">Login</a>
-                </div>
-            </div>
-            <div class="modal-footer"></div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="create-acc-modal" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content col-lg-12">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Create account</h4>
-            </div>
-            <div class="modal-body">
-                @{ Html.RenderPartial("~/Areas/LoginSite/Views/Registration/CompanyRegistration.cshtml", new CompanyRegistration(Model.ActivityArea)); }
-            </div>
-            <div class="modal-footer"></div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="login-modal" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content col-lg-12">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Login</h4>
-            </div>
-            <div class="modal-body">
-                @{ Html.RenderPartial("~/Areas/LoginSite/Views/Login/CompanyLogin.cshtml", new CompanyLogin()); }
-            </div>
-            <div class="modal-footer"></div>
         </div>
     </div>
 </div>

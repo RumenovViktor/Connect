@@ -7,7 +7,7 @@
     {
         public Sector()
         {
-            this.Companies = new HashSet<Company>();
+            this.Positions = new HashSet<Position>();
         }
 
         [Key]
@@ -15,6 +15,6 @@
 
         public string Name { get; set; }
 
-        public virtual ICollection<Company> Companies { get; set; }
+        public virtual ICollection<Position> Positions { get; set; }
     }
 }
