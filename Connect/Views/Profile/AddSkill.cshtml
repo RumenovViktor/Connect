@@ -6,6 +6,7 @@
                                 {
                                     HttpMethod = "POST",
                                     InsertionMode = InsertionMode.InsertBefore,
+                                    OnSuccess = "skillsManager.methods.displayUserSkill"
                                 }, new { @class = "panel-body", id="add-skill-form" }))
     {
         @Html.AntiForgeryToken()

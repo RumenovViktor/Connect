@@ -10,6 +10,11 @@
         <div class="panel-heading">Experience</div>
         <div class="panel-body">
             <div id="experience-list">
+                @if (!Model.UserExperience.Any())
+                {
+                    <i class="glyphicon glyphicon-briefcase"></i>
+                }
+
                 @foreach (var experience in Model.UserExperience)
                 {
                     Html.RenderPartial("~/Views/Profile/Experience.cshtml", experience);
@@ -21,20 +26,36 @@
 <div class="form-group">
     <div id="skills-wrapper">
         <div id="img-wrapper">
-            <img src="~/Content/Images/profile-image.png" style="width: 100px;height:100px;" class="img-circle" />
-        </div>
-        <div class="arrow-up"></div>
-        <div id="skills-panel" class="panel panel-default col-md-12">
-            <div class="panel-body">
-                @if (!Model.Skills.Any())
-                {
-                    <p>Looks like you haven't added any skills. Please add skills from <a href="#" class="text-info btn-add-skill" data-toggle="modal" data-target="#skill-form-modal">here</a> so we can rank you better.</p>
-                }
+            @if (Model.ProfileImage == null)
+            {
+                <img src="~/Content/Images/profile-image.png" width="85px" height="85px" class="img-circle" />
+            }
+            else
+            {
+                string imageBase64 = Convert.ToBase64String(Model.ProfileImage);
+                string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
 
-            </div>
-        </div>
-        <div id="add-skill-panel">
-
+                <img src="@imageSrc" width="85px" height="85px" class="img-circle" />
+            }
         </div>
     </div>
+</div>
+<div class="popover bottom">
+    <div class="arrow"></div>
+    <div id="user-skills-container" class="popover-content">
+        @if (!Model.Skills.Any())
+        {
+            <p>Looks like you haven't added any skills. Please add skills from <a href="#" class="text-info btn-add-skill" data-toggle="modal" data-target="#skill-form-modal">here</a> so we can rank you better.</p>
+        }
+        else
+        {
+            foreach (var skill in Model.Skills)
+            {
+                <span class="badge active user-skill">@skill</span>
+            }
+        }
+    </div>
+</div>
+<div id="add-skill-panel">
+
 </div>

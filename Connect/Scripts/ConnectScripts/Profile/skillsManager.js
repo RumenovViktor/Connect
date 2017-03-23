@@ -4,6 +4,7 @@
         skillsManager.methods.populateSkillsDropdown();
         skillsManager.methods.addAsSelected();
         skillsManager.methods.addPositionRequiredSkills();
+        skillsManager.methods.displayUserSkill();
     },
     properties: {
     },
@@ -14,7 +15,8 @@
     selectors: {
         skillsInput: '.skills-input',
         addSkillButton: '.add-skill',
-        addedSkills: '.added-skills'
+        addedSkills: '.added-skills',
+        userSkillsContainer: '#user-skills-container'
     },
     methods: {
         stopInterval: function(){
@@ -78,6 +80,10 @@
             });
 
             return isBullshit;
+        },
+        displayUserSkill: function (skill) {
+            $(skillsManager.selectors.userSkillsContainer + ' p').remove();
+            $(skillsManager.selectors.userSkillsContainer).append('<span class="badge user-skill">' + skill + '</span>');
         },
         addAsSelected: function () {
             $(skillsManager.selectors.addSkillButton).on(skillsManager.events.clickEvent, function () {

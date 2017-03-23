@@ -1,19 +1,18 @@
 ﻿namespace Data.DataContext
 {
     using System.Data.Entity;
-    using System.Threading.Tasks;
 
     using DTOs.Models;
     using Migrations;
-    public class DALServiceDataContext : DbContext, IDALServiceDataContext
+    using Microsoft.AspNet.Identity.EntityFramework;
+
+    public class DALServiceDataContext : IdentityDbContext<User, Role, int, UserLogin, UserRole, UserClaim>, IDALServiceDataContext
     {
         public DALServiceDataContext() 
             : base("ConnectWebsite")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<DALServiceDataContext, Configuration>());
         }
-
-        public IDbSet<User> Users { get; set; }
 
         public IDbSet<Skill> Skills { get; set; }
 
@@ -37,6 +36,11 @@
         public override int SaveChanges() // TODO: Check if its the best way.
         {
             return base.SaveChanges();
+        }
+
+        public static DALServiceDataContext Create()
+        {
+            return new DALServiceDataContext();
         }
     }
 }

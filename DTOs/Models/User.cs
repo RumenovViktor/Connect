@@ -1,10 +1,11 @@
 ﻿namespace DTOs.Models
 {
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class User
+    public class User : IdentityUser<int, UserLogin, UserRole, UserClaim>
     {
         private ICollection<Skill> skills;
         private ICollection<File> files;
@@ -17,9 +18,6 @@
             this.experience = new HashSet<Experience>();
         }
 
-        [Key]
-        public int UserId { get; set; }
-
         [Required]
         [StringLength(50)]
         public string FirstName { get; set; }
@@ -27,14 +25,6 @@
         [Required]
         [StringLength(50)]
         public string LastName { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Password { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Email { get; set; }
 
         public int? CountryId { get; set; }
 

@@ -4,6 +4,6 @@ namespace ApplicationServices
 {
     public interface IFileHandler
     {
-        void HandleFile(HttpPostedFileBase uploadedPicture, string userId);
+        void HandleFile(HttpPostedFileBase uploadedPicture, int userId);
     }
 }

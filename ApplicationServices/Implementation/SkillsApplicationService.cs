@@ -44,13 +44,13 @@
 
             if (skill != null)
             {
-                dalServiceData.Users.FindEntity(x => x.Email == command.UserEmail).Skills.Add(skill);
+                dalServiceData.Users.FindEntity(x => x.Id == command.UserId).Skills.Add(skill);
             }
             else
             {
                 var newSkill = new Skill(command.Name);
                 dalServiceData.Skills.AddEntity(newSkill);
-                dalServiceData.Users.FindEntity(x => x.Email == command.UserEmail).Skills.Add(newSkill);
+                dalServiceData.Users.FindEntity(x => x.Id == command.UserId).Skills.Add(newSkill);
 
                 dalServiceData.Skills.SaveChanges();
             }

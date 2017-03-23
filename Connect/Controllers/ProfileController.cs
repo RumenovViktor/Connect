@@ -5,11 +5,31 @@ using ApplicationServices;
 using Connect.Helpers;
 using Models;
 using Models.Profile;
+using Data;
+using Microsoft.AspNet.Identity.Owin;
+using Data.Repository.Implementation;
+using Microsoft.AspNet.Identity;
 
 namespace Connect.Controllers
 {
     public class ProfileController : BaseController
     {
+        public UserManager UserManager
+        {
+            get
+            {
+                return Request.GetOwinContext().GetUserManager<UserManager>();
+            }
+        }
+
+        public SignInManager SignInManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Get<SignInManager>();
+            }
+        }
+
         private readonly IUserInfoProvider userInfoProvider;
         private readonly ISkillsApplicationService skillsApplicationService;
         private readonly ICompanyInfoProvider companyInfoProvider;
@@ -23,29 +43,32 @@ namespace Connect.Controllers
             this.commonInfoProvider = commonInfoProvider;
         }
 
+        [Authorize]
         [HttpGet]
         public new ActionResult Profile()
         {
-            var email = CurrentUser.GetParameterByKey("email");
-            var currentUser = userInfoProvider.GetUserProfile((string)email);
+            var userId = User.Identity.GetUserId();
+            var currentUser = userInfoProvider.GetUserProfile(int.Parse(userId));
             return View(currentUser);
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult NavigationProfileInfo()
         {
-            var userId = (long)CurrentUser.GetParameterByKey("userId");
-            var userDashboardProfile = userInfoProvider.GetUserDashboardProfile(userId);
+            var userId = User.Identity.GetUserId();
+            var userDashboardProfile = userInfoProvider.GetUserDashboardProfile(int.Parse(userId));
 
             return PartialView(userDashboardProfile);
         }
 
+        [Authorize]
         [HttpGet]
         [ChildActionOnly]
         public ActionResult ProfileBasicInfo()
         {
-            var email = CurrentUser.GetParameterByKey("email");
-            var currentUser = userInfoProvider.GetBasicUserInfo((string)email);
+            var userId = User.Identity.GetUserId();
+            var currentUser = userInfoProvider.GetBasicUserInfo(int.Parse(userId));
 
             return PartialView(currentUser);
         }
@@ -59,24 +82,27 @@ namespace Connect.Controllers
             return View(companyProfile);
         }
 
+        [Authorize]
         [HttpGet]
         [OutputCache(Duration = 60 * 60)]
         public ActionResult Qualifications()
         {
-            var email = CurrentUser.GetParameterByKey("email");
-            var currentUser = userInfoProvider.GetUserProfile((string)email);
+            var userId = User.Identity.GetUserId();
+            var currentUser = userInfoProvider.GetUserProfile(int.Parse(userId));
 
             return PartialView(currentUser);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddExperience(ExperienceViewModel experience)
         {
             if (ModelState.IsValid)
             {
-                experience.UserEmail = (string)CurrentUser.GetParameterByKey("email");
+                var userId = User.Identity.GetUserId();
 
+                experience.UserId = int.Parse(userId);
                 userInfoProvider.AddExperience(experience);
 
                 return PartialView("Experience", experience);

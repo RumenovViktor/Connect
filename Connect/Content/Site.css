@@ -71,15 +71,14 @@
 
 .basicUserInfo-align{
     float: left;
-    margin-top: .4%;
 }
 
 #basicUserInfo-name .basicUserInfo-align{
-    margin-top: 3.4%;
+    /*margin-top: 1.4%;*/
 }
 
 .basicUserInfo-margin-left{
-    margin-left: 8%;
+    margin-left: 12%;
 }
 
 #basicUserInfo-country i{
@@ -152,7 +151,7 @@
 }
 
 #img-wrapper{
-    margin-left: 40%;
+    margin-left: 44.2%;
 }
 #add-exp-wrapper{
     z-index: 100000;
@@ -317,9 +316,28 @@ p {
     margin-left: -7.5em;
 }
 
-.popover{
+.nav-select-option .popover{
     position: relative !important;
     display: block !important;
+    max-width: 100% !important;
     width: 260px !important;
     
+}
+
+#profile-wrapper .popover{
+    position: relative !important;
+    display: block !important;
+    max-width: 100% !important;
+}
+
+#basicUserInfo-name h5{
+    font-weight: bold;
+}
+
+.user-skill.badge{
+    font-size: 1.2em;
+    display: block;
+    line-height: 30px;
+    margin-bottom: 5px;
+    width: 30%;
 }

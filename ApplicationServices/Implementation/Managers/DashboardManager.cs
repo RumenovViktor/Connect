@@ -15,9 +15,9 @@ namespace ApplicationServices
             dalServiceData = data;
         }
 
-        public IList<UserSuitiblePosition> GetSuitiblePositions(int? sectorId, int? countryId, string userId)
+        public IList<UserSuitiblePosition> GetSuitiblePositions(int? sectorId, int? countryId, int userId)
         {
-            var user = dalServiceData.Users.FindEntity(x => x.Email == userId);
+            var user = dalServiceData.Users.FindEntity(x => x.Id == userId);
             var matchedPositions = new UserMatchingExecutor(dalServiceData).Match(user, sectorId, countryId);
 
             return matchedPositions;

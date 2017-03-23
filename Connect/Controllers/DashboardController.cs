@@ -1,10 +1,11 @@
 ﻿using ApplicationServices;
-using Connect.Helpers;
+using Microsoft.AspNet.Identity;
 using Models;
 using System.Web.Mvc;
 
 namespace Connect.Controllers
 {
+    [Authorize]
     public class DashboardController : BaseController
     {
         private readonly IDashboardManager dashboardInfoProvider;
@@ -21,8 +22,8 @@ namespace Connect.Controllers
         [HttpGet]
         public ActionResult UserDashboard()
         {
-            var userId = (long)CurrentUser.GetParameterByKey("userId");
-            var userDashboardProfile = userInfoProvider.GetUserDashboardProfile(userId);
+            var userId = User.Identity.GetUserId();
+            var userDashboardProfile = userInfoProvider.GetUserDashboardProfile(int.Parse(userId));
             return View(userDashboardProfile);
         }
 
@@ -37,8 +38,8 @@ namespace Connect.Controllers
         [HttpGet]
         public ActionResult UserSuitiblePositions(int? sectorId, int? countryId)
         {
-            var userId = (string)CurrentUser.GetParameterByKey("email");
-            var suitiblePositions = dashboardInfoProvider.GetSuitiblePositions(sectorId, countryId, userId);
+            var userId = User.Identity.GetUserId();
+            var suitiblePositions = dashboardInfoProvider.GetSuitiblePositions(sectorId, countryId, int.Parse(userId));
             return PartialView(suitiblePositions);
         }
     }

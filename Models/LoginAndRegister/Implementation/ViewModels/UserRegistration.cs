@@ -25,7 +25,7 @@
             CountryId = (int?)info.GetValue("CountryId", typeof(int?));
             ConfirmPassword = (string)info.GetValue("ConfirmPassword", typeof(string));
             Gender = (Gender)info.GetValue("Gender", typeof(Gender));
-            UserId = (long)info.GetValue("UserId", typeof(long));
+            UserId = (int)info.GetValue("UserId", typeof(int));
             UserExists = (bool)info.GetValue("UserExists", typeof(bool));
         }
 
@@ -38,7 +38,7 @@
             info.AddValue("CountryId", CountryId, typeof(int?));
             info.AddValue("ConfirmPassword", ConfirmPassword, typeof(string));
             info.AddValue("Gender", Gender, typeof(Gender));
-            info.AddValue("UserId", UserId, typeof(long));
+            info.AddValue("UserId", UserId, typeof(int));
             info.AddValue("UserExists", UserExists, typeof(bool));
         }
         
@@ -55,12 +55,13 @@
 
         [Required]
         [Compare("Password", ErrorMessage = "Password missmatch.")]
+        [MinLength(8)]
         public string ConfirmPassword { get; set; }
 
         [Required]
         public Gender Gender { get; set; }
 
-        public long UserId { get; set; }
+        public int UserId { get; set; }
 
         public bool UserExists { get; set; }
     }

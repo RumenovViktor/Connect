@@ -8,7 +8,9 @@
 
     public interface IUserInfoProvider
     {
-        BasicUserInfo GetBasicUserInfo(string email);
+        BasicUserInfo GetBasicUserInfo(int userId);
+
+        IList<BasicUserInfo> MatchUserEmail(string email);
 
         IList<SupportedSector> GetSupportedSectors();
 
@@ -16,8 +18,8 @@
 
         ExperienceViewModel AddExperience(ExperienceViewModel experience);
 
-        UserDashboardProfile GetUserDashboardProfile(long userId);
+        UserDashboardProfile GetUserDashboardProfile(int userId);
 
-        Profile GetUserProfile(string email);
+        Profile GetUserProfile(int userId);
     }
 }

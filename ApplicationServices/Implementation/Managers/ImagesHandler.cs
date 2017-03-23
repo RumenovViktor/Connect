@@ -13,7 +13,7 @@ namespace ApplicationServices
             this.imageManagementApplicationService = imageManagementApplicationService;
         }
 
-        public void HandleFile(HttpPostedFileBase uploadedPicture, string userId)
+        public void HandleFile(HttpPostedFileBase uploadedPicture, int userId)
         {
             var fileBuffer = new byte[uploadedPicture.InputStream.Length];
             uploadedPicture.InputStream.Read(fileBuffer, 0, fileBuffer.Length);

@@ -11,10 +11,12 @@
     public class CompanyProfileController : BaseController
     {
         private readonly ICompanyProfileApplicationService companyProfileCommandHandler;
+        private readonly IUserInfoProvider userBasicInfoProvider;
 
-        public CompanyProfileController(ICompanyProfileApplicationService companyProfileCommandHandler)
+        public CompanyProfileController(ICompanyProfileApplicationService companyProfileCommandHandler, IUserInfoProvider userBasicInfoProvider)
         {
             this.companyProfileCommandHandler = companyProfileCommandHandler;
+            this.userBasicInfoProvider = userBasicInfoProvider;
         }
 
         [HttpPost]
@@ -31,6 +33,20 @@
             }
 
             return Json(new { error = "Could not create position" }, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpGet]
+        public ActionResult FindUser(string email)
+        {
+            var matchedUsers = userBasicInfoProvider.MatchUserEmail(email);
+            return PartialView(matchedUsers);
+        }
+
+        [HttpPost]
+        public ActionResult AssocciateUser(string email)
+        {
+
+            return null;
         }
     }
 }

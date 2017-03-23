@@ -13,5 +13,7 @@
         public IList<ExperienceViewModel> UserExperience { get; set; }
 
         public IList<string> Skills { get; set; }
+
+        public byte[] ProfileImage { get; set; }
     }
 }

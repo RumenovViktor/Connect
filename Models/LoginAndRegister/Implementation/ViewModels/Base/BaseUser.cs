@@ -9,6 +9,7 @@
 
         [Required]
         [Compare("Password", ErrorMessage = "Password missmatch.")]
+        [MinLength(8)]
         public string Password { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ApplicationServices;
 using Connect.Helpers;
+using Microsoft.AspNet.Identity;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,8 +20,8 @@ namespace Connect.Controllers
         {
             if (uploadedPicture != null)
             {
-                var userId = CurrentUser.GetParameterByKey("email").ToString();
-                imagesHandler.HandleFile(uploadedPicture, userId);
+                var userId = User.Identity.GetUserId();
+                imagesHandler.HandleFile(uploadedPicture, int.Parse(userId));
             }
             else
             {

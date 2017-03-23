@@ -28,7 +28,13 @@
                 <a href="#" class="btn btn-success col-lg-12" data-toggle="modal" data-target="#new-position-form-modal">Add position<i class="glyphicon pull-right glyphicon-plus"></i></a>
             </div>
             <div class="form-group">
-                <strong class="">Associate users <a href="#" class=""><i class="glyphicon glyphicon-plus-sign pull-right"></i></a></strong>
+                <strong class="">Associate recruiters</strong>
+                <div class="form-group">
+                    <input type="text" class="form-control" />
+                    <div class="input-group-btn">
+                        <input id="assoc-recruiter" class="btn btn-success" type="submit" value="Go!" />
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 @if (!Model.Employees.Any())

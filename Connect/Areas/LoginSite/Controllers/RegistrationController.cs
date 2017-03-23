@@ -1,17 +1,40 @@
 ﻿namespace Connect.Areas.LoginSite.Controllers
 {
     using System.Web.Mvc;
+    using System.Web;
 
     using Models;
     using ApplicationServices;
     using Helpers;
-    using System.Net;
+    using DTOs.Models;
+    using System;
+    using System.Collections.Generic;
+    using Data;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Data.Repository.Implementation;
 
     public class RegistrationController : BaseController
     {
         #region Private Members
 
         public readonly IRegistrationApplicationService registrationApplicationService;
+
+        public UserManager UserManager
+        {
+            get
+            {
+                return Request.GetOwinContext().GetUserManager<UserManager>();
+            }
+        }
+
+        public SignInManager SignInManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Get<SignInManager>();
+            }
+        }
 
         #endregion
 
@@ -38,16 +61,27 @@
         {
             if (ModelState.IsValid)
             {
-                var userExists = registrationApplicationService.Execute(user);
+                var existingUser = UserManager.FindByEmail(user.Email);
 
-                if (userExists.UserExists)
+                if (existingUser != null)
                 {
                     return new HttpStatusCodeResult(400, "User with this email already exists.");
                 }
 
-                SetAuthenticationCoockie(user.Email);
-                CurrentUser.AddParameter("email", user.Email);
-                CurrentUser.AddParameter("userId", userExists.UserId);
+                var registeredUser = new User()
+                {
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Skills = default(IList<Skill>),
+                    IsDeleted = default(bool),
+                    DateOfCreation = DateTime.UtcNow,
+                    CountryId = user.CountryId,
+                    UserName = user.Email
+                };
+
+                UserManager.Create(registeredUser, user.Password);
+                SignInManager.SignIn(registeredUser, false, false);
 
                 return Json(new { RedirectUrl = Url.Content("~/BusinessInfo/BusinessInfo") });
             }

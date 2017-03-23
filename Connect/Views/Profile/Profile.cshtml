@@ -44,7 +44,17 @@
                         <li class="list-group-item">
                             <button type="button" class="close" data-dismiss="card">&times;</button>
                             <div class="form-group text-center">
-                                <img src="~/Content/Images/profile-image.png" width="85px" height="85px" class="img-circle" />
+                                @if (Model.ProfileImage == null)
+                                {
+                                    <img src="~/Content/Images/profile-image.png" width="85px" height="85px" class="img-circle" />
+                                }
+                                else
+                                {
+                                    string imageBase64 = Convert.ToBase64String(Model.ProfileImage);
+                                    string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+
+                                    <img src="@imageSrc" width="85px" height="85px" class="img-circle" />
+                                }
                             </div>
                             <div class="card-block text-center">
                                 <h4 class="card-title">Skills</h4>
@@ -63,7 +73,17 @@
                         <li class="list-group-item">
                             <button type="button" class="close" data-dismiss="card">&times;</button>
                             <div class="form-group text-center">
-                                <img src="~/Content/Images/profile-image.png" width="85px" height="85px" class="img-circle" />
+                                @if (Model.ProfileImage == null)
+                                {
+                                    <img src="~/Content/Images/profile-image.png" width="85px" height="85px" class="img-circle" />
+                                }
+                                else
+                                {
+                                    string imageBase64 = Convert.ToBase64String(Model.ProfileImage);
+                                    string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+
+                                    <img src="@imageSrc" width="85px" height="85px" class="img-circle" />
+                                }
                             </div>
                             <div class="card-block text-center">
                                 <h4 class="card-title">Experience</h4>

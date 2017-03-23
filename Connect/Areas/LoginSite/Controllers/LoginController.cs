@@ -5,13 +5,33 @@
     using Models;
     using ApplicationServices;
     using Helpers;
-
+    using Data;
+    using System.Web;
+    using Data.Repository.Implementation;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.AspNet.Identity;
     public class LoginController : BaseController
     {
         #region Private Members
 
         private readonly ILoginApplicationService loginApplicationService;
         private readonly ICompanyInfoProvider companyInfoProvider;
+
+        public UserManager UserManager
+        {
+            get
+            {
+                return Request.GetOwinContext().GetUserManager<UserManager>();
+            }
+        }
+
+        public SignInManager SignInManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Get<SignInManager>();
+            }
+        }
 
         #endregion
 
@@ -39,18 +59,15 @@
         {
             if (ModelState.IsValid)
             {
-                var response = loginApplicationService.Execute(user);
+                var response = SignInManager.PasswordSignIn(user.Email, user.Password, false, false);
 
-                if (!response.DoesUserExists)
+                switch (response)
                 {
-                    return new HttpStatusCodeResult(400, "User with this email does not exists.");
+                    case SignInStatus.Failure:
+                        return new HttpStatusCodeResult(400, "User with this email does not exists.");
+                    case SignInStatus.Success:
+                        return Redirect(Url.Content("~/Dashboard/UserDashboard"));
                 }
-
-                SetAuthenticationCoockie(response.Email);
-                CurrentUser.AddParameter("userId", response.UserId);
-                CurrentUser.AddParameter("email", user.Email);
-                
-                return Redirect(Url.Content("~/Dashboard/UserDashboard"));
             }
 
             return RedirectToAction("Index", "Home");
@@ -58,9 +75,7 @@
 
         public ActionResult LogOut()
         {
-            RemoveAuthenticationCoockie();
-            CurrentUser.ClearSession();
-
+            SignInManager.AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
 

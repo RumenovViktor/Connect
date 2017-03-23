@@ -30,13 +30,13 @@ namespace ApplicationServices
 
         public UserLogin Execute(UserLogin command)
         {
-            var user = dalServiceData.Users.FindEntity(x => x.Email == command.Email && x.Password == command.Password);
+            var user = dalServiceData.Users.FindEntity(x => x.Email == command.Email);
 
             if (user != null)
             {
                 return new UserLogin()
                 {
-                    UserId = user.UserId,
+                    UserId = user.Id,
                     DoesUserExists = true
                 };
             }

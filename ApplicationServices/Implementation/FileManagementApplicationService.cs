@@ -17,12 +17,12 @@ namespace ApplicationServices
 
         public File Execute(File command)
         {
-            var user = dalServiceData.Users.FindEntity(x => x.Email == command.UserId);
+            var user = dalServiceData.Users.FindEntity(x => x.Id == command.UserId);
 
             var newFile = new DB.File()
             {
                 Name = command.Name,
-                UserId = user.UserId,
+                UserId = user.Id,
                 FileInputStream = command.FileInputStream
             };
 

@@ -28,19 +28,15 @@ else
 
 <div id="basicUserInfo-name">
     <i class="basicUserInfo-align glyphicon glyphicon-user"></i>
-    <h2 class="text-info basicUserInfo-margin-left">@(Model.FirstName + " " + Model.LastName)</h2>
+    <h5 class="text-info basicUserInfo-margin-left">@(Model.FirstName + " " + Model.LastName)</h5>
 </div>
 <div id="businessInfo-email">
     <i class="basicUserInfo-align glyphicon glyphicon-envelope"></i>
-    <h4 class="text-info basicUserInfo-margin-left"><a href="#">@Model.Email</a></h4>
+    <h5 class="text-info basicUserInfo-margin-left"><a href="#">@Model.Email</a></h5>
 </div>
 <div id="basicUserInfo-country">
     <i class="basicUserInfo-align glyphicon glyphicon-home"></i>
-    <h4 class="text-muted basicUserInfo-margin-left">@Model.Country.CountryName</h4>
-</div>
-<div>
-    <i class="basicUserInfo-align glyphicon glyphicon-heart-empty"></i>
-    <h4 class="text-muted basicUserInfo-margin-left">@Utils.Gender.Male</h4>
+    <h5 class="text-muted basicUserInfo-margin-left">@Model.Country.CountryName</h5>
 </div>
 <div id="basicUserInfo-joined-on">
     <i class="basicUserInfo-align glyphicon glyphicon-time"></i>

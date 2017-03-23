@@ -4,7 +4,16 @@
     <div class="arrow"></div>
     <div class="popover-title text-center">
         <a href="@Url.Action("Profile", "Profile")">
-            <img src="~/Content/Images/profile-image.png" class="img-circle" style="width: 49px;" />
+            @if (Model.ProfileImage == null)
+            {
+                <img src="~/Content/Images/profile-image.png" width="85px" height="85px" class="img-circle" />
+            }
+            else
+            {
+                string imageBase64 = Convert.ToBase64String(Model.ProfileImage);
+                string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                <img src="@imageSrc" width="85px" height="85px" class="img-circle" />
+            }
             <h4>@Model.FullName</h4>
         </a>
     </div>

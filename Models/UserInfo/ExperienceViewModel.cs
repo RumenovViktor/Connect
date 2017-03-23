@@ -18,7 +18,7 @@
             this.EndDate = (DateTime?)info.GetValue("EndDate", typeof(DateTime?));
             this.Position = (string)info.GetValue("Position", typeof(string));
             this.Company = (SupportedCompany)info.GetValue("Company", typeof(SupportedCompany));
-            this.UserEmail = (string)info.GetValue("UserEmail", typeof(string));
+            this.UserId = (int)info.GetValue("UserEmail", typeof(int));
 
         }
 
@@ -29,7 +29,7 @@
             info.AddValue("StartDate", this.StartDate, typeof(DateTime?));
             info.AddValue("EndDate", this.EndDate, typeof(DateTime?));
             info.AddValue("Company", this.Company, typeof(SupportedCompany));
-            info.AddValue("UserEmail", this.UserEmail, typeof(string));
+            info.AddValue("UserEmail", this.UserId, typeof(int));
         }
         [Required]
         public string Position { get; set; }
@@ -44,6 +44,6 @@
 
         public SupportedCompany Company { get; set; }
 
-        public string UserEmail { get; set; }
+        public int UserId { get; set; }
     }
 }

@@ -2,13 +2,14 @@
 {
     public class UserDashboardProfile
     {
-        public UserDashboardProfile(string fullName, string currentPosition)
+        public UserDashboardProfile(string fullName, string currentPosition, byte[] profileImage)
         {
             this.FullName = fullName;
             this.CurrentPosition = currentPosition;
+            this.ProfileImage = profileImage;
         }
 
-        public string Image { get; set; } // Todo
+        public byte[] ProfileImage { get; set; }
 
         public string FullName { get; set; }
 

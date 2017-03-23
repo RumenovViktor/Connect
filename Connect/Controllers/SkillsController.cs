@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.ModelBinding;
+using Microsoft.AspNet.Identity;
 
 namespace Connect.Controllers
 {
@@ -38,8 +39,10 @@ namespace Connect.Controllers
         {
             return ExecuteAction(ModelState, () => 
             {
-                var userEmail = (string)CurrentUser.GetParameterByKey("email");
-                return skillsApplicationService.Execute(new SkillDtoWriteModel(name, userEmail));
+                var userId = User.Identity.GetUserId();
+                var addedSkill = skillsApplicationService.Execute(new SkillDtoWriteModel(name, int.Parse(userId)));
+
+                return addedSkill.Name;
             });
         }
         

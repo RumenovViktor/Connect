@@ -39,18 +39,18 @@
                 Email = command.Email,
                 FirstName = command.FirstName,
                 LastName = command.LastName,
-                Password = command.Password,
                 Skills = default(IList<Skill>),
                 IsDeleted = default(bool),
                 DateOfCreation = DateTime.UtcNow,
-                CountryId = command.CountryId
+                CountryId = command.CountryId,
+                UserName = command.Email
             };
 
             dalServiceData.Users.AddEntity(newUser);
             dalServiceData.Users.SaveChanges();
 
             existingUser = dalServiceData.Users.FindEntity(x => x.Email == command.Email);
-            command.UserId = existingUser.UserId;
+            command.UserId = existingUser.Id;
 
             return command;
         }

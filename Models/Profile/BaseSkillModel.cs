@@ -6,14 +6,14 @@ namespace Models
     {
         public virtual string Name { get; set; }
 
-        public virtual string UserEmail { get; set; }
+        public virtual int UserId { get; set; }
 
         public BaseSkillModel() { }
 
-        public BaseSkillModel(string name, string userEmail)
+        public BaseSkillModel(string name, int userId)
         {
             this.Name = name;
-            this.UserEmail = userEmail;
+            this.UserId = userId;
         }
     }
 }

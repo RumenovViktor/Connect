@@ -5,7 +5,7 @@
     using Data.Unit_Of_Work;
     using System.Linq;
     using Models;
-
+    using System.Collections.Generic;
     public class CommonInfoManager : ICommonInfoManager
     {
         private readonly IDALServiceData dalServiceData;

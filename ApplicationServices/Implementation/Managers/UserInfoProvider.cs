@@ -21,18 +21,26 @@
             dalServiceData = data;
         }
 
-        public BasicUserInfo GetBasicUserInfo(string email)
+        public BasicUserInfo GetBasicUserInfo(int userId)
         {
             BasicUserInfo basicUserInfo = null;
-            var registeredUser = dalServiceData.Users.FindEntity(x => x.Email == email);
+            var registeredUser = dalServiceData.Users.FindEntity(x => x.Id == userId);
             var profileImage = registeredUser.Files.Select(x => x.FileInputStream).FirstOrDefault();
             var country = dalServiceData.Countries.FindEntity(x => x.CountryId == registeredUser.CountryId);
 
             if (registeredUser != null)
-                basicUserInfo = new BasicUserInfo(registeredUser.UserId, profileImage, registeredUser.Email, registeredUser.FirstName, registeredUser.LastName,
+                basicUserInfo = new BasicUserInfo(registeredUser.Id, profileImage, registeredUser.Email, registeredUser.FirstName, registeredUser.LastName,
                                                     Gender.Male, registeredUser.DateOfCreation, new CountryReadModel(country.CountryId, country.NiceName));
 
             return basicUserInfo;
+        }
+
+        public IList<BasicUserInfo> MatchUserEmail(string email)
+        {
+            var matchedUsers = dalServiceData.Users.All().Where(x => x.Email.StartsWith(email))
+                .Select(x => new BasicUserInfo(x.Id, null, x.Email, null, null, Gender.Male, DateTime.Now, null)).ToList();
+
+            return matchedUsers;
         }
 
         //TODO: Make a class or check if there is a class that deals with this kind of functionality.
@@ -63,7 +71,7 @@
         //TODO: Write operations - should be in application service
         public ExperienceViewModel AddExperience(ExperienceViewModel experience)
         {
-            var user = dalServiceData.Users.FindEntity(x => x.Email == experience.UserEmail);
+            var user = dalServiceData.Users.FindEntity(x => x.Id == experience.UserId);
 
             user.Experience.Add(new Experience(experience));
             dalServiceData.Users.UpdateEntity(user);
@@ -72,11 +80,11 @@
             return experience;
         }
 
-        public Profile GetUserProfile(string email)
+        public Profile GetUserProfile(int userId)
         {
-            var userExperience = dalServiceData.Users
-                                .FindEntity(x => x.Email == email)
-                                .Experience.OrderByDescending(x => x.ExperienceId)
+            var user = dalServiceData.Users .FindEntity(x => x.Id == userId);
+
+            var userExperience = user.Experience.OrderByDescending(x => x.ExperienceId)
                                 .Select(x => new ExperienceViewModel()
                                 {
                                     Description = x.PositionDiscription,
@@ -85,15 +93,19 @@
                                     StartDate = x.FromDate
                                 }).ToList();
 
-            return new Profile() { UserExperience = userExperience };
+            var userSkills = user.Skills.Select(x => x.Name).ToList();
+            var profileImage = user.Files.Select(x => x.FileInputStream).FirstOrDefault();
+
+            return new Profile() { UserExperience = userExperience, Skills = userSkills, ProfileImage = profileImage };
         }
 
-        public UserDashboardProfile GetUserDashboardProfile(long userId)
+        public UserDashboardProfile GetUserDashboardProfile(int userId)
         {
-            var user = dalServiceData.Users.FindEntity(x => x.UserId == userId);
+            var user = dalServiceData.Users.FindEntity(x => x.Id == userId);
+            var profileImage = user.Files.Select(x => x.FileInputStream).FirstOrDefault();
             var userCurrentPosition = user.Experience.Where(x => !x.ToDate.HasValue).FirstOrDefault();
 
-            return new UserDashboardProfile(user.FirstName + " " + user.LastName, userCurrentPosition != null ? userCurrentPosition.PositionName : string.Empty);
+            return new UserDashboardProfile(user.FirstName + " " + user.LastName, userCurrentPosition != null ? userCurrentPosition.PositionName : string.Empty, profileImage);
         }
     }
 }

@@ -4,6 +4,10 @@ namespace Data.Migrations
 
     using DataContext;
     using DTOs.Models;
+    using Microsoft.AspNet.Identity;
+    using System;
+    using Data;
+    using Repository.Implementation;
 
     internal sealed class Configuration : DbMigrationsConfiguration<DALServiceDataContext>
     {
@@ -15,8 +19,26 @@ namespace Data.Migrations
 
         protected override void Seed(DALServiceDataContext context)
         {
-            //  This method will be called after migrating to the latest version.
-            
+            var userStore = new UserStore(context);
+            var manager = new UserManager(userStore);
+            var roleStore = new RoleStore(context);
+            var roleManager = new RoleManager(roleStore);
+
+            var user = new User() { UserName = "Shasdadaro", FirstName = "Shssari", LastName = "Shassri", DateOfCreation = DateTime.Now, Email = "ahsdi@hiusdf.fd" };
+            IdentityResult result = manager.Create(user, "asdasdasdasasd");
+            var user2 = manager.FindById(1);
+            roleManager.Create(new Role("Recruiter"));
+
+            manager.AddToRole(user2.Id, "Recruiter");
+
+            if (result.Succeeded)
+            {
+
+            }
+            else
+            {
+
+            }
         }
     }
 }
