@@ -21,6 +21,9 @@
         [Required]
         public string LastName { get; set; }
 
+        [Required]
+        public string UserName { get; set; }
+
         public IList<CountryReadModel> Countries { get; set; }
 
         [Required]

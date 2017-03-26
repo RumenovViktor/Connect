@@ -1,0 +1,23 @@
+﻿<div id="recruiterProfile">
+    <div class="form-group">
+        <div class="col-md-2">
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="card-block">
+                            @Html.Action("ProfileBasicInfo", "Profile", new { userName = Session["userNameReadOnly"] })
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="openedPositions" class="col-lg-8">
+            @Html.Action("GetOpenedPositions", "Profile", new { userName = Session["userNameReadOnly"] })
+        </div>
+    </div>
+</div>
+
+@section ProfileScripts{
+    <script src="~/Scripts/ConnectScripts/Profile/positionsManager.js"></script>
+    <script src="~/Scripts/ConnectScripts/Profile/skillsManager.js"></script>
+}

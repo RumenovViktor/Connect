@@ -1,6 +1,9 @@
 ﻿using ApplicationServices;
+using Data;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Models;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Connect.Controllers
@@ -8,6 +11,14 @@ namespace Connect.Controllers
     [Authorize]
     public class DashboardController : BaseController
     {
+        public UserManager UserManager
+        {
+            get
+            {
+                return Request.GetOwinContext().GetUserManager<UserManager>();
+            }
+        }
+
         private readonly IDashboardManager dashboardInfoProvider;
         private readonly ICommonInfoManager commonInfoProvider;
         private readonly IUserInfoProvider userInfoProvider;
@@ -22,8 +33,16 @@ namespace Connect.Controllers
         [HttpGet]
         public ActionResult UserDashboard()
         {
-            var userId = User.Identity.GetUserId();
-            var userDashboardProfile = userInfoProvider.GetUserDashboardProfile(int.Parse(userId));
+            var userId = int.Parse(User.Identity.GetUserId());
+            var isRecruiter = UserManager.IsInRole(userId, "Recruiter");
+            var userDashboardProfile = userInfoProvider.GetUserDashboardProfile(userId);
+
+            if (isRecruiter)
+            {
+                Session["userName"] = User.Identity.GetUserName();
+                return View("RecruiterDashboard/RecruiterDashboard", userDashboardProfile);
+            }
+
             return View(userDashboardProfile);
         }
 
@@ -41,6 +60,13 @@ namespace Connect.Controllers
             var userId = User.Identity.GetUserId();
             var suitiblePositions = dashboardInfoProvider.GetSuitiblePositions(sectorId, countryId, int.Parse(userId));
             return PartialView(suitiblePositions);
+        }
+
+        [HttpGet]
+        public ActionResult CandidateSuggestions(int positionId)
+        {
+            var suitiblePositions = dashboardInfoProvider.GetCandidateSuggestions(null, null, positionId);
+            return PartialView("RecruiterDashboard/CandidateSuggestions", suitiblePositions);
         }
     }
 }

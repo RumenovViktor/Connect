@@ -1,0 +1,29 @@
+﻿<div id="recruiterProfile">
+    <div class="form-group">
+        <div class="col-md-2">
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="card-block">
+                            @Html.Action("ProfileBasicInfo", "Profile", new { userName = Session["userName"] })
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-group col-lg-12">
+                <input type="button" class="btn btn-outline btn-success col-lg-12" id="openCreatePosition" value="Create position" />
+            </div>
+        </div>
+        <div id="openedPositions" class="col-lg-8">
+            @Html.Action("GetOpenedPositions", "Profile", new { userName = Session["userName"] })
+        </div>
+        <div id="positionCreation" class="col-lg-8">
+            @Html.Action("CreatePosition", "Profile")
+        </div>
+    </div>
+</div>
+
+@section ProfileScripts{
+    <script src="~/Scripts/ConnectScripts/Profile/positionsManager.js"></script>
+    <script src="~/Scripts/ConnectScripts/Profile/skillsManager.js"></script>
+}

@@ -311,14 +311,21 @@
     <Content Include="Views\Profile\AddExperience.cshtml" />
     <Content Include="Views\Profile\Experience.cshtml" />
     <Content Include="Views\Profile\AddSkill.cshtml" />
-    <Content Include="Views\Profile\AddPosition.cshtml" />
-    <Content Include="Views\Profile\AddPositionSkill.cshtml" />
-    <Content Include="Views\Profile\CreatedPosition.cshtml" />
+    <Content Include="Views\RecruiterProfile\AddPosition.cshtml" />
+    <Content Include="Views\RecruiterProfile\AddPositionSkill.cshtml" />
+    <Content Include="Views\RecruiterProfile\CreatedPosition.cshtml" />
     <Content Include="Views\Dashboard\TheWall.cshtml" />
     <Content Include="Views\Dashboard\UserSuitiblePositions.cshtml" />
     <Content Include="Views\Dashboard\UserDashboard.cshtml" />
     <Content Include="Views\Profile\NavigationProfileInfo.cshtml" />
     <Content Include="Views\Shared\_CompanyLayout.cshtml" />
+    <Content Include="Views\Profile\RecruiterProfile.cshtml" />
+    <Content Include="Views\Dashboard\RecruiterDashboard\CandidateSuggestions.cshtml" />
+    <Content Include="Views\Dashboard\RecruiterDashboard\RecruiterWall.cshtml" />
+    <Content Include="Views\Dashboard\RecruiterDashboard\RecruiterDashboard.cshtml" />
+    <Content Include="Views\Dashboard\RecruiterDashboard\CreatedPositions.cshtml" />
+    <Content Include="Views\Profile\ProfileReadOnly.cshtml" />
+    <Content Include="Views\Profile\RecruiterProfileReadOnly.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

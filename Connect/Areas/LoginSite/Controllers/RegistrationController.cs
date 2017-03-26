@@ -55,8 +55,9 @@
             if (ModelState.IsValid)
             {
                 var existingUser = UserManager.FindByEmail(user.Email);
+                var existingUserName = UserManager.FindByName(user.UserName);
 
-                if (existingUser != null)
+                if (existingUser != null || existingUserName != null)
                 {
                     return new HttpStatusCodeResult(400, "User with this email already exists.");
                 }
@@ -70,14 +71,14 @@
                     IsDeleted = default(bool),
                     DateOfCreation = DateTime.UtcNow,
                     CountryId = user.CountryId,
-                    UserName = user.Email
+                    UserName = user.UserName
                 };
 
                 UserManager.Create(registeredUser, user.Password);
 
                 SignInManager.SignIn(registeredUser, false, false);
 
-                return RedirectToAction("SetUserRole", "Profile", new { userType = user.UserType });
+                return RedirectToAction("SetUserRole", "Profile", new { userType = user.UserType, Area="" });
             }
             else
             {

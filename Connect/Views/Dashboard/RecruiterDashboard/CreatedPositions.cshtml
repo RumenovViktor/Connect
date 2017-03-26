@@ -1,0 +1,13 @@
+﻿@model IList<CreatedPosition>
+
+@foreach (var position in Model)
+{
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            @Ajax.ActionLink(position.PositionName, "CandidateSuggestions", "Dashboard", new { positionId = position.PositionId }, new AjaxOptions()
+            {
+                UpdateTargetId = "candidateSuggestions"
+            })
+        </li>
+    </ul>
+}

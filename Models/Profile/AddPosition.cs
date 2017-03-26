@@ -1,7 +1,6 @@
 ﻿namespace Models
 {
     using System.ComponentModel.DataAnnotations;
-    using System.Runtime.Serialization;
 
     public class AddPosition : ICommand
     {
@@ -9,9 +8,15 @@
 
         [Required]
         public string PositionName { get; set; }
+        
+        public string Introduction { get; set; }
 
         [Required]
         public string PositionDescription { get; set; }
+
+        public string WhatWeProvide { get; set; }
+
+        public int NeededYearsOfExperience { get; set; }
 
         public long PositionId { get; set; }
 

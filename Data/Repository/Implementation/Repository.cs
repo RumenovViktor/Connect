@@ -105,7 +105,12 @@
 
             var entityState = this.GetEntityState(entity);
 
-            m_DataContext.Set<T>().Attach(entity);
+            if (entityState == EntityState.Detached)
+            {
+                m_DataContext.Set<T>().Attach(entity);
+            }
+
+            entityState = EntityState.Modified;
         }
 
         public void SaveChanges()

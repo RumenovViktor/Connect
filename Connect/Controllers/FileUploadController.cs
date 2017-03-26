@@ -28,7 +28,7 @@ namespace Connect.Controllers
                 ModelState.AddModelError("uploadedPicture", "Please select a file.");
             }
 
-            return RedirectToAction("Profile", "Profile", null);
+            return RedirectToAction("Profile", "Profile", new { userName = User.Identity.GetUserName() });
         }
     }
 }

@@ -1,0 +1,48 @@
+﻿@model AddPosition
+
+<div class="form-group text-center">
+    @using (Ajax.BeginForm("CreatePosition", "Profile", null,
+                                        new AjaxOptions()
+                                        {
+                                            HttpMethod = "POST",
+                                            InsertionMode = InsertionMode.InsertBefore,
+                                            OnSuccess = "positionsManager.methods.processPosition"
+                                        }, new { @class = "panel-body", id = "add-position-form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="exp-form-fields-wrapper">
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(x => x.PositionName, new { @class = "form-control ", placeholder = "Position Name: ASP.NET MVC Developer" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextAreaFor(x => x.Introduction, new { @class = "form-control ", placeholder = "Introduction: We are an international company providing online payment solutions", rows = "10" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextAreaFor(x => x.PositionDescription, new { @class = "form-control", placeholder = "Job Description: Developing an online payment system.", rows = "10" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(x => x.NeededYearsOfExperience, new { @class = "form-control", placeholder = "Years of experience: 1", rows = "10" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @{ Html.RenderPartial("~/Views/RecruiterProfile/AddPositionSkill.cshtml", new PositionRequiredSkill()); }
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.TextAreaFor(x => x.WhatWeProvide, new { @class = "form-control ", placeholder = "What you provide: Excellent compensation package etc.", rows = "10" })
+                </div>
+            </div>
+        </div>
+        <input id="add-position" type="submit" class="btn btn-success col-lg-12" value="Add position" />
+    }
+</div>

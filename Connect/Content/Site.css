@@ -294,7 +294,7 @@ p {
     line-height: 16px;
 }
 
-#dashboard-wrapper .card {
+#user-basic-profile .card {
     padding-top: 10%;
     padding-bottom: 10%;
 }
@@ -333,4 +333,14 @@ p {
     line-height: 30px;
     margin-bottom: 5px;
     width: 30%;
+}
+
+#candidateSuggestions .card{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important; 
+    max-height: 265px;
+}
+
+#positionCreation{
+    display: none;
 }

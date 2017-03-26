@@ -1,14 +1,21 @@
 ﻿var positionsManager = {
     init: function () {
         positionsManager.methods.processPosition();
+        positionsManager.methods.positionCreation();
     },
     selectors: {
-        addPositionBtn: '#add-position'
+        openCreatePositionBtn: '#openCreatePosition',
+        positionCreation: "#positionCreation"
     },
     events: {
         click: 'click'
     },
     methods: {
+        positionCreation: function(){
+            $(positionsManager.selectors.openCreatePositionBtn).on(positionsManager.events.click, function () {
+                $(positionsManager.selectors.positionCreation).show();
+            });
+        },
         processPosition: function (response) {
             if (!response)
                 return;
@@ -19,11 +26,9 @@
                 requiredSkills.push($(this).text());
             });
 
-            $('.positions-list').append(response);
-            var positionIds = $('.positionId');
-            var lastPositionId = positionIds.last().val();
-            skillsManager.methods.addPositionRequiredSkills(requiredSkills, lastPositionId);
-        }
+            skillsManager.methods.addPositionRequiredSkills(requiredSkills, response);
+        },
+
     }
 };
 

@@ -11,9 +11,12 @@
     using Utils;
     using Models.Global;
     using DTOs.Models;
+    using Data;
+    using Microsoft.AspNet.Identity;
 
     public class UserInfoProvider : IUserInfoProvider
     {
+
         private readonly IDALServiceData dalServiceData;
 
         public UserInfoProvider(IDALServiceData data)
@@ -69,9 +72,12 @@
         //}
 
         //TODO: Write operations - should be in application service
-        public ExperienceViewModel AddExperience(ExperienceViewModel experience)
+        public ExperienceViewModel AddExperience(ExperienceViewModel experience, UserManager userManager)
         {
             var user = dalServiceData.Users.FindEntity(x => x.Id == experience.UserId);
+            var daysOfExperience = experience.EndDate.HasValue ? experience.EndDate.Value.Subtract(experience.StartDate.Value).TotalDays : DateProvider.UtcNow.Subtract(experience.StartDate.Value).TotalDays;
+            var totalDaysOfExperience = user.DaysOfExperience.HasValue ? user.DaysOfExperience.Value + daysOfExperience : daysOfExperience;
+            user.DaysOfExperience = totalDaysOfExperience;
 
             user.Experience.Add(new Experience(experience));
             dalServiceData.Users.UpdateEntity(user);
@@ -83,6 +89,7 @@
         public Profile GetUserProfile(int userId)
         {
             var user = dalServiceData.Users .FindEntity(x => x.Id == userId);
+            var yearsOfExperience = DateProvider.ConvertToYears(user.DaysOfExperience);
 
             var userExperience = user.Experience.OrderByDescending(x => x.ExperienceId)
                                 .Select(x => new ExperienceViewModel()
@@ -96,7 +103,7 @@
             var userSkills = user.Skills.Select(x => x.Name).ToList();
             var profileImage = user.Files.Select(x => x.FileInputStream).FirstOrDefault();
 
-            return new Profile() { UserExperience = userExperience, Skills = userSkills, ProfileImage = profileImage };
+            return new Profile() { UserExperience = userExperience, Skills = userSkills, ProfileImage = profileImage, YearsOfExperience = yearsOfExperience, UserName = user.UserName };
         }
 
         public UserDashboardProfile GetUserDashboardProfile(int userId)
@@ -105,7 +112,13 @@
             var profileImage = user.Files.Select(x => x.FileInputStream).FirstOrDefault();
             var userCurrentPosition = user.Experience.Where(x => !x.ToDate.HasValue).FirstOrDefault();
 
-            return new UserDashboardProfile(user.FirstName + " " + user.LastName, userCurrentPosition != null ? userCurrentPosition.PositionName : string.Empty, profileImage);
+            return new UserDashboardProfile(user.FirstName + " " + user.LastName, userCurrentPosition != null ? userCurrentPosition.PositionName : string.Empty, profileImage, user.UserName);
+        }
+
+        public IList<CreatedPosition> GetCreatedPositions(int userId)
+        {
+            var user = dalServiceData.Users.FindEntity(x => x.Id == userId);
+            return user.Positions.Select(x => new CreatedPosition(x.Id, x.PositionName)).ToList();
         }
     }
 }

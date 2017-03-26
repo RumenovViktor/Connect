@@ -33,5 +33,7 @@ namespace Models
         public Gender Gender { get; set; }
 
         public DateTime DateOfCreation { get; set; }
+
+        public bool CanEditProfile { get; set; }
     }
 }

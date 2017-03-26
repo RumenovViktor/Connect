@@ -20,10 +20,13 @@ else
         <img src="~/Content/Images/profile-image.png" />
     </div>
 }
-@using (Html.BeginForm("UploadPicture", "FileUpload", FormMethod.Post,
-                                                            new { enctype = "multipart/form-data", id = "upload" }))
+@if (Model.CanEditProfile)
 {
-    <input type="file" name="uploadedPicture" id="file" class="filestyle col-lg-12" />
+    using (Html.BeginForm("UploadPicture", "FileUpload", FormMethod.Post,
+                                                                        new { enctype = "multipart/form-data", id = "upload" }))
+    {
+        <input type="file" name="uploadedPicture" id="file" class="filestyle col-lg-12" />
+    }
 }
 
 <div id="basicUserInfo-name">

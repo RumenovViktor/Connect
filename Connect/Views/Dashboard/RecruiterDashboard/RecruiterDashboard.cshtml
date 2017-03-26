@@ -1,0 +1,57 @@
+﻿@model Models.Dashboard.UserDashboardProfile
+
+<div id="dashboard-wrapper">
+    <div class="form-group">
+        <div id="user-basic-profile" class="col-lg-2 col-md-2">
+            <div class="card text-center">
+                <div class="card-block text-center">
+                    <div class="form-group text-center">
+                        @if (Model.ProfileImage == null)
+                        {
+                            <img src="~/Content/Images/profile-image.png" width="85px" height="85px" class="img-circle profile-image-dashboard" />
+                        }
+                        else
+                        {
+                            string imageBase64 = Convert.ToBase64String(Model.ProfileImage);
+                            string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                            
+                            <img src="@imageSrc" width="85px" height="85px" class="img-circle profile-image-dashboard" />
+                         }
+                    </div>
+                    <div class="form-group">
+                        <h5 class="card-title">@Model.FullName</h5>
+                    </div>
+                    <div class="form-group">
+                        @if (string.IsNullOrWhiteSpace(Model.CurrentPosition))
+                        {
+                            <p class="card-title">Unemployed</p>
+                        }
+                        else
+                        {
+                            <p class="card-title">@Model.CurrentPosition</p>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card text-center">
+                <div class="card-heading">
+                    Opened positions
+                </div>
+                <div class="card-block text-center">
+                    @Html.Action("GetOpenedPositions", "Profile", new { userName = Model.UserName })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div id="candidateSuggestions">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section DashboardScripts{
+    <script src="~/Scripts/ConnectScripts/dashboard.js"></script>
+}

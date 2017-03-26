@@ -62,17 +62,17 @@
                 var exisitingUser = UserManager.FindByEmail(user.Email);
                 var isUserInRole = UserManager.IsInRole(exisitingUser.Id, user.UserType.ToString());
 
-                if (!isUserInRole)
+                if (!isUserInRole || exisitingUser == null)
                 {
                     return new HttpStatusCodeResult(400, "User with this email does not exists.");
                 }
 
-                var response = SignInManager.PasswordSignIn(user.Email, user.Password, false, false);
+                var response = SignInManager.PasswordSignIn(exisitingUser.UserName, user.Password, false, false);
 
                 switch (response)
                 {
                     case SignInStatus.Failure:
-                        return new HttpStatusCodeResult(400, "User with this email does not exists.");
+                        return new HttpStatusCodeResult(400, "Error trying to login.");
                     case SignInStatus.Success:
                         return Redirect(Url.Content("~/Dashboard/UserDashboard"));
                 }
@@ -84,6 +84,7 @@
         public ActionResult LogOut()
         {
             SignInManager.AuthenticationManager.SignOut();
+            Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
 

@@ -23,14 +23,6 @@ namespace Connect.Controllers
             }
         }
 
-        public SignInManager SignInManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Get<SignInManager>();
-            }
-        }
-
         private readonly IUserInfoProvider userInfoProvider;
         private readonly ISkillsApplicationService skillsApplicationService;
         private readonly ICommonInfoManager commonInfoProvider;
@@ -43,10 +35,11 @@ namespace Connect.Controllers
             this.commonInfoProvider = commonInfoProvider;
             this.profileApplicationService = profileApplicationService;
         }
-
+        
         public ActionResult SetUserRole(UserType userType)
         {
             var userId = User.Identity.GetUserId();
+            var userName = User.Identity.GetUserName();
 
             switch (userType)
             {
@@ -60,16 +53,39 @@ namespace Connect.Controllers
                     throw new ArgumentException("No such user type");
             }
 
-            return Json(new { RedirectUrl = Url.Content("~/Profile/Profile") }, JsonRequestBehavior.AllowGet);
+            return Json(new { RedirectUrl = Url.Content("~/Profile/Profile?userName=" + userName) }, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize]
         [HttpGet]
-        public new ActionResult Profile()
+        public new ActionResult Profile(string userName)
         {
-            var userId = User.Identity.GetUserId();
-            var currentUser = userInfoProvider.GetUserProfile(int.Parse(userId));
-            return View(currentUser);
+            var user = UserManager.FindByName(userName);
+
+            var isRecruiter = UserManager.IsInRole(user.Id, "Recruiter");
+            var currentUser = userInfoProvider.GetUserProfile(user.Id);
+
+            if (isRecruiter)
+            {
+                Session["userNameReadOnly"] = userName;
+                if (User.Identity.GetUserName().Equals(userName))
+                {
+                    Session["userName"] = userName;
+                    currentUser.CanEditProfile = true;
+                    return View("RecruiterProfile");
+                }
+
+                return View("RecruiterProfileReadOnly");
+            }
+
+            if (User.Identity.GetUserName().Equals(userName))
+            {
+                Session["userName"] = userName;
+                currentUser.CanEditProfile = true;
+                return View(currentUser);
+            }
+
+            return View("ProfileReadOnly", currentUser);
         }
 
         [Authorize]
@@ -85,10 +101,15 @@ namespace Connect.Controllers
         [Authorize]
         [HttpGet]
         [ChildActionOnly]
-        public ActionResult ProfileBasicInfo()
+        public ActionResult ProfileBasicInfo(string userName)
         {
-            var userId = User.Identity.GetUserId();
-            var currentUser = userInfoProvider.GetBasicUserInfo(int.Parse(userId));
+            var user = UserManager.FindByName(userName);
+            var currentUser = userInfoProvider.GetBasicUserInfo(user.Id);
+
+            if (User.Identity.GetUserName().Equals(userName))
+            {
+                currentUser.CanEditProfile = true;
+            }
 
             return PartialView(currentUser);
         }
@@ -96,10 +117,15 @@ namespace Connect.Controllers
         [Authorize]
         [HttpGet]
         [OutputCache(Duration = 60 * 60)]
-        public ActionResult Qualifications()
+        public ActionResult Qualifications(string userName)
         {
-            var userId = User.Identity.GetUserId();
-            var currentUser = userInfoProvider.GetUserProfile(int.Parse(userId));
+            var user = UserManager.FindByName(userName);
+            var currentUser = userInfoProvider.GetUserProfile(user.Id);
+
+            if (User.Identity.GetUserName().Equals(userName))
+            {
+                currentUser.CanEditProfile = true;
+            }
 
             return PartialView(currentUser);
         }
@@ -114,7 +140,7 @@ namespace Connect.Controllers
                 var userId = User.Identity.GetUserId();
 
                 experience.UserId = int.Parse(userId);
-                userInfoProvider.AddExperience(experience);
+                userInfoProvider.AddExperience(experience, UserManager);
 
                 return PartialView("Experience", experience);
             }
@@ -122,9 +148,18 @@ namespace Connect.Controllers
             return PartialView(experience);
         }
 
+        [Authorize]
+        [HttpGet]
+        [OutputCache(Duration = 60 * 60)]
+        public ActionResult CreatePosition()
+        {
+            return PartialView("~/Views/RecruiterProfile/AddPosition.cshtml", new AddPosition());
+        }
+
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddPosition(AddPosition newPosition)
+        public ActionResult CreatePosition(AddPosition newPosition)
         {
             if (ModelState.IsValid)
             {
@@ -132,10 +167,19 @@ namespace Connect.Controllers
                 newPosition.UserId = int.Parse(userId);
                 var position = profileApplicationService.Execute(newPosition);
 
-                return PartialView("~/Views/Profile/CreatedPosition.cshtml", new CreatedPosition(position.PositionId, position.PositionName));
+                return Json(position.PositionId, JsonRequestBehavior.AllowGet);
             }
 
             return Json(new { error = "Could not create position" }, JsonRequestBehavior.DenyGet);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult GetOpenedPositions(string userName)
+        {
+            var user = UserManager.FindByName(userName);
+            var openedPositions = userInfoProvider.GetCreatedPositions(user.Id);
+            return PartialView("~/Views/Dashboard/RecruiterDashboard/CreatedPositions.cshtml", openedPositions);
         }
     }
 }

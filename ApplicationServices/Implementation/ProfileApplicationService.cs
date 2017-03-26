@@ -20,7 +20,9 @@
             {
                 PositionName = command.PositionName,
                 Description = command.PositionDescription,
-                UserId = command.UserId
+                Introduction = command.Introduction,
+                WhatWeProvide = command.WhatWeProvide,
+                NeededYearsOfExperience = command.NeededYearsOfExperience
             };
 
             dalServiceData.Positions.AddEntity(newPosition);

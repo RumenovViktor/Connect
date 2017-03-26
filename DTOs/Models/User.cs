@@ -3,6 +3,7 @@
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public class User : IdentityUser<int, UserLogin, UserRole, UserClaim>
@@ -17,6 +18,7 @@
             this.skills = new HashSet<Skill>();
             this.files = new HashSet<File>();
             this.experience = new HashSet<Experience>();
+            this.positions = new HashSet<Position>();
         }
 
         [Required]
@@ -32,6 +34,8 @@
         public Country Country { get; set; }
 
         public DateTime DateOfCreation { get; set; }
+
+        public double? DaysOfExperience { get; set; }
 
         public bool IsDeleted { get; set; }
 

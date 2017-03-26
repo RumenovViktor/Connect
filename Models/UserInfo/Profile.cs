@@ -14,6 +14,12 @@
 
         public IList<string> Skills { get; set; }
 
+        public double? YearsOfExperience { get; set; }
+
         public byte[] ProfileImage { get; set; }
+
+        public string UserName { get; set; }
+
+        public bool CanEditProfile { get; set; }
     }
 }

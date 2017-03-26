@@ -19,13 +19,6 @@
         userSkillsContainer: '#user-skills-container'
     },
     methods: {
-        stopInterval: function(){
-            $('.close').on('click', function () {
-                if (skillsManager.properties.timer != null) {
-                    clearInterval(skillsManager.properties.timer);
-                }
-            });
-        },
         getMatchedSkills: function () {
             var dropdown = $('#skills-dropdown');
 

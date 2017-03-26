@@ -1,9 +1,12 @@
 ﻿@model Models.Profile.Profile
 
 <div class="form-group">
-    <div id="profile-qualifications-wrapper">
-        <a href="#" class="btn btn-lg btn-info col-md-12" data-toggle="modal" data-target="#exp-form-modal">Add experience</a>
-    </div>
+    @if (Model.CanEditProfile)
+    {
+        <div id="profile-qualifications-wrapper">
+            <a href="#" class="btn btn-lg btn-info col-md-12" data-toggle="modal" data-target="#exp-form-modal">Add experience</a>
+        </div>
+    }
 </div>
 <div class="form-group">
     <div class="panel panel-default">
@@ -42,8 +45,12 @@
 </div>
 <div class="popover bottom">
     <div class="arrow"></div>
-    <div id="user-skills-container" class="popover-content">
-        @if (!Model.Skills.Any())
+    <div id="user-skills-container" class="popover-content text-center">
+        @if (!Model.Skills.Any() && !Model.CanEditProfile)
+        {
+            <p>The user hadn't added any skills yet.</p>
+        }
+        else if (!Model.Skills.Any() && Model.CanEditProfile)
         {
             <p>Looks like you haven't added any skills. Please add skills from <a href="#" class="text-info btn-add-skill" data-toggle="modal" data-target="#skill-form-modal">here</a> so we can rank you better.</p>
         }

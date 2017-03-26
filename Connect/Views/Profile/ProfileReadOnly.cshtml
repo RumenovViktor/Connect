@@ -1,0 +1,64 @@
+﻿@model Models.Profile.Profile
+
+<div id="profile-wrapper" class="form-group">
+    <div class="form-group">
+        <div id="businessInfo-basicUserInfo" class="col-md-2">
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="card-block">
+                            @Html.Action("ProfileBasicInfo", "Profile", new { userName = Model.UserName })
+                            <div class="form-group">
+                                @if (Model.YearsOfExperience < 1)
+                                {
+                                    <div id="basicUserInfo-name">
+                                        <i class="basicUserInfo-align glyphicon glyphicon-briefcase"></i>
+                                        <h5 class="text-info basicUserInfo-margin-left">Bellow one year</h5>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div id="basicUserInfo-name">
+                                        <i class="basicUserInfo-align glyphicon glyphicon-briefcase"></i>
+                                        <h5 class="text-info basicUserInfo-margin-left">@(Model.YearsOfExperience + " years")</h5>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+
+                        <div class="card-block text-center">
+                            <ul class="nav nav-tabs nav-justified">
+                                <li id="qualifications-tab" role="presentation" class="profile-nav-btn">
+                                    @Ajax.ActionLink("Qualifications", "Qualifications", "Profile", new { userName = Model.UserName }, new AjaxOptions()
+                                   {
+                                       UpdateTargetId = "profile-content"
+                                   }, null)
+                                </li>
+                                <li role="presentation" class="profile-nav-btn"><a href="#">Documents</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div id="profile-content" class="col-md-12">
+
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+</div>
+
+@section ProfileScripts{
+    <script src="~/Scripts/ConnectScripts/Profile/profileManager.js"></script>
+    <script src="~/Scripts/ConnectScripts/Profile/skillsManager.js"></script>
+}

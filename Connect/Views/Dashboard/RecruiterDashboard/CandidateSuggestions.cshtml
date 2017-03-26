@@ -1,0 +1,45 @@
+﻿@model IList<Models.Dashboard.SuggestedUser>
+
+
+@foreach (var user in Model)
+{
+    <div class="col-lg-2">
+
+        <div class="card">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="card-block text-center">
+                        <div class="form-group text-center">
+                            @if (user.UserImage!= null)
+                            {
+                                <div>
+                                    @{
+                                        string imageBase64 = Convert.ToBase64String(user.UserImage);
+                                        string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                                    }
+                                    <img src="@imageSrc" width="85px" height="85px" class="img-circle" />
+                                </div>
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/profile-image.png" width="85px" height="85px" class="img-circle" />
+                            }
+                        </div>
+                        <div class="card-block text-center">
+                            <h6 class="card-text">@user.FullName</h6>
+                            <p class="card-text">@(user.MatchPersentage + " %")</p>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    @Html.ActionLink("Profile", "", "", new { }, new { @class = "text-center btn btn-outline btn-info col-lg-12 form-control" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.ActionLink("Message", "", "", new { }, new { @class = "text-center btn btn-outline btn-success col-lg-12 form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+}

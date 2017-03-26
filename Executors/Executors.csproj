@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="MatchingExecutor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecruiterMatchingExecutor.cs" />
     <Compile Include="UserMatchingExecutor.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +106,10 @@
     <ProjectReference Include="..\DTOs\DTOs.csproj">
       <Project>{d357286c-5a3d-4b10-8e75-70202a1e334e}</Project>
       <Name>DTOs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{53641283-CF14-4DD3-B978-D259C630FA6A}</Project>
+      <Name>Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

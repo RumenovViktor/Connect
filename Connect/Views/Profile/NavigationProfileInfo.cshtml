@@ -3,7 +3,7 @@
 <div class="popover bottom">
     <div class="arrow"></div>
     <div class="popover-title text-center">
-        <a href="@Url.Action("Profile", "Profile")">
+        <a href="@Url.Action("Profile", "Profile", new { userName = Session["userName"] })">
             @if (Model.ProfileImage == null)
             {
                 <img src="~/Content/Images/profile-image.png" width="85px" height="85px" class="img-circle" />

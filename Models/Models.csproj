@@ -92,6 +92,7 @@
     <Compile Include="ActivityAreaReadModel.cs" />
     <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="CountryReadModel.cs" />
+    <Compile Include="Dashboard\SuggestedUser.cs" />
     <Compile Include="Dashboard\UserDashboardProfile.cs" />
     <Compile Include="LoginAndRegister\Implementation\ViewModels\CompanyLogin.cs" />
     <Compile Include="Profile\AddPosition.cs" />
@@ -101,7 +102,7 @@
     <Compile Include="Profile\SkillDtoWriteModel.cs" />
     <Compile Include="Profile\SkillsDto.cs" />
     <Compile Include="Profile\TheWall.cs" />
-    <Compile Include="Profile\UserSuitiblePosition.cs" />
+    <Compile Include="Dashboard\UserSuitiblePosition.cs" />
     <Compile Include="UserInfo\AddSkill.cs" />
     <Compile Include="UserInfo\ExperienceViewModel.cs" />
     <Compile Include="LoginAndRegister\Implementation\ViewModels\Base\BaseUser.cs" />
